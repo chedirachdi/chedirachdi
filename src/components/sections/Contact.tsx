@@ -2,7 +2,40 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaArrowRight } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaArrowRight, FaExternalLinkAlt, FaUsers, FaGlobeAmericas, FaHandshake } from 'react-icons/fa';
+import Link from 'next/link';
+
+interface NetworkStat {
+  icon: React.ReactNode;
+  title: string;
+  subtitle: string;
+  value: string;
+  label: string;
+}
+
+const networkStats: NetworkStat[] = [
+  {
+    icon: <FaUsers className="text-xl" />,
+    title: "Global Network",
+    subtitle: "Professional Connections",
+    value: "500+",
+    label: "Active Members"
+  },
+  {
+    icon: <FaGlobeAmericas className="text-xl" />,
+    title: "International Reach",
+    subtitle: "Countries Served",
+    value: "25+",
+    label: "Countries"
+  },
+  {
+    icon: <FaHandshake className="text-xl" />,
+    title: "Partnerships",
+    subtitle: "Strategic Collaborations",
+    value: "50+",
+    label: "Partners"
+  }
+];
 
 export default function Contact() {
   const ref = useRef(null);
@@ -72,13 +105,14 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <section id="contact" className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4 max-w-6xl" ref={ref}>
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="space-y-8 md:space-y-14"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="space-y-6 md:space-y-8"
         >
           {/* Section header */}
           <div className="text-center max-w-3xl mx-auto">
@@ -86,80 +120,82 @@ export default function Contact() {
               <div className="w-12 md:w-16 h-1 bg-blue-600 rounded-full mx-auto"></div>
             </motion.div>
             <motion.h2 
-              variants={itemVariants} 
-              className="text-2xl md:text-3xl lg:text-5xl font-bold mb-3 md:mb-5 text-gray-900 dark:text-white"
+              variants={itemVariants}
+              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-gray-900"
             >
-              Get in <span className="text-blue-600">Touch</span>
+              Let&apos;s <span className="text-blue-600">Connect</span>
             </motion.h2>
-            <motion.p variants={itemVariants} className="text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto px-4 md:px-0">
-              Ready to discuss how I can help transform your business through automation and strategic growth?
+            <motion.p 
+              variants={itemVariants}
+              className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4 md:px-0"
+            >
+              I&apos;m always open to discussing new projects, opportunities, and partnerships.
             </motion.p>
           </div>
-          
-          {/* Contact content */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 items-stretch">
+
+          {/* Contact grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 items-stretch">
             {/* Contact information - 2 columns */}
-            <motion.div variants={itemVariants} className="lg:col-span-2 space-y-6 md:space-y-8 lg:space-y-10 flex flex-col">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4 md:mb-6 border-b border-gray-200 dark:border-gray-700 pb-2">
+            <motion.div variants={itemVariants} className="lg:col-span-2 space-y-4 md:space-y-6">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">
                 Contact Information
               </h3>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 {contactInfo.map((item, index) => (
                   <motion.div 
                     key={index}
                     variants={itemVariants}
-                    className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-200 dark:border-gray-700 overflow-hidden"
+                    className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-200 overflow-hidden"
                   >
                     <div className={`h-1 bg-gradient-to-r ${item.gradient}`}></div>
                     <div className="p-4 md:p-6">
-                      <div className="flex items-start">
-                        <div className={`w-10 h-10 md:w-12 md:h-12 rounded-lg bg-gradient-to-r ${item.gradient} flex items-center justify-center text-white mr-4 shadow-md`}>
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white">
                           {item.icon}
                         </div>
-                        <div>
-                          <h4 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white">{item.title}</h4>
-                          <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{item.description}</p>
-                          {item.link ? (
-                            <a 
-                              href={item.link} 
-                              className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:underline text-sm md:text-base"
-                            >
-                              {item.value}
-                              <FaArrowRight className="ml-2 text-xs" />
-                            </a>
-                          ) : (
-                            <p className="text-gray-700 dark:text-gray-300 font-medium text-sm md:text-base">{item.value}</p>
-                          )}
-                        </div>
+                        <h4 className="text-lg font-semibold text-gray-900">{item.title}</h4>
+                      </div>
+                      <p className="text-gray-600 mb-4">{item.description}</p>
+                      <div className="flex items-center gap-2">
+                        <span className="text-blue-600">{item.value}</span>
+                        {item.link && (
+                          <a 
+                            href={item.link} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-blue-600 hover:text-blue-700 transition-colors"
+                          >
+                            <FaExternalLinkAlt className="text-sm" />
+                          </a>
+                        )}
                       </div>
                     </div>
                   </motion.div>
                 ))}
               </div>
-              
-              {/* Social links and CTA in a row */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 flex-grow">
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                 {/* Social links card */}
                 <motion.div 
                   variants={itemVariants}
-                  className="md:col-span-1 bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-200 dark:border-gray-700 overflow-hidden"
+                  className="col-span-full sm:col-span-1 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-200 overflow-hidden"
                 >
                   <div className="h-1" style={{ backgroundColor: '#0077B5' }}></div>
                   <div className="p-4 md:p-6">
-                    <h4 className="text-base md:text-lg font-semibold text-gray-900 dark:text-white mb-4">Connect on</h4>
-                    <div className="flex">
+                    <h4 className="text-base md:text-lg font-semibold text-gray-900 mb-4">Connect on</h4>
+                    <div className="flex flex-wrap gap-2">
                       {socialLinks.map((social, index) => (
                         <a
                           key={index}
                           href={social.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 rounded-lg text-white hover:opacity-90 transition-opacity duration-200"
+                          className="inline-flex items-center gap-2 px-3 md:px-4 py-2 rounded-lg text-white hover:opacity-90 transition-opacity duration-200 text-sm md:text-base"
                           style={{ backgroundColor: social.color }}
                         >
                           {social.icon}
-                          <span className="text-sm md:text-base">{social.name}</span>
+                          <span>{social.name}</span>
                         </a>
                       ))}
                     </div>
@@ -169,81 +205,50 @@ export default function Contact() {
                 {/* Call to action */}
                 <motion.div 
                   variants={itemVariants}
-                  className="md:col-span-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl shadow-md text-white overflow-hidden h-full flex flex-col"
+                  className="col-span-full sm:col-span-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl shadow-lg p-4 md:p-6 text-white"
                 >
-                  <div className="p-4 md:p-6 lg:p-8 flex flex-col h-full justify-between">
-                    <div>
-                      <h4 className="text-lg md:text-xl font-semibold mb-2">Ready to collaborate?</h4>
-                      <p className="text-blue-100 mb-6 text-sm md:text-base">
-                        I&apos;m always open to discussing new projects, opportunities, and partnerships.
-                      </p>
-                    </div>
-                    <div>
-                      <a 
-                        href="mailto:chedi@genlogic.io" 
-                        className="inline-flex items-center px-4 md:px-5 py-2 md:py-3 rounded-lg bg-white text-blue-600 font-medium hover:bg-blue-50 transition-colors duration-200 text-sm md:text-base"
-                      >
-                        Send a message
-                        <FaArrowRight className="ml-2" />
-                      </a>
-                    </div>
-                  </div>
+                  <h4 className="text-lg md:text-xl font-semibold mb-2">Ready to Transform Your Business?</h4>
+                  <p className="text-white/90 mb-4 text-sm md:text-base">
+                    Let&apos;s discuss how we can help you achieve your business goals through strategic automation and innovation.
+                  </p>
+                  <Link
+                    href="mailto:contact@example.com"
+                    className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-white text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition-colors text-sm md:text-base"
+                  >
+                    <FaEnvelope />
+                    Send a Message
+                  </Link>
                 </motion.div>
               </div>
             </motion.div>
-            
-            {/* Business connection visualization - 1 column */}
-            <motion.div 
-              variants={itemVariants}
-              className="lg:col-span-1 flex flex-col"
-            >
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4 md:mb-6 border-b border-gray-200 dark:border-gray-700 pb-2 lg:block hidden">
+
+            {/* Network section */}
+            <motion.div variants={itemVariants} className="space-y-4 md:space-y-6">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">
                 My Network
               </h3>
-              
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-200 dark:border-gray-700 overflow-hidden flex-grow flex flex-col">
-                <div className="h-1 bg-gradient-to-r from-blue-600 to-indigo-600"></div>
-                <div className="p-4 md:p-6 flex flex-col h-full">
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-4 md:mb-6 text-center border-b border-gray-200 dark:border-gray-700 pb-2 lg:hidden">My Network</h3>
-                  
-                  <div className="relative h-[250px] md:h-[300px] lg:h-[400px] mx-auto w-full">
-                    {/* Central node */}
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-white text-lg md:text-xl font-bold shadow-lg z-10">
-                      CR
+              <div className="grid grid-cols-1 gap-4 md:gap-6">
+                {networkStats.map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    variants={itemVariants}
+                    className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-200 p-4 md:p-6"
+                  >
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white">
+                        {stat.icon}
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900">{stat.title}</h4>
+                        <p className="text-sm text-gray-600">{stat.subtitle}</p>
+                      </div>
                     </div>
-                    
-                    {/* Connection lines and nodes */}
-                    <div className="absolute top-0 left-0 w-full h-full">
-                      {/* Email connection */}
-                      <div className="absolute top-[15%] right-[15%] w-12 h-12 md:w-14 md:h-14 rounded-full bg-blue-500 flex items-center justify-center text-white shadow-md z-10">
-                        <FaEnvelope className="w-4 h-4 md:w-5 md:h-5" />
-                      </div>
-                      <div className="absolute top-[25%] right-[30%] w-[25%] h-[2px] bg-blue-400 transform rotate-[30deg]"></div>
-                      
-                      {/* Phone connection */}
-                      <div className="absolute bottom-[15%] right-[15%] w-12 h-12 md:w-14 md:h-14 rounded-full bg-indigo-500 flex items-center justify-center text-white shadow-md z-10">
-                        <FaPhone className="w-4 h-4 md:w-5 md:h-5" />
-                      </div>
-                      <div className="absolute bottom-[25%] right-[30%] w-[25%] h-[2px] bg-indigo-400 transform -rotate-[30deg]"></div>
-                      
-                      {/* LinkedIn connection */}
-                      <div className="absolute top-[15%] left-[15%] w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#0077B5] flex items-center justify-center text-white shadow-md z-10">
-                        <FaLinkedin className="w-4 h-4 md:w-5 md:h-5" />
-                      </div>
-                      <div className="absolute top-[25%] left-[30%] w-[25%] h-[2px] bg-[#0077B5] transform -rotate-[30deg]"></div>
-                      
-                      {/* Location connection */}
-                      <div className="absolute bottom-[15%] left-[15%] w-12 h-12 md:w-14 md:h-14 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-md z-10">
-                        <FaMapMarkerAlt className="w-4 h-4 md:w-5 md:h-5" />
-                      </div>
-                      <div className="absolute bottom-[25%] left-[30%] w-[25%] h-[2px] bg-blue-500 transform rotate-[30deg]"></div>
+                    <div className="flex items-center justify-between mt-3">
+                      <span className="text-2xl font-bold text-blue-600">{stat.value}</span>
+                      <span className="text-sm text-gray-600">{stat.label}</span>
                     </div>
-                  </div>
-                  
-                  <p className="text-center text-gray-500 dark:text-gray-400 mt-4 md:mt-6 text-xs md:text-sm">
-                    Professional connections and communication channels
-                  </p>
-                </div>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           </div>

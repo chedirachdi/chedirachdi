@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { FaUserTie, FaChartLine, FaRocket, FaCogs, FaGlobeAmericas, FaCode, FaRobot, FaServer } from 'react-icons/fa';
 
 // Tab Button Component for better encapsulation
@@ -41,7 +41,6 @@ function TabButton({
 export default function About() {
   const [activeTab, setActiveTab] = useState('who');
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   // Animation variants
   const containerVariants = {
@@ -62,11 +61,6 @@ export default function About() {
       opacity: 1,
       transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
     }
-  };
-
-  // Handle tab change
-  const handleTabChange = (tabId: string) => {
-    setActiveTab(tabId);
   };
 
   // Tab content
@@ -231,70 +225,67 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-20 relative overflow-hidden bg-gray-50 dark:bg-gray-900">
-      {/* Background elements */}
-      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-blue-500/5 to-transparent rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-indigo-500/5 to-transparent rounded-full blur-3xl"></div>
-      
-      <div className="container mx-auto px-4" ref={ref}>
+    <section id="about" className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
+      <div className="container mx-auto px-4 max-w-6xl" ref={ref}>
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="space-y-12"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="space-y-6 md:space-y-8"
         >
           {/* Section header */}
           <div className="text-center max-w-3xl mx-auto">
-            <motion.div variants={itemVariants} className="inline-block px-6 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-medium text-sm mb-4">
-              Professional Profile
+            <motion.div variants={itemVariants} className="inline-block mb-3">
+              <div className="w-12 md:w-16 h-1 bg-blue-600 rounded-full mx-auto"></div>
             </motion.div>
-            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-              About <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Me</span>
+            <motion.h2 
+              variants={itemVariants}
+              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-gray-900"
+            >
+              About <span className="text-blue-600">Me</span>
             </motion.h2>
-            <motion.p variants={itemVariants} className="text-gray-600 dark:text-gray-400 text-lg">
-              Bridging the gap between engineering and software development to create intelligent automation solutions.
+            <motion.p 
+              variants={itemVariants}
+              className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4 md:px-0"
+            >
+              Discover my journey, expertise, and the value I bring to businesses
             </motion.p>
           </div>
-          
-          {/* Content area with tabs and SVG */}
-          <motion.div variants={itemVariants} className="flex flex-col lg:flex-row gap-12 items-start">
-            {/* Left side: SVG illustration */}
-            <div className="w-full lg:w-2/5 flex justify-center">
-              <EnhancedBusinessSVG />
-            </div>
-            
-            {/* Right side: Tabs and content */}
-            <div className="w-full lg:w-3/5">
-              {/* Tab navigation */}
-              <div className="grid grid-cols-3 sm:flex mb-8 bg-white dark:bg-gray-800 rounded-2xl p-2 shadow-md relative z-10 overflow-hidden">
-                {tabs.map((tab) => (
-                  <TabButton
-                    key={tab.id}
-                    id={tab.id}
-                    label={tab.label}
-                    icon={tab.icon}
-                    isActive={activeTab === tab.id}
-                    onClick={handleTabChange}
-                  />
-                ))}
-              </div>
-              
-              {/* Tab content */}
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-4 sm:p-6 shadow-lg">
-                {tabs.map((tab) => (
-                  <div 
-                    key={tab.id} 
-                    className={activeTab === tab.id ? 'block' : 'hidden'}
-                    role="tabpanel"
-                    id={`panel-${tab.id}`}
-                    aria-labelledby={`tab-${tab.id}`}
-                  >
-                    {tab.content}
-                  </div>
-                ))}
-              </div>
-            </div>
+
+          {/* Tab navigation */}
+          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3 md:gap-4">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-4 md:px-6 py-2 md:py-3 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 ${
+                  activeTab === tab.id
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  {tab.icon}
+                  {tab.label}
+                </div>
+              </button>
+            ))}
           </motion.div>
+
+          {/* Tab content */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              variants={itemVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="mt-6 md:mt-8"
+            >
+              {tabs.find(tab => tab.id === activeTab)?.content}
+            </motion.div>
+          </AnimatePresence>
         </motion.div>
       </div>
     </section>
@@ -304,12 +295,12 @@ export default function About() {
 // Service Card Component
 function ServiceCard({ icon, title, description, color }: { icon: React.ReactNode, title: string, description: string, color: string }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg p-5 shadow-md border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all duration-300 group">
+    <div className="bg-white rounded-lg p-4 md:p-5 shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
       <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${color} flex items-center justify-center text-white mb-4 transform group-hover:scale-110 transition-transform`}>
         {icon}
       </div>
-      <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{title}</h3>
-      <p className="text-gray-600 dark:text-gray-400 text-sm">{description}</p>
+      <h3 className="text-lg font-semibold mb-2 text-gray-900">{title}</h3>
+      <p className="text-gray-600 text-sm">{description}</p>
     </div>
   );
 }
@@ -361,78 +352,84 @@ function EnhancedBusinessSVG() {
       </defs>
       
       {/* Background elements */}
-      <circle cx="250" cy="250" r="200" fill="#EFF6FF" className="dark:opacity-20" />
-      <circle cx="250" cy="250" r="150" fill="#DBEAFE" className="dark:opacity-10" />
+      <circle cx="250" cy="250" r="200" fill="#EFF6FF" />
+      <circle cx="250" cy="250" r="150" fill="#DBEAFE" />
       
       {/* Decorative elements */}
-      <circle cx="250" cy="250" r="180" stroke="#93C5FD" strokeWidth="1" strokeDasharray="5 5" className="dark:opacity-30" />
-      <circle cx="250" cy="250" r="120" stroke="#93C5FD" strokeWidth="1" strokeDasharray="3 3" className="dark:opacity-30" />
+      <circle cx="250" cy="250" r="180" stroke="#93C5FD" strokeWidth="1" strokeDasharray="5 5" />
+      <circle cx="250" cy="250" r="120" stroke="#93C5FD" strokeWidth="1" strokeDasharray="3 3" />
       
       {/* Growth chart base */}
-      <rect x="100" y="350" width="300" height="3" rx="1.5" fill="#CBD5E1" className="dark:opacity-50" />
-      <rect x="100" y="150" width="3" height="200" rx="1.5" fill="#CBD5E1" className="dark:opacity-50" />
+      <rect x="100" y="350" width="300" height="3" rx="1.5" fill="#CBD5E1" />
+      <rect x="100" y="150" width="3" height="200" rx="1.5" fill="#CBD5E1" />
       
       {/* Grid lines */}
-      <line x1="100" y1="200" x2="400" y2="200" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="5 5" className="dark:opacity-30" />
-      <line x1="100" y1="250" x2="400" y2="250" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="5 5" className="dark:opacity-30" />
-      <line x1="100" y1="300" x2="400" y2="300" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="5 5" className="dark:opacity-30" />
-      
-      <line x1="150" y1="150" x2="150" y2="350" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="5 5" className="dark:opacity-30" />
-      <line x1="200" y1="150" x2="200" y2="350" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="5 5" className="dark:opacity-30" />
-      <line x1="250" y1="150" x2="250" y2="350" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="5 5" className="dark:opacity-30" />
-      <line x1="300" y1="150" x2="300" y2="350" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="5 5" className="dark:opacity-30" />
-      <line x1="350" y1="150" x2="350" y2="350" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="5 5" className="dark:opacity-30" />
-      
-      {/* Area under the curve */}
-      <path 
-        d="M100,350 L100,320 C150,300 180,310 200,280 C220,250 250,230 300,200 C350,170 380,150 400,130 L400,350 Z" 
-        fill="url(#areaGradient)"
-      />
+      <line x1="100" y1="200" x2="400" y2="200" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="5 5" />
+      <line x1="100" y1="250" x2="400" y2="250" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="5 5" />
+      <line x1="100" y1="300" x2="400" y2="300" stroke="#E2E8F0" strokeWidth="1" strokeDasharray="5 5" />
       
       {/* Growth line */}
       <path 
-        d="M100,320 C150,300 180,310 200,280 C220,250 250,230 300,200 C350,170 380,150 400,130" 
+        d="M100 300 C150 280, 200 260, 250 220 S350 180, 400 150" 
         stroke="url(#blueGradient)" 
-        strokeWidth="4" 
-        fill="none" 
-        strokeLinecap="round"
+        strokeWidth="3" 
+        fill="none"
         filter="url(#glow)"
-      />
+      >
+        <animate 
+          attributeName="stroke-dasharray" 
+          from="400"
+          to="0"
+          dur="2s"
+          fill="freeze"
+        />
+      </path>
+      
+      {/* Area under curve */}
+      <path 
+        d="M100 300 C150 280, 200 260, 250 220 S350 180, 400 150 L400 350 L100 350 Z" 
+        fill="url(#areaGradient)"
+        opacity="0"
+      >
+        <animate 
+          attributeName="opacity"
+          from="0"
+          to="1"
+          dur="1s"
+          fill="freeze"
+          begin="1s"
+        />
+      </path>
       
       {/* Data points */}
-      <circle cx="100" cy="320" r="8" fill="url(#blueGradient)" />
-      <circle cx="150" cy="300" r="8" fill="url(#blueGradient)" />
-      <circle cx="200" cy="280" r="8" fill="url(#blueGradient)" />
-      <circle cx="250" cy="230" r="8" fill="url(#blueGradient)" />
-      <circle cx="300" cy="200" r="8" fill="url(#blueGradient)" />
-      <circle cx="350" cy="170" r="8" fill="url(#blueGradient)" />
-      <circle cx="400" cy="130" r="8" fill="url(#blueGradient)" />
-      
-      {/* Pulse animations on key points */}
-      <circle cx="250" cy="230" r="15" fill="url(#blueGradient)" opacity="0.3">
-        <animate attributeName="r" values="15;25;15" dur="3s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.3;0.1;0.3" dur="3s" repeatCount="indefinite" />
-      </circle>
-      
-      <circle cx="400" cy="130" r="15" fill="url(#blueGradient)" opacity="0.3">
-        <animate attributeName="r" values="15;25;15" dur="3s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0.3;0.1;0.3" dur="3s" repeatCount="indefinite" />
-      </circle>
-      
-      {/* Labels */}
-      <text x="100" y="370" fill="#64748B" fontSize="12" textAnchor="middle" className="dark:fill-gray-400">2018</text>
-      <text x="200" y="370" fill="#64748B" fontSize="12" textAnchor="middle" className="dark:fill-gray-400">2020</text>
-      <text x="300" y="370" fill="#64748B" fontSize="12" textAnchor="middle" className="dark:fill-gray-400">2022</text>
-      <text x="400" y="370" fill="#64748B" fontSize="12" textAnchor="middle" className="dark:fill-gray-400">2024</text>
-      
-      {/* Gear icons representing automation */}
-      <g transform="translate(180, 260)" className="animate-spin" style={{ transformOrigin: 'center', animationDuration: '20s' }}>
-        <path d="M10,0 L-10,0 L-5,-8.66 L5,-8.66 Z M5,8.66 L-5,8.66 L-10,0 L10,0 Z" fill="#93C5FD" />
-      </g>
-      
-      <g transform="translate(320, 190)" className="animate-spin" style={{ transformOrigin: 'center', animationDuration: '15s', animationDirection: 'reverse' }}>
-        <path d="M12,0 L-12,0 L-6,-10.39 L6,-10.39 Z M6,10.39 L-6,10.39 L-12,0 L12,0 Z" fill="#93C5FD" />
-      </g>
+      {[
+        { cx: 150, cy: 280 },
+        { cx: 200, cy: 260 },
+        { cx: 250, cy: 220 },
+        { cx: 300, cy: 200 },
+        { cx: 350, cy: 180 },
+      ].map((point, index) => (
+        <g key={index}>
+          <circle 
+            cx={point.cx} 
+            cy={point.cy} 
+            r="6" 
+            fill="white" 
+            stroke="url(#blueGradient)" 
+            strokeWidth="2"
+            opacity="0"
+          >
+            <animate 
+              attributeName="opacity"
+              from="0"
+              to="1"
+              dur="0.3s"
+              fill="freeze"
+              begin={`${1.5 + index * 0.2}s`}
+            />
+          </circle>
+        </g>
+      ))}
     </svg>
   );
 } 

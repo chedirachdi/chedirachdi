@@ -292,14 +292,14 @@ export default function Experience() {
   };
   
   return (
-    <section id="experience" className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <section id="experience" className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4 max-w-6xl" ref={containerRef}>
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="space-y-8 md:space-y-12"
+          className="space-y-6 md:space-y-8"
         >
           {/* Section header */}
           <div className="text-center max-w-3xl mx-auto">
@@ -308,20 +308,20 @@ export default function Experience() {
             </motion.div>
             <motion.h2 
               variants={itemVariants}
-              className="text-2xl md:text-3xl lg:text-5xl font-bold mb-3 md:mb-5 text-gray-900 dark:text-white"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-gray-900"
             >
               Professional <span className="text-blue-600">Experience</span>
             </motion.h2>
             <motion.p 
               variants={itemVariants}
-              className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto px-4 md:px-0"
+              className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4 md:px-0"
             >
               A track record of leadership, innovation, and business transformation
             </motion.p>
           </div>
 
           {/* Tab navigation */}
-          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">
+          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3 md:gap-4">
             {['leadership', 'business', 'education'].map((tab) => (
               <button
                 key={tab}
@@ -329,7 +329,7 @@ export default function Experience() {
                 className={`px-4 md:px-6 py-2 md:py-3 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 ${
                   activeTab === tab
                     ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -345,15 +345,15 @@ export default function Experience() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="mt-8 md:mt-12"
+              className="mt-6 md:mt-8"
             >
               {activeTab === 'leadership' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                   {leadershipContent.achievements.map((achievement, index) => (
                     <motion.div
                       key={index}
                       variants={itemVariants}
-                      className="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-200 dark:border-gray-700 overflow-hidden"
+                      className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-200 overflow-hidden"
                     >
                       <div className="p-4 md:p-6">
                         <div className="flex items-center gap-4 mb-4">
@@ -361,20 +361,20 @@ export default function Experience() {
                             {achievement.icon}
                           </div>
                           <div>
-                            <h3 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white">
+                            <h3 className="text-lg md:text-xl font-semibold text-gray-900">
                               {achievement.title}
                             </h3>
-                            <p className="text-sm text-gray-500 dark:text-gray-400">
+                            <p className="text-sm text-gray-500">
                               {achievement.period}
                             </p>
                           </div>
                         </div>
-                        <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 mb-4">
+                        <p className="text-sm md:text-base text-gray-600 mb-4">
                           {achievement.description}
                         </p>
                         <ul className="space-y-2">
                           {achievement.highlights.map((highlight, i) => (
-                            <li key={i} className="flex items-start gap-2 text-sm md:text-base text-gray-600 dark:text-gray-300">
+                            <li key={i} className="flex items-start gap-2 text-sm md:text-base text-gray-600">
                               <span className="text-blue-600 mt-1">•</span>
                               {highlight}
                             </li>
@@ -387,23 +387,23 @@ export default function Experience() {
               )}
 
               {activeTab === 'business' && (
-                <div className="space-y-8">
+                <div className="space-y-6 md:space-y-8">
                   {/* Capabilities */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                     {businessImpactContent.capabilities.map((capability, index) => (
                       <motion.div
                         key={index}
                         variants={itemVariants}
-                        className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200"
+                        className="bg-white rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-all duration-200"
                       >
                         <div className="mb-4">
                           <div className="w-12 h-12 rounded-lg bg-blue-600 flex items-center justify-center text-white mb-4">
                             {capability.icon}
                           </div>
-                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-2">
                             {capability.title}
                           </h3>
-                          <p className="text-sm text-gray-600 dark:text-gray-300">
+                          <p className="text-sm text-gray-600">
                             {capability.description}
                           </p>
                         </div>
@@ -412,23 +412,23 @@ export default function Experience() {
                   </div>
 
                   {/* Results */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                     {businessImpactContent.results.map((result, index) => (
                       <motion.div
                         key={index}
                         variants={itemVariants}
-                        className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200"
+                        className="bg-white rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-all duration-200"
                       >
                         <div className="flex items-center gap-3 mb-3">
                           {result.icon}
-                          <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                          <span className="text-2xl font-bold text-gray-900">
                             {result.value}{result.suffix}
                           </span>
                         </div>
-                        <h4 className="font-medium text-gray-900 dark:text-white mb-2">
+                        <h4 className="font-medium text-gray-900 mb-2">
                           {result.metric}
                         </h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                        <p className="text-sm text-gray-600">
                           {result.description}
                         </p>
                       </motion.div>
@@ -436,24 +436,24 @@ export default function Experience() {
                   </div>
 
                   {/* Case Studies */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     {businessImpactContent.caseStudies.map((study, index) => (
                       <motion.div
                         key={index}
                         variants={itemVariants}
-                        className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200"
+                        className="bg-white rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-all duration-200"
                       >
-                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-3">
                           {study.title}
                         </h3>
-                        <p className="text-gray-600 dark:text-gray-300 mb-4">
+                        <p className="text-gray-600 mb-4">
                           {study.description}
                         </p>
                         <div className="flex flex-wrap gap-2">
                           {study.metrics.map((metric, i) => (
                             <span
                               key={i}
-                              className="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm"
+                              className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm"
                             >
                               {metric}
                             </span>
@@ -466,34 +466,34 @@ export default function Experience() {
               )}
 
               {activeTab === 'education' && (
-                <div className="space-y-8">
+                <div className="space-y-6 md:space-y-8">
                   {/* Formal Education */}
-                  <div className="grid grid-cols-1 gap-6">
+                  <div className="grid grid-cols-1 gap-4 md:gap-6">
                     {educationContent.education.map((edu, index) => (
                       <motion.div
                         key={index}
                         variants={itemVariants}
-                        className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200"
+                        className="bg-white rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-all duration-200"
                       >
-                        <div className="flex items-start gap-4">
+                        <div className="flex flex-col md:flex-row md:items-start gap-4">
                           <div className="w-12 h-12 rounded-lg bg-blue-600 flex items-center justify-center text-white">
                             {edu.icon}
                           </div>
                           <div className="flex-1">
-                            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                            <h3 className="text-xl font-semibold text-gray-900">
                               {edu.title}
                             </h3>
-                            <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                            <p className="text-sm text-gray-500 mb-2">
                               {edu.institution} • {edu.period}
                             </p>
-                            <p className="text-gray-600 dark:text-gray-300 mb-4">
+                            <p className="text-gray-600 mb-4">
                               {edu.description}
                             </p>
                             <div className="space-y-2">
                               {edu.achievements.map((achievement, i) => (
                                 <div key={i} className="flex items-start gap-2">
                                   <span className="text-blue-600 mt-1">•</span>
-                                  <span className="text-gray-600 dark:text-gray-300">{achievement}</span>
+                                  <span className="text-gray-600">{achievement}</span>
                                 </div>
                               ))}
                             </div>
@@ -504,23 +504,23 @@ export default function Experience() {
                   </div>
 
                   {/* Continuous Learning */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                     {educationContent.continuousLearning.map((learning, index) => (
                       <motion.div
                         key={index}
                         variants={itemVariants}
-                        className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200"
+                        className="bg-white rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-all duration-200"
                       >
                         <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white mb-4">
                           {learning.icon}
                         </div>
-                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-1">
                           {learning.title}
                         </h4>
-                        <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                        <p className="text-sm text-gray-500 mb-3">
                           {learning.provider} • {learning.year}
                         </p>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                        <p className="text-sm text-gray-600">
                           {learning.description}
                         </p>
                       </motion.div>

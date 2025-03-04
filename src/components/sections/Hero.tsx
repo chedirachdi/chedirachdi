@@ -568,7 +568,7 @@ export default function Hero() {
   };
   
   return (
-    <section className="relative min-h-screen flex items-center py-20 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <section className="relative min-h-screen flex items-center py-16 md:py-20 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Background SVG Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <DataFlowSVG />
@@ -577,7 +577,7 @@ export default function Hero() {
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center"
           variants={containerVariants}
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
@@ -585,95 +585,74 @@ export default function Hero() {
           {/* Left column - Text content */}
           <div className="order-2 lg:order-1">
             <motion.div variants={itemVariants} className="mb-4">
-              <span className="inline-block px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-medium text-sm mb-6">
+              <span className="inline-block px-4 py-2 rounded-full bg-blue-50 text-blue-700 font-medium text-sm mb-6">
                 CEO & Business Automation Expert
               </span>
             </motion.div>
             
-            <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900 dark:text-white">
+            <motion.h1 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight text-gray-900">
               Transforming Businesses Through <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Strategic Automation</span>
             </motion.h1>
             
-            <motion.p variants={itemVariants} className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl">
+            <motion.p variants={itemVariants} className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 md:mb-8 max-w-2xl">
               I help businesses leverage cutting-edge automation and strategic innovation to achieve exceptional growth, operational excellence, and market leadership.
             </motion.p>
             
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mb-12">
-              <Link href="#contact" className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-md hover:shadow-lg transition-all flex items-center gap-2 group">
-                <span>Let&apos;s Connect</span>
-                <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mb-8 md:mb-12">
+              <Link 
+                href="#contact" 
+                className="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2 text-sm md:text-base"
+              >
+                Get in Touch
+                <FaArrowRight />
               </Link>
               
-              <Link href="#experience" className="px-6 py-3 rounded-full border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                View My Experience
+              <Link 
+                href="#projects" 
+                className="px-6 md:px-8 py-3 md:py-4 bg-white text-gray-900 font-medium rounded-full shadow-md hover:shadow-lg border border-gray-200 transition-all duration-300 transform hover:-translate-y-1 text-sm md:text-base"
+              >
+                View Case Studies
               </Link>
             </motion.div>
             
-            {/* Stats */}
-            <motion.div variants={itemVariants} className="grid grid-cols-3 gap-6">
+            {/* Key stats */}
+            <motion.div variants={itemVariants} className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6">
               <motion.div 
                 variants={statsVariants}
-                className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 text-center"
+                className="bg-white p-3 md:p-4 rounded-lg shadow-md border border-gray-200 text-center"
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
-                <div className="text-2xl md:text-3xl font-bold mb-1 text-blue-600 dark:text-blue-400">120%</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Revenue Growth</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 text-blue-600">120%</div>
+                <div className="text-xs sm:text-sm text-gray-600">Revenue Growth</div>
               </motion.div>
               
               <motion.div 
                 variants={statsVariants}
-                className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 text-center"
+                className="bg-white p-3 md:p-4 rounded-lg shadow-md border border-gray-200 text-center"
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
-                <div className="text-2xl md:text-3xl font-bold mb-1 text-blue-600 dark:text-blue-400">15+</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Years Experience</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 text-blue-600">15+</div>
+                <div className="text-xs sm:text-sm text-gray-600">Years Experience</div>
               </motion.div>
               
               <motion.div 
                 variants={statsVariants}
-                className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 text-center"
+                className="bg-white p-3 md:p-4 rounded-lg shadow-md border border-gray-200 text-center"
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
-                <div className="text-2xl md:text-3xl font-bold mb-1 text-blue-600 dark:text-blue-400">95%+</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Client Retention</div>
+                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 text-blue-600">95%+</div>
+                <div className="text-xs sm:text-sm text-gray-600">Client Retention</div>
               </motion.div>
             </motion.div>
           </div>
           
           {/* Right column - Dashboard SVG and floating elements */}
-          <div className="order-1 lg:order-2 relative">
-            <motion.div
-              variants={itemVariants}
-              className="relative z-10 rounded-lg overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700"
-            >
-              <BusinessDashboardSVG />
-            </motion.div>
-            
-            {/* Floating analytics badges */}
-            <AnalyticsBadge 
-              icon={<FaChartBar className="text-lg" />}
-              title="Conversion Rate"
-              value="+65%"
-              position="-left-10 top-1/4"
-              delay="1s"
-            />
-            
-            <AnalyticsBadge 
-              icon={<FaChartPie className="text-lg" />}
-              title="Market Share"
-              value="+25%"
-              position="-right-5 top-2/3"
-              delay="1.3s"
-            />
-            
-            <AnalyticsBadge 
-              icon={<FaProjectDiagram className="text-lg" />}
-              title="Process Efficiency"
-              value="+80%"
-              position="bottom-10 left-1/4"
-              delay="1.6s"
-            />
-          </div>
+          <motion.div 
+            variants={itemVariants}
+            className="order-1 lg:order-2 relative"
+          >
+            <BusinessDashboardSVG />
+          </motion.div>
         </motion.div>
         
         {/* Social proof and links */}

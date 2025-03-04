@@ -3,6 +3,13 @@
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { FaChartLine, FaBullhorn, FaUsers, FaLightbulb, FaCogs, FaHandshake, FaTrophy, FaChess } from 'react-icons/fa';
+import { ReactNode } from 'react';
+
+interface Skill {
+  name: string;
+  level: number;
+  icon: ReactNode;
+}
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState('business');
@@ -38,12 +45,12 @@ export default function Skills() {
       icon: <FaChartLine />,
       description: 'Strategic business development and leadership skills that drive organizational growth and success.',
       skills: [
-        { name: 'Strategic Planning', level: 95 },
-        { name: 'Business Development', level: 90 },
-        { name: 'Executive Leadership', level: 98 },
-        { name: 'Client Relationship Management', level: 95 },
-        { name: 'Negotiation', level: 90 },
-        { name: 'Team Building', level: 85 },
+        { name: 'Strategic Planning', level: 95, icon: <FaChartLine /> },
+        { name: 'Business Development', level: 90, icon: <FaChartLine /> },
+        { name: 'Executive Leadership', level: 98, icon: <FaChess /> },
+        { name: 'Client Relationship Management', level: 95, icon: <FaHandshake /> },
+        { name: 'Negotiation', level: 90, icon: <FaHandshake /> },
+        { name: 'Team Building', level: 85, icon: <FaUsers /> },
       ]
     },
     {
@@ -52,12 +59,12 @@ export default function Skills() {
       icon: <FaBullhorn />,
       description: 'Comprehensive marketing and sales expertise to enhance brand visibility and drive revenue growth.',
       skills: [
-        { name: 'Marketing Automation', level: 95 },
-        { name: 'Digital Marketing', level: 90 },
-        { name: 'Sales Strategy', level: 85 },
-        { name: 'Content Marketing', level: 80 },
-        { name: 'Email Marketing', level: 90 },
-        { name: 'Social Media Marketing', level: 85 },
+        { name: 'Marketing Automation', level: 95, icon: <FaBullhorn /> },
+        { name: 'Digital Marketing', level: 90, icon: <FaBullhorn /> },
+        { name: 'Sales Strategy', level: 85, icon: <FaChartLine /> },
+        { name: 'Content Marketing', level: 80, icon: <FaLightbulb /> },
+        { name: 'Email Marketing', level: 90, icon: <FaBullhorn /> },
+        { name: 'Social Media Marketing', level: 85, icon: <FaBullhorn /> },
       ]
     },
     {
@@ -66,12 +73,12 @@ export default function Skills() {
       icon: <FaCogs />,
       description: 'Technical and project management capabilities that ensure efficient implementation and delivery.',
       skills: [
-        { name: 'Project Management', level: 90 },
-        { name: 'CRM Systems', level: 95 },
-        { name: 'Data Analysis', level: 85 },
-        { name: 'Process Optimization', level: 90 },
-        { name: 'Marketing Technology', level: 95 },
-        { name: 'Automation Tools', level: 90 },
+        { name: 'Project Management', level: 90, icon: <FaChartLine /> },
+        { name: 'CRM Systems', level: 95, icon: <FaCogs /> },
+        { name: 'Data Analysis', level: 85, icon: <FaChartLine /> },
+        { name: 'Process Optimization', level: 90, icon: <FaChartLine /> },
+        { name: 'Marketing Technology', level: 95, icon: <FaCogs /> },
+        { name: 'Automation Tools', level: 90, icon: <FaCogs /> },
       ]
     }
   ];
@@ -125,119 +132,93 @@ export default function Skills() {
   ];
 
   return (
-    <section id="skills" className="py-20 relative overflow-hidden bg-gray-50 dark:bg-gray-900">
-      {/* Background elements */}
-      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-blue-500/5 to-transparent rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-indigo-500/5 to-transparent rounded-full blur-3xl"></div>
-      
-      <div className="container mx-auto px-4" ref={ref}>
+    <section id="skills" className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
+      <div className="container mx-auto px-4 max-w-6xl" ref={ref}>
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="space-y-16"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="space-y-6 md:space-y-8"
         >
           {/* Section header */}
           <div className="text-center max-w-3xl mx-auto">
-            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-              Skills & <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Expertise</span>
+            <motion.div variants={itemVariants} className="inline-block mb-3">
+              <div className="w-12 md:w-16 h-1 bg-blue-600 rounded-full mx-auto"></div>
+            </motion.div>
+            <motion.h2 
+              variants={itemVariants}
+              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-gray-900"
+            >
+              Professional <span className="text-blue-600">Skills</span>
             </motion.h2>
-            <motion.p variants={itemVariants} className="text-gray-600 dark:text-gray-400 text-lg">
-              A comprehensive overview of my professional skills and areas of expertise that drive exceptional results.
+            <motion.p 
+              variants={itemVariants}
+              className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4 md:px-0"
+            >
+              A comprehensive overview of my technical and business capabilities
             </motion.p>
           </div>
-          
-          {/* Executive Leadership Spotlight */}
-          <motion.div 
-            variants={itemVariants} 
-            className="bg-gradient-to-r from-blue-600/10 to-indigo-600/10 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-2xl p-8 border border-blue-200 dark:border-blue-800 shadow-lg"
-          >
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="w-24 h-24 rounded-full bg-gradient-to-r from-blue-600 to-indigo-700 flex items-center justify-center shadow-lg">
-                <FaTrophy className="text-4xl text-white" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-2xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Executive Leadership Excellence</h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  With over 15 years of experience as a CEO and business leader, I&apos;ve developed exceptional executive leadership capabilities that drive organizational transformation and sustainable growth. My leadership approach combines strategic vision, operational excellence, and a deep understanding of business automation.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-                    <div className="font-semibold text-gray-900 dark:text-white mb-1">Strategic Vision</div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Ability to envision future business opportunities and develop actionable roadmaps</p>
-                  </div>
-                  <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-                    <div className="font-semibold text-gray-900 dark:text-white mb-1">Team Empowerment</div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Creating high-performance cultures through mentorship and strategic delegation</p>
-                  </div>
-                  <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-                    <div className="font-semibold text-gray-900 dark:text-white mb-1">Change Management</div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Guiding organizations through transformational change with minimal disruption</p>
-                  </div>
+
+          {/* Category navigation */}
+          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3 md:gap-4">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className={`px-4 md:px-6 py-2 md:py-3 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 ${
+                  activeCategory === category.id
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  {category.icon}
+                  {category.label}
                 </div>
-              </div>
-            </div>
+              </button>
+            ))}
           </motion.div>
-          
-          {/* Skills section */}
-          <motion.div variants={itemVariants} className="space-y-8">
-            <h3 className="text-2xl font-bold text-center mb-8 text-gray-900 dark:text-white">Professional Skills</h3>
-            
-            {/* Category tabs */}
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all ${
-                    activeCategory === category.id
-                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md'
-                      : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
-                  }`}
-                >
-                  <span>{category.icon}</span>
-                  <span>{category.label}</span>
-                </button>
-              ))}
-            </div>
-            
-            {/* Active category content */}
+
+          {/* Skills content */}
+          <motion.div variants={itemVariants} className="mt-6 md:mt-8">
             {categories.map((category) => (
               <div key={category.id} className={activeCategory === category.id ? 'block' : 'hidden'}>
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 mb-8">
-                  <p className="text-gray-600 dark:text-gray-400 mb-6">{category.description}</p>
-                  
-                  <div className="space-y-6">
-                    {category.skills.map((skill, index) => (
-                      <div key={index}>
-                        <div className="flex justify-between mb-2">
-                          <span className="font-medium text-gray-900 dark:text-white">{skill.name}</span>
-                          <span className="text-gray-600 dark:text-gray-400">{skill.level}%</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                  {category.skills.map((skill, index) => (
+                    <motion.div
+                      key={index}
+                      variants={itemVariants}
+                      className="bg-white rounded-lg p-4 md:p-6 shadow-md border border-gray-200"
+                    >
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white">
+                          {skill.icon}
                         </div>
-                        <div className="h-3 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            animate={{ width: `${skill.level}%` }}
-                            transition={{ duration: 1, delay: 0.3 + (index * 0.1) }}
-                            className={`h-full rounded-full ${
-                              skill.level >= 90 ? 'bg-gradient-to-r from-blue-500 to-blue-600' :
-                              skill.level >= 80 ? 'bg-gradient-to-r from-indigo-500 to-indigo-600' :
-                              skill.level >= 70 ? 'bg-gradient-to-r from-purple-500 to-purple-600' :
-                              'bg-gradient-to-r from-pink-500 to-pink-600'
-                            }`}
-                          />
+                        <h3 className="text-lg font-semibold text-gray-900">{skill.name}</h3>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-blue-600 rounded-full"
+                            style={{ width: `${skill.level}%` }}
+                          ></div>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span className="text-gray-600">{skill.name}</span>
+                          <span className="text-blue-600 font-medium">{skill.level}%</span>
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    </motion.div>
+                  ))}
                 </div>
-                
+
                 {/* Skill level legend */}
-                <div className="flex flex-wrap justify-center gap-4">
+                <div className="flex flex-wrap justify-center gap-4 mt-6">
                   {skillLevels.map((level, index) => (
                     <div key={index} className="flex items-center gap-2">
                       <div className={`w-3 h-3 rounded-full ${level.color}`}></div>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">
+                      <span className="text-sm text-gray-600">
                         <span className="font-medium">{level.label}</span> ({level.range})
                       </span>
                     </div>
@@ -248,34 +229,29 @@ export default function Skills() {
           </motion.div>
           
           {/* Expertise areas */}
-          <motion.div variants={itemVariants} className="space-y-8">
-            <h3 className="text-2xl font-bold text-center mb-8 text-gray-900 dark:text-white">Areas of Expertise</h3>
+          <motion.div variants={itemVariants} className="space-y-6 md:space-y-8">
+            <h3 className="text-xl md:text-2xl font-bold text-center mb-4 md:mb-6 text-gray-900">Areas of Expertise</h3>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {expertiseAreas.map((area, index) => (
                 <motion.div
                   key={index}
                   variants={itemVariants}
                   whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                  className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700"
+                  className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200"
                 >
-                  <div className={`p-6 bg-gradient-to-r ${area.color} text-white`}>
+                  <div className={`p-4 md:p-6 bg-gradient-to-r ${area.color} text-white`}>
                     <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-xl mb-4">
                       {area.icon}
                     </div>
-                    <h3 className="text-xl font-bold">{area.title}</h3>
+                    <h3 className="text-lg md:text-xl font-bold">{area.title}</h3>
                   </div>
-                  <div className="p-6">
-                    <p className="text-gray-600 dark:text-gray-400">{area.description}</p>
+                  <div className="p-4 md:p-6">
+                    <p className="text-sm md:text-base text-gray-600">{area.description}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
-          </motion.div>
-          
-          {/* Skills visualization */}
-          <motion.div variants={itemVariants} className="flex justify-center">
-            <SkillsRadarChart />
           </motion.div>
         </motion.div>
       </div>

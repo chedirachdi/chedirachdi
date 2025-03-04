@@ -1,0 +1,18 @@
+[33mcommit c344448b0406cbbfa081f701257ae411f8729b5f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: chedirachdi <biggcee1983@gmail.com>
+Date:   Tue Mar 4 03:24:34 2025 +0100
+
+    Fix ESLint errors: Remove unused imports and fix React hooks exhaustive-deps warning
+
+[33mcommit bbd62011b585d49071c49bb383c7a0f0976d35d8[m
+Merge: ee951f1 4c76e30
+Author: chedirachdi <biggcee1983@gmail.com>
+Date:   Tue Mar 4 03:16:14 2025 +0100
+
+    Merge remote changes
+
+[33mcommit ee951f1c5bb03baa877ec6fa13933c3dfcf2df89[m
+Author: chedirachdi <biggcee1983@gmail.com>
+Date:   Tue Mar 4 03:10:58 2025 +0100
+
+    Fix ESLint errors for Vercel deployment

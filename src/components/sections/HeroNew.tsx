@@ -3,7 +3,19 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { FaArrowRight, FaChartLine, FaCogs, FaChartBar, FaChartPie } from 'react-icons/fa';
+import { FaArrowRight, FaChartLine, FaCogs, FaChartBar, FaChartPie, FaInfoCircle } from 'react-icons/fa';
+
+interface Stat {
+  value: string;
+  label: string;
+}
+
+const stats: Stat[] = [
+  { value: '15+', label: 'Years Experience' },
+  { value: '120%', label: 'Avg. Growth Rate' },
+  { value: '50+', label: 'Businesses Transformed' },
+  { value: '85%', label: 'Client Retention' }
+];
 
 export default function HeroNew() {
   const [isVisible, setIsVisible] = useState(false);
@@ -350,13 +362,13 @@ export default function HeroNew() {
       className={`absolute ${position} z-20 animate-float`}
       style={{ animationDelay: delay }}
     >
-      <div className="bg-white dark:bg-gray-800 p-3 rounded-lg shadow-md flex items-center gap-2.5 border border-gray-200 dark:border-gray-700">
-        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white">
+      <div className="bg-white p-2 sm:p-3 rounded-lg shadow-md flex items-center gap-2 border border-gray-200">
+        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white">
           {icon}
         </div>
         <div>
-          <div className="text-xs text-gray-500 dark:text-gray-400">{title}</div>
-          <div className="text-sm font-bold text-gray-900 dark:text-white">{value}</div>
+          <div className="text-xs text-gray-500">{title}</div>
+          <div className="text-sm font-bold text-gray-900">{value}</div>
         </div>
       </div>
     </motion.div>
@@ -393,7 +405,7 @@ export default function HeroNew() {
   };
   
   return (
-    <section id="home" className="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden isolate">
+    <section id="home" className="relative pt-24 md:pt-32 lg:pt-40 pb-16 md:pb-24 lg:pb-32 overflow-hidden isolate">
       {/* Background SVG Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <DataFlowSVG />
@@ -402,7 +414,7 @@ export default function HeroNew() {
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center"
           variants={containerVariants}
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
@@ -410,64 +422,54 @@ export default function HeroNew() {
           {/* Left column - Text content */}
           <div className="order-2 lg:order-1">
             <motion.div variants={itemVariants} className="mb-4">
-              <span className="inline-block px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-medium text-sm mb-6">
+              <span className="inline-block px-4 py-2 rounded-full bg-blue-50 text-blue-700 font-medium text-sm mb-6">
                 CEO & Business Automation Expert
               </span>
             </motion.div>
             
-            <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <motion.h1 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
               Transforming Businesses Through <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Strategic Automation</span>
             </motion.h1>
             
-            <motion.p variants={itemVariants} className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl">
+            <motion.p variants={itemVariants} className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 md:mb-8 max-w-2xl">
               I help businesses streamline operations, increase efficiency, and drive growth through innovative automation strategies and executive leadership.
             </motion.p>
             
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mb-12">
-              <Link 
-                href="#contact" 
-                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2"
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
+              <Link
+                href="#contact"
+                className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300"
               >
-                Get in Touch
-                <FaArrowRight />
+                Get Started
+                <FaArrowRight className="ml-2 w-4 h-4" />
               </Link>
-              
-              <Link 
-                href="#projects" 
-                className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-medium rounded-full shadow-md hover:shadow-lg border border-gray-200 dark:border-gray-700 transition-all duration-300 transform hover:-translate-y-1"
+              <Link
+                href="#about"
+                className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors duration-300"
               >
-                View Case Studies
+                Learn More
+                <FaInfoCircle className="ml-2 w-4 h-4" />
               </Link>
             </motion.div>
             
-            {/* Key stats */}
-            <motion.div 
-              variants={itemVariants}
-              className="grid grid-cols-2 md:grid-cols-3 gap-6"
+            {/* Stats */}
+            <motion.div
+              variants={statsVariants}
+              className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 md:mt-12"
             >
-              <motion.div 
-                variants={statsVariants}
-                className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md border border-gray-200 dark:border-gray-700"
-              >
-                <div className="text-blue-600 dark:text-blue-400 text-3xl font-bold">15+</div>
-                <div className="text-gray-600 dark:text-gray-400 text-sm">Years Experience</div>
-              </motion.div>
-              
-              <motion.div 
-                variants={statsVariants}
-                className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md border border-gray-200 dark:border-gray-700"
-              >
-                <div className="text-blue-600 dark:text-blue-400 text-3xl font-bold">120%</div>
-                <div className="text-gray-600 dark:text-gray-400 text-sm">Avg. Growth Rate</div>
-              </motion.div>
-              
-              <motion.div 
-                variants={statsVariants}
-                className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md border border-gray-200 dark:border-gray-700"
-              >
-                <div className="text-blue-600 dark:text-blue-400 text-3xl font-bold">50+</div>
-                <div className="text-gray-600 dark:text-gray-400 text-sm">Businesses Transformed</div>
-              </motion.div>
+              {stats.map((stat, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-lg p-4 shadow-md border border-gray-200"
+                >
+                  <div className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </motion.div>
           </div>
           
@@ -476,13 +478,13 @@ export default function HeroNew() {
             variants={itemVariants}
             className="order-1 lg:order-2 relative"
           >
-            <div className="relative z-10 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-md border border-gray-200 dark:border-gray-700">
+            <div className="relative z-10 bg-white p-3 rounded-lg shadow-md border border-gray-200">
               <BusinessDashboardSVG />
             </div>
             
             {/* Floating analytics badges */}
             <AnalyticsBadge 
-              icon={<FaChartLine className="w-5 h-5" />}
+              icon={<FaChartLine className="w-4 h-4 md:w-5 md:h-5" />}
               title="Conversion Rate"
               value="45% Increase"
               position="top-6 left-0 lg:-left-20"
@@ -490,7 +492,7 @@ export default function HeroNew() {
             />
             
             <AnalyticsBadge 
-              icon={<FaChartPie className="w-5 h-5" />}
+              icon={<FaChartPie className="w-4 h-4 md:w-5 md:h-5" />}
               title="Market Share"
               value="32% Growth"
               position="bottom-6 left-0 lg:-left-20"
@@ -498,7 +500,7 @@ export default function HeroNew() {
             />
             
             <AnalyticsBadge 
-              icon={<FaChartBar className="w-5 h-5" />}
+              icon={<FaChartBar className="w-4 h-4 md:w-5 md:h-5" />}
               title="Efficiency"
               value="65% Improvement"
               position="top-6 right-0 lg:-right-20"
@@ -506,7 +508,7 @@ export default function HeroNew() {
             />
             
             <AnalyticsBadge 
-              icon={<FaCogs className="w-5 h-5" />}
+              icon={<FaCogs className="w-4 h-4 md:w-5 md:h-5" />}
               title="Automation"
               value="85% Coverage"
               position="bottom-6 right-0 lg:-right-20"

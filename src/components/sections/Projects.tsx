@@ -126,38 +126,44 @@ export default function Projects() {
     : achievements.filter(achievement => achievement.category === activeFilter);
 
   return (
-    <section id="projects" className="py-20 relative overflow-hidden bg-gray-50 dark:bg-gray-900">
-      {/* Background elements */}
-      <div className="absolute top-0 left-0 w-1/3 h-1/3 bg-gradient-to-br from-blue-500/5 to-transparent rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-1/3 h-1/3 bg-gradient-to-tr from-indigo-500/5 to-transparent rounded-full blur-3xl"></div>
-      
-      <div className="container mx-auto px-4" ref={ref}>
+    <section id="projects" className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
+      <div className="container mx-auto px-4 max-w-6xl" ref={ref}>
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="space-y-16"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="space-y-6 md:space-y-8"
         >
           {/* Section header */}
           <div className="text-center max-w-3xl mx-auto">
-            <motion.h2 variants={itemVariants} className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-              Business <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Achievements</span>
+            <motion.div variants={itemVariants} className="inline-block mb-3">
+              <div className="w-12 md:w-16 h-1 bg-blue-600 rounded-full mx-auto"></div>
+            </motion.div>
+            <motion.h2 
+              variants={itemVariants}
+              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-gray-900"
+            >
+              Featured <span className="text-blue-600">Projects</span>
             </motion.h2>
-            <motion.p variants={itemVariants} className="text-gray-600 dark:text-gray-400 text-lg">
-              Showcasing significant business impacts and transformative initiatives that demonstrate my expertise in driving growth and innovation.
+            <motion.p 
+              variants={itemVariants}
+              className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4 md:px-0"
+            >
+              Explore my portfolio of successful projects and business transformations
             </motion.p>
           </div>
-          
-          {/* Filter tabs */}
-          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4 mb-12">
+
+          {/* Filter buttons */}
+          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3 md:gap-4">
             {filters.map((filter) => (
               <button
                 key={filter.id}
                 onClick={() => setActiveFilter(filter.id)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+                className={`px-4 md:px-5 py-2 rounded-full text-sm font-medium transition-all ${
                   activeFilter === filter.id
                     ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md'
-                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
+                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
                 }`}
               >
                 {filter.label}
@@ -165,47 +171,45 @@ export default function Projects() {
             ))}
           </motion.div>
           
-          {/* Achievements grid */}
-          <motion.div 
+          {/* Projects grid */}
+          <motion.div
             variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
           >
             {filteredAchievements.map((achievement) => (
               <motion.div
                 key={achievement.id}
                 variants={itemVariants}
                 whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 flex flex-col h-full"
+                className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 flex flex-col h-full"
               >
-                <div className="relative h-48 bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center">
+                <div className="relative h-40 md:h-48 bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center">
                   <div className="absolute inset-0 opacity-20 bg-pattern-grid"></div>
-                  <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-3xl">
+                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-2xl md:text-3xl">
                     {achievement.icon}
                   </div>
                 </div>
                 
-                <div className="p-6 flex-grow">
-                  <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{achievement.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">{achievement.description}</p>
+                <div className="p-4 md:p-6 flex-grow">
+                  <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-gray-900">{achievement.title}</h3>
+                  <p className="text-sm md:text-base text-gray-600 mb-4">{achievement.description}</p>
                   
                   {/* Achievement stats */}
-                  <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="grid grid-cols-2 gap-3 md:gap-4 mb-4">
                     {achievement.stats.map((stat, index) => (
-                      <div key={index} className="bg-gray-50 dark:bg-gray-900 p-3 rounded-lg text-center">
-                        <p className="text-sm text-gray-500 dark:text-gray-400">{stat.label}</p>
-                        <p className="text-xl font-bold text-blue-600 dark:text-blue-400">{stat.value}</p>
+                      <div key={index} className="bg-gray-50 p-2 md:p-3 rounded-lg text-center">
+                        <p className="text-xs md:text-sm text-gray-500">{stat.label}</p>
+                        <p className="text-base md:text-lg font-bold text-blue-600">{stat.value}</p>
                       </div>
                     ))}
                   </div>
-                </div>
-                
-                {/* Tags */}
-                <div className="px-6 pb-6 mt-auto">
+                  
+                  {/* Tags */}
                   <div className="flex flex-wrap gap-2">
                     {achievement.tags.map((tag, index) => (
-                      <span 
-                        key={index} 
-                        className="text-xs px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-medium"
+                      <span
+                        key={index}
+                        className="px-2 py-1 bg-blue-50 text-blue-600 rounded-full text-xs md:text-sm"
                       >
                         {tag}
                       </span>
