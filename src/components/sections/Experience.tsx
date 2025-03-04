@@ -291,28 +291,6 @@ export default function Experience() {
     ]
   };
   
-  // SVG patterns and decorative elements
-  const CirclePattern = () => (
-    <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute opacity-10">
-      <circle cx="60" cy="60" r="40" stroke="currentColor" strokeWidth="2" strokeDasharray="5 5" />
-      <circle cx="60" cy="60" r="20" stroke="currentColor" strokeWidth="2" />
-      <circle cx="60" cy="60" r="60" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
-    </svg>
-  );
-  
-  const HexagonPattern = () => (
-    <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute opacity-10">
-      <path d="M50 0L93.3 25V75L50 100L6.7 75V25L50 0Z" stroke="currentColor" strokeWidth="2" />
-      <path d="M50 20L79.3 35V65L50 80L20.7 65V35L50 20Z" stroke="currentColor" strokeWidth="1" />
-    </svg>
-  );
-  
-  const WavePattern = () => (
-    <svg width="200" height="40" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute opacity-10">
-      <path d="M0 20C20 5 30 35 50 20C70 5 80 35 100 20C120 5 130 35 150 20C170 5 180 35 200 20" stroke="currentColor" strokeWidth="2" />
-    </svg>
-  );
-  
   return (
     <section id="experience" className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 max-w-6xl" ref={containerRef}>
