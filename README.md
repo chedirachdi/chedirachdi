@@ -6,7 +6,7 @@ A beautiful, responsive personal portfolio website built with Next.js, TypeScrip
 
 - 🎨 Beautiful gradient effects and animations
 - 📱 Fully responsive design for all devices
-- 🌓 Light and dark mode support
+- 🌓 Light and dark mode support (postpone it for now. Will be pushed soon)
 - ⚡ Fast performance with Next.js
 - 🧩 Modular component structure
 - 🔄 Smooth animations with Framer Motion
