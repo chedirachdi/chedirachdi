@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { FaChartLine, FaBullhorn, FaUsers, FaLightbulb, FaCogs, FaChartBar, FaChartPie, FaHandshake, FaTrophy, FaChess } from 'react-icons/fa';
+import { FaChartLine, FaBullhorn, FaUsers, FaLightbulb, FaCogs, FaHandshake, FaTrophy, FaChess } from 'react-icons/fa';
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState('business');

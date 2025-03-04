@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { FaLinkedin, FaTwitter, FaArrowRight, FaChartLine, FaCogs, FaLightbulb, FaChartBar, FaChartPie, FaProjectDiagram } from 'react-icons/fa';
+import { FaLinkedin, FaTwitter, FaArrowRight, FaChartBar, FaChartPie, FaProjectDiagram } from 'react-icons/fa';
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);

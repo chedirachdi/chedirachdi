@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBriefcase, FaGraduationCap, FaBuilding, FaChartLine, FaUsers, FaRocket, FaGlobeAmericas, FaLightbulb, FaCogs, FaTrophy, FaHandshake, FaChess, FaChartBar, FaBook, FaCertificate, FaUniversity, FaLaptopCode, FaBrain, FaRobot, FaWater } from 'react-icons/fa';
+import { FaBriefcase, FaGraduationCap, FaChartLine, FaUsers, FaRocket, FaGlobeAmericas, FaLightbulb, FaCogs, FaTrophy, FaHandshake, FaChess, FaChartBar, FaBook, FaCertificate, FaLaptopCode, FaBrain, FaRobot, FaWater } from 'react-icons/fa';
 
 export default function Experience() {
   const [activeTab, setActiveTab] = useState('leadership');

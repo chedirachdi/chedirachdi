@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { FaUserTie, FaChartLine, FaHandshake, FaUsers, FaLightbulb, FaRocket, FaCogs, FaGlobeAmericas, FaCode, FaRobot, FaServer } from 'react-icons/fa';
+import { FaUserTie, FaChartLine, FaRocket, FaCogs, FaGlobeAmericas, FaCode, FaRobot, FaServer } from 'react-icons/fa';
 
 // Tab Button Component for better encapsulation
 function TabButton({ 

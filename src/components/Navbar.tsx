@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -12,14 +12,14 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('home');
 
   // Navigation links
-  const navLinks = [
+  const navLinks = useMemo(() => [
     { href: '#home', label: 'Home' },
     { href: '#about', label: 'About' },
     { href: '#experience', label: 'Experience' },
     { href: '#skills', label: 'Skills' },
     { href: '#projects', label: 'Case Studies' },
     { href: '#contact', label: 'Contact' },
-  ];
+  ], []);
 
   // Social links
   const socialLinks = [
