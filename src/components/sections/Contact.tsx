@@ -1,8 +1,9 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaArrowRight, FaExternalLinkAlt, FaUsers, FaGlobeAmericas, FaHandshake } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { FaUsers, FaGlobeAmericas, FaHandshake } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaArrowRight, FaExternalLinkAlt } from 'react-icons/fa';
 import Link from 'next/link';
 
 interface NetworkStat {
@@ -39,7 +40,6 @@ const networkStats: NetworkStat[] = [
 
 export default function Contact() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   // Simplified animation variants for better mobile performance
   const containerVariants = {

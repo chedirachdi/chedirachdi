@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { FaUserTie, FaChartLine, FaRocket, FaCogs, FaGlobeAmericas, FaCode, FaRobot, FaServer } from 'react-icons/fa';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import { FaChartLine, FaUsers, FaLightbulb } from 'react-icons/fa';
 
 // Tab Button Component for better encapsulation
 function TabButton({ 
@@ -40,7 +41,6 @@ function TabButton({
 
 export default function About() {
   const [activeTab, setActiveTab] = useState('who');
-  const ref = useRef(null);
 
   // Animation variants
   const containerVariants = {
@@ -68,7 +68,7 @@ export default function About() {
     {
       id: 'who',
       label: 'Who I Am',
-      icon: <FaUserTie />,
+      icon: <FaUsers />,
       content: (
         <div className="space-y-6">
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-800/30 mb-6">
@@ -81,7 +81,7 @@ export default function About() {
             <div className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
-                  <FaCode />
+                  <FaLightbulb />
                 </div>
                 <h3 className="font-bold text-gray-800 dark:text-gray-200">Technical Expertise</h3>
               </div>
@@ -93,7 +93,7 @@ export default function About() {
             <div className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
-                  <FaRobot />
+                  <FaLightbulb />
                 </div>
                 <h3 className="font-bold text-gray-800 dark:text-gray-200">AI & Automation</h3>
               </div>
@@ -106,7 +106,7 @@ export default function About() {
           <div className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-white">
-                <FaRocket />
+                <FaLightbulb />
               </div>
               <h3 className="font-bold text-gray-800 dark:text-gray-200">My Approach</h3>
             </div>
@@ -135,25 +135,25 @@ export default function About() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <ServiceCard 
-              icon={<FaServer />}
+              icon={<FaUsers />}
               title="Full-Stack Development"
               description="Custom web and mobile applications built with modern technologies like React, Next.js, and Node.js to solve specific business challenges."
               color="from-blue-500 to-indigo-600"
             />
             <ServiceCard 
-              icon={<FaRobot />}
+              icon={<FaLightbulb />}
               title="AI & Automation Solutions"
               description="Intelligent systems that leverage AI, machine learning, and automation to streamline workflows and enhance decision-making processes."
               color="from-indigo-500 to-purple-600"
             />
             <ServiceCard 
-              icon={<FaCogs />}
+              icon={<FaLightbulb />}
               title="Systems Integration"
               description="Seamless integration of hardware and software systems to create unified solutions that optimize operational efficiency."
               color="from-purple-500 to-pink-600"
             />
             <ServiceCard 
-              icon={<FaGlobeAmericas />}
+              icon={<FaLightbulb />}
               title="Digital Transformation"
               description="Strategic guidance and implementation support for organizations looking to embrace digital technologies and modernize their operations."
               color="from-pink-500 to-rose-600"
@@ -162,7 +162,7 @@ export default function About() {
           
           <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-100 dark:border-gray-700 mt-8">
             <h3 className="text-xl font-bold mb-4 text-gray-800 dark:text-gray-200 flex items-center gap-2">
-              <FaRocket className="text-blue-600 dark:text-blue-400" />
+              <FaLightbulb className="text-blue-600 dark:text-blue-400" />
               <span>How I Deliver Value</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -226,7 +226,7 @@ export default function About() {
 
   return (
     <section id="about" className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4 max-w-6xl" ref={ref}>
+      <div className="container mx-auto px-4 max-w-6xl">
         <motion.div
           variants={containerVariants}
           initial="hidden"

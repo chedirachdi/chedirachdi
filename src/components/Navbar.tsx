@@ -9,7 +9,7 @@ import { FaBars, FaTimes, FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [activeSection] = useState('home');
 
   // Navigation links
   const navLinks = useMemo(() => [

@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { FaChartLine, FaBullhorn, FaUsers, FaLightbulb, FaCogs, FaHandshake, FaTrophy, FaChess } from 'react-icons/fa';
+import { FaChartLine, FaBullhorn, FaUsers, FaLightbulb, FaCogs, FaHandshake, FaTrophy, FaChess, FaCode, FaDatabase, FaCloud, FaRobot } from 'react-icons/fa';
 import { ReactNode } from 'react';
 
 interface Skill {
