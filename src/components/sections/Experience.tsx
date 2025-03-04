@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGraduationCap, FaChartLine, FaUsers, FaRocket, FaGlobeAmericas, FaLightbulb, FaCogs, FaTrophy, FaHandshake, FaChess, FaChartBar, FaBook, FaCertificate, FaLaptopCode, FaBrain, FaRobot, FaWater } from 'react-icons/fa';
+import { FaGraduationCap, FaChartLine, FaUsers, FaRocket, FaGlobeAmericas, FaLightbulb, FaCogs, FaHandshake, FaChess, FaChartBar, FaCertificate, FaLaptopCode, FaRobot, FaWater } from 'react-icons/fa';
 
 // Optimize animation variants
 const containerVariants = {
@@ -386,8 +386,148 @@ export default function Experience() {
                 </div>
               )}
 
-              {/* Similar optimizations for business and education tabs */}
-              {/* ... rest of your tab content ... */}
+              {activeTab === 'business' && (
+                <div className="space-y-8">
+                  {/* Capabilities */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {businessImpactContent.capabilities.map((capability, index) => (
+                      <motion.div
+                        key={index}
+                        variants={itemVariants}
+                        className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200"
+                      >
+                        <div className="mb-4">
+                          <div className="w-12 h-12 rounded-lg bg-blue-600 flex items-center justify-center text-white mb-4">
+                            {capability.icon}
+                          </div>
+                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                            {capability.title}
+                          </h3>
+                          <p className="text-sm text-gray-600 dark:text-gray-300">
+                            {capability.description}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Results */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {businessImpactContent.results.map((result, index) => (
+                      <motion.div
+                        key={index}
+                        variants={itemVariants}
+                        className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200"
+                      >
+                        <div className="flex items-center gap-3 mb-3">
+                          {result.icon}
+                          <span className="text-2xl font-bold text-gray-900 dark:text-white">
+                            {result.value}{result.suffix}
+                          </span>
+                        </div>
+                        <h4 className="font-medium text-gray-900 dark:text-white mb-2">
+                          {result.metric}
+                        </h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                          {result.description}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Case Studies */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {businessImpactContent.caseStudies.map((study, index) => (
+                      <motion.div
+                        key={index}
+                        variants={itemVariants}
+                        className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200"
+                      >
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                          {study.title}
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-300 mb-4">
+                          {study.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {study.metrics.map((metric, i) => (
+                            <span
+                              key={i}
+                              className="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm"
+                            >
+                              {metric}
+                            </span>
+                          ))}
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'education' && (
+                <div className="space-y-8">
+                  {/* Formal Education */}
+                  <div className="grid grid-cols-1 gap-6">
+                    {educationContent.education.map((edu, index) => (
+                      <motion.div
+                        key={index}
+                        variants={itemVariants}
+                        className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200"
+                      >
+                        <div className="flex items-start gap-4">
+                          <div className="w-12 h-12 rounded-lg bg-blue-600 flex items-center justify-center text-white">
+                            {edu.icon}
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                              {edu.title}
+                            </h3>
+                            <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
+                              {edu.institution} • {edu.period}
+                            </p>
+                            <p className="text-gray-600 dark:text-gray-300 mb-4">
+                              {edu.description}
+                            </p>
+                            <div className="space-y-2">
+                              {edu.achievements.map((achievement, i) => (
+                                <div key={i} className="flex items-start gap-2">
+                                  <span className="text-blue-600 mt-1">•</span>
+                                  <span className="text-gray-600 dark:text-gray-300">{achievement}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Continuous Learning */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {educationContent.continuousLearning.map((learning, index) => (
+                      <motion.div
+                        key={index}
+                        variants={itemVariants}
+                        className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200"
+                      >
+                        <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white mb-4">
+                          {learning.icon}
+                        </div>
+                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                          {learning.title}
+                        </h4>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                          {learning.provider} • {learning.year}
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                          {learning.description}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </motion.div>
           </AnimatePresence>
         </motion.div>
