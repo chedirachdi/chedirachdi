@@ -1,32 +1,33 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { FaChartLine, FaUsers, FaLightbulb, FaGlobe, FaRocket, FaHandshake } from 'react-icons/fa';
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('all');
   const ref = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
 
-  // Animation variants
+  // Optimized animation variants
   const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
-        staggerChildren: 0.2
+        duration: 0.4,
+        staggerChildren: prefersReducedMotion ? 0 : 0.1
       }
     }
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: prefersReducedMotion ? { opacity: 0 } : { y: 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+      transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
     }
   };
 
@@ -132,7 +133,7 @@ export default function Projects() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
           className="space-y-8 md:space-y-12"
         >
           {/* Section header */}
@@ -173,21 +174,20 @@ export default function Projects() {
           
           {/* Projects grid */}
           <motion.div
-            layout
+            layout={!prefersReducedMotion}
             variants={containerVariants}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
           >
             <AnimatePresence mode="wait">
               {filteredAchievements.map((achievement) => (
                 <motion.div
-                  layout
+                  layout={!prefersReducedMotion}
                   key={achievement.id}
                   variants={itemVariants}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 20 }}
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
                   transition={{ duration: 0.3 }}
-                  whileHover={{ y: -8, transition: { duration: 0.2 } }}
                   className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 flex flex-col h-full transform transition-all duration-300 hover:shadow-xl"
                 >
                   <div className="relative h-48 md:h-52 bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center">

@@ -3,507 +3,375 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { FaLinkedin, FaTwitter, FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight, FaChartLine, FaCogs, FaChartBar, FaChartPie, FaInfoCircle } from 'react-icons/fa';
 
-export default function Hero() {
+interface Stat {
+  value: string;
+  label: string;
+}
+
+const stats: Stat[] = [
+  { value: '15+', label: 'Years Experience' },
+  { value: '120%', label: 'Avg. Growth Rate' },
+  { value: '50+', label: 'Businesses Transformed' },
+  { value: '85%', label: 'Client Retention' }
+];
+
+export default function HeroNew() {
   const [isVisible, setIsVisible] = useState(false);
   
   useEffect(() => {
-    setIsVisible(true);
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 500);
+
+    return () => clearTimeout(timer);
   }, []);
   
   // Professional Business SVG Elements
   const BusinessDashboardSVG = () => (
-    <svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+    <svg width="500" height="300" viewBox="0 0 500 300" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
       <defs>
         <linearGradient id="dashboardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#1E293B" />
-          <stop offset="100%" stopColor="#0F172A" />
+          <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.25" />
+          <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.25" />
         </linearGradient>
         <linearGradient id="chartGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#4ADE80" />
-          <stop offset="100%" stopColor="#22C55E" />
+          <stop offset="0%" stopColor="#4CAF50" stopOpacity="0.7" />
+          <stop offset="100%" stopColor="#2E7D32" stopOpacity="0.7" />
         </linearGradient>
         <linearGradient id="chartGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#3B82F6" />
-          <stop offset="100%" stopColor="#2563EB" />
+          <stop offset="0%" stopColor="#2196F3" stopOpacity="0.7" />
+          <stop offset="100%" stopColor="#1565C0" stopOpacity="0.7" />
         </linearGradient>
         <linearGradient id="chartGradient3" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#FACC15" />
-          <stop offset="100%" stopColor="#EAB308" />
+          <stop offset="0%" stopColor="#FFC107" stopOpacity="0.7" />
+          <stop offset="100%" stopColor="#FFA000" stopOpacity="0.7" />
         </linearGradient>
-        <filter id="glow" x="-10%" y="-10%" width="120%" height="120%">
-          <feGaussianBlur stdDeviation="2" />
-        </filter>
-        <clipPath id="roundedRect">
-          <rect width="600" height="400" rx="16" />
-        </clipPath>
       </defs>
       
-      <g clipPath="url(#roundedRect)">
-        <rect width="600" height="400" fill="url(#dashboardGradient)" />
-        <rect width="600" height="400" fill="white" fillOpacity="0.05" />
-        
-        <g opacity="0.1">
-          {[...Array(10)].map((_, i) => (
-            <line 
-              key={`vline-${i}`} 
-              x1={i * 60} 
-              y1="0" 
-              x2={i * 60} 
-              y2="400" 
-              stroke="white" 
-              strokeWidth="1" 
-              strokeDasharray="1 5"
-            />
-          ))}
-          {[...Array(8)].map((_, i) => (
-            <line 
-              key={`hline-${i}`} 
-              x1="0" 
-              y1={i * 60} 
-              x2="600" 
-              y2={i * 60} 
-              stroke="white" 
-              strokeWidth="1" 
-              strokeDasharray="1 5"
-            />
-          ))}
-        </g>
-      </g>
+      {/* Dashboard Background with Glass Effect */}
+      <rect width="500" height="300" rx="10" fill="url(#dashboardGradient)" opacity="0.1" />
       
-      <rect x="20" y="20" width="560" height="50" rx="10" fill="white" fillOpacity="0.07" />
-      <circle cx="45" cy="45" r="15" fill="white" fillOpacity="0.1" />
-      <rect x="70" y="35" width="100" height="20" rx="5" fill="white" fillOpacity="0.1" />
-      <rect x="400" y="35" width="160" height="20" rx="5" fill="white" fillOpacity="0.1" />
-      
-      <g>
-        {[
-          { x: 40, height: 80, delay: 0 },
-          { x: 100, height: 60, delay: 0.1 },
-          { x: 160, height: 100, delay: 0.2 },
-          { x: 220, height: 120, delay: 0.3 }
-        ].map((bar, i) => (
-          <g key={i}>
-            <rect 
-              x={bar.x} 
-              y={210 - bar.height} 
-              width="40" 
-              height={bar.height} 
-              fill="url(#chartGradient1)" 
-              opacity="0.9" 
-              rx="4"
-            >
-              <animate 
-                attributeName="height" 
-                from="0" 
-                to={bar.height} 
-                dur="0.5s" 
-                begin={`${bar.delay}s`} 
-                fill="freeze" 
-                calcMode="ease-out"
-              />
-              <animate 
-                attributeName="y" 
-                from="210" 
-                to={210 - bar.height} 
-                dur="0.5s" 
-                begin={`${bar.delay}s`} 
-                fill="freeze" 
-                calcMode="ease-out"
-              />
-            </rect>
-          </g>
+      {/* Background Grid - Simplified */}
+      <g opacity="0.04">
+        {[...Array(10)].map((_, i) => (
+          <line 
+            key={`vline-${i}`} 
+            x1={i * 50} 
+            y1="0" 
+            x2={i * 50} 
+            y2="300" 
+            stroke="currentColor" 
+            strokeWidth="0.5" 
+            strokeDasharray="1 5"
+          />
+        ))}
+        {[...Array(6)].map((_, i) => (
+          <line 
+            key={`hline-${i}`} 
+            x1="0" 
+            y1={i * 50} 
+            x2="500" 
+            y2={i * 50} 
+            stroke="currentColor" 
+            strokeWidth="0.5" 
+            strokeDasharray="1 5"
+          />
         ))}
       </g>
       
-      <g transform="translate(445, 160)">
-        <path d="M0 0 L0 -50 A50 50 0 0 1 43 -25 Z" fill="url(#chartGradient1)">
-          <animate attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />
-        </path>
-        <path d="M0 0 L43 -25 A50 50 0 0 1 43 25 Z" fill="url(#chartGradient2)">
-          <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="0.1s" fill="freeze" />
-        </path>
-        <path d="M0 0 L43 25 A50 50 0 0 1 0 50 Z" fill="url(#chartGradient3)">
-          <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="0.2s" fill="freeze" />
-        </path>
+      {/* Header - Simplified */}
+      <rect x="20" y="15" width="460" height="30" rx="5" fill="currentColor" fillOpacity="0.04" />
+      <circle cx="35" cy="30" r="7" fill="currentColor" fillOpacity="0.08" />
+      <rect x="50" y="25" width="80" height="10" rx="2" fill="currentColor" fillOpacity="0.08" />
+      <rect x="350" y="25" width="110" height="10" rx="2" fill="currentColor" fillOpacity="0.08" />
+      
+      {/* Main Dashboard Content - Simplified */}
+      <g className="dashboard-content">
+        {/* Left Panel - Bar Chart */}
+        <rect x="20" y="60" width="225" height="100" rx="5" fill="currentColor" fillOpacity="0.04" />
+        <text x="30" y="75" fontSize="9" fontWeight="500" fill="currentColor" opacity="0.6">Revenue Growth</text>
+        
+        {/* Bar Chart - Simplified */}
+        <g>
+          {[
+            { x: 30, height: 55 },
+            { x: 60, height: 40 },
+            { x: 90, height: 65 },
+            { x: 120, height: 75 },
+            { x: 150, height: 85 },
+            { x: 180, height: 90 }
+          ].map((bar, i) => (
+            <rect 
+              key={i}
+              x={bar.x} 
+              y={145 - bar.height} 
+              width="20" 
+              height={bar.height} 
+              fill="url(#chartGradient1)" 
+              opacity="0.6" 
+              rx="2"
+            />
+          ))}
+        </g>
+        
+        {/* Right Panel - Pie Chart */}
+        <rect x="255" y="60" width="225" height="100" rx="5" fill="currentColor" fillOpacity="0.04" />
+        <text x="265" y="75" fontSize="9" fontWeight="500" fill="currentColor" opacity="0.6">Market Segments</text>
+        
+        {/* Pie Chart - Simplified */}
+        <g transform="translate(365, 110)">
+          <path d="M0 0 L0 -35 A35 35 0 0 1 30 -17 Z" fill="url(#chartGradient1)" opacity="0.6" />
+          <path d="M0 0 L30 -17 A35 35 0 0 1 30 17 Z" fill="url(#chartGradient2)" opacity="0.6" />
+          <path d="M0 0 L30 17 A35 35 0 0 1 0 35 Z" fill="url(#chartGradient3)" opacity="0.6" />
+          <path d="M0 0 L0 35 A35 35 0 0 1 -30 17 Z" fill="#3B82F6" opacity="0.6" />
+          <circle cx="0" cy="0" r="14" fill="currentColor" opacity="0.04" />
+        </g>
+        
+        {/* Legend - Simplified */}
+        <g>
+          <rect x="420" y="80" width="6" height="6" rx="1" fill="url(#chartGradient1)" />
+          <text x="430" y="85" fontSize="8" fill="currentColor" opacity="0.6">Enterprise</text>
+          
+          <rect x="420" y="95" width="6" height="6" rx="1" fill="url(#chartGradient2)" />
+          <text x="430" y="100" fontSize="8" fill="currentColor" opacity="0.6">SMB</text>
+          
+          <rect x="420" y="110" width="6" height="6" rx="1" fill="url(#chartGradient3)" />
+          <text x="430" y="115" fontSize="8" fill="currentColor" opacity="0.6">Startup</text>
+          
+          <rect x="420" y="125" width="6" height="6" rx="1" fill="#3B82F6" />
+          <text x="430" y="130" fontSize="8" fill="currentColor" opacity="0.6">Government</text>
+        </g>
+        
+        {/* Bottom Panels - KPIs - Simplified */}
+        <g>
+          <rect x="20" y="170" width="150" height="115" rx="5" fill="currentColor" fillOpacity="0.04" />
+          <text x="30" y="185" fontSize="9" fontWeight="500" fill="currentColor" opacity="0.6">Client Retention</text>
+          <text x="30" y="215" fontSize="18" fontWeight="bold" fill="currentColor" opacity="0.7">95%</text>
+          <rect x="30" y="230" width="100" height="2" rx="1" fill="currentColor" fillOpacity="0.08" />
+          <rect x="30" y="230" width="95" height="2" rx="1" fill="url(#chartGradient3)" />
+          <circle cx="125" cy="231" r="2.5" fill="currentColor" opacity="0.6" />
+        </g>
+        
+        <g>
+          <rect x="180" y="170" width="150" height="115" rx="5" fill="currentColor" fillOpacity="0.04" />
+          <text x="190" y="185" fontSize="9" fontWeight="500" fill="currentColor" opacity="0.6">Revenue Growth</text>
+          <text x="190" y="215" fontSize="18" fontWeight="bold" fill="currentColor" opacity="0.7">+120%</text>
+          <rect x="190" y="230" width="100" height="2" rx="1" fill="currentColor" fillOpacity="0.08" />
+          <rect x="190" y="230" width="100" height="2" rx="1" fill="url(#chartGradient1)" />
+          <circle cx="290" cy="231" r="2.5" fill="currentColor" opacity="0.6" />
+        </g>
+        
+        <g>
+          <rect x="340" y="170" width="140" height="115" rx="5" fill="currentColor" fillOpacity="0.04" />
+          <text x="350" y="185" fontSize="9" fontWeight="500" fill="currentColor" opacity="0.6">Experience</text>
+          <text x="350" y="215" fontSize="18" fontWeight="bold" fill="currentColor" opacity="0.7">15+ yrs</text>
+          <rect x="350" y="230" width="100" height="2" rx="1" fill="currentColor" fillOpacity="0.08" />
+          <rect x="350" y="230" width="100" height="2" rx="1" fill="url(#chartGradient2)" />
+          <circle cx="450" cy="231" r="2.5" fill="currentColor" opacity="0.6" />
+        </g>
       </g>
     </svg>
   );
   
   const BusinessMetricsSVG = () => (
-    <svg width="600" height="200" viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute bottom-0 left-0 opacity-10 z-0">
+    <svg width="400" height="150" viewBox="0 0 400 150" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute bottom-0 left-0 opacity-5 dark:opacity-10 z-0 w-1/2 max-w-[300px]">
       <defs>
         <linearGradient id="metricGradient" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor="currentColor" stopOpacity="0.8" />
           <stop offset="100%" stopColor="currentColor" stopOpacity="0.2" />
         </linearGradient>
-        <filter id="glow-small" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="2" result="blur" />
-          <feComposite in="SourceGraphic" in2="blur" operator="over" />
-        </filter>
       </defs>
       
-      <path 
-        d="M0 150 C50 120, 100 180, 150 100 C200 20, 250 80, 300 60 C350 40, 400 120, 450 80 C500 40, 550 100, 600 50" 
-        stroke="url(#metricGradient)" 
-        strokeWidth="3" 
-        fill="none"
-        strokeDasharray="1200"
-        strokeDashoffset="1200"
-      >
-        <animate 
-          attributeName="stroke-dashoffset" 
-          from="1200" 
-          to="0" 
-          dur="3s" 
-          fill="freeze" 
-          calcMode="spline"
-          keySplines="0.4 0 0.2 1"
-        />
-      </path>
-      
-      <path 
-        d="M0 150 C50 120, 100 180, 150 100 C200 20, 250 80, 300 60 C350 40, 400 120, 450 80 C500 40, 550 100, 600 50 L600 200 L0 200 Z" 
-        fill="currentColor" 
-        opacity="0"
-      >
-        <animate 
-          attributeName="opacity" 
-          from="0" 
-          to="0.1" 
-          dur="2s" 
-          begin="1s"
-          fill="freeze" 
-        />
-      </path>
-      
-      {[
-        {x: 0, y: 150, delay: 0},
-        {x: 50, y: 120, delay: 0.2},
-        {x: 100, y: 180, delay: 0.4},
-        {x: 150, y: 100, delay: 0.6},
-        {x: 200, y: 20, delay: 0.8},
-        {x: 250, y: 80, delay: 1.0},
-        {x: 300, y: 60, delay: 1.2},
-        {x: 350, y: 40, delay: 1.4},
-        {x: 400, y: 120, delay: 1.6},
-        {x: 450, y: 80, delay: 1.8},
-        {x: 500, y: 40, delay: 2.0},
-        {x: 550, y: 100, delay: 2.2},
-        {x: 600, y: 50, delay: 2.4}
-      ].map((point, i) => (
-        <g key={i} filter="url(#glow-small)">
-          <circle 
-            cx={point.x} 
-            cy={point.y} 
-            r="0" 
-            fill="currentColor"
-          >
-            <animate 
-              attributeName="r" 
-              from="0" 
-              to="4" 
-              dur="0.5s" 
-              begin={`${point.delay}s`}
-              fill="freeze" 
-            />
-            <animate 
-              attributeName="opacity" 
-              values="0;1;0.7" 
-              dur="3s" 
-              begin={`${point.delay + 0.5}s`}
-              repeatCount="indefinite" 
-            />
-          </circle>
-          <circle 
-            cx={point.x} 
-            cy={point.y} 
-            r="0" 
-            stroke="currentColor" 
-            strokeWidth="1" 
-            fill="none"
-          >
-            <animate 
-              attributeName="r" 
-              from="0" 
-              to="8" 
-              dur="0.5s" 
-              begin={`${point.delay}s`}
-              fill="freeze" 
-            />
-            <animate 
-              attributeName="opacity" 
-              values="0.5;0.2;0.5" 
-              dur="3s" 
-              begin={`${point.delay + 0.5}s`}
-              repeatCount="indefinite" 
-            />
-          </circle>
-        </g>
-      ))}
-      
-      {[50, 100, 150].map((y, i) => (
+      {/* Simplified Grid Lines */}
+      {[30, 60, 90, 120].map((y, i) => (
         <line 
           key={`grid-${i}`}
           x1="0" 
           y1={y} 
-          x2="600" 
+          x2="400" 
           y2={y} 
           stroke="currentColor" 
-          strokeWidth="1" 
-          strokeDasharray="5 5" 
+          strokeWidth="0.5" 
+          strokeDasharray="4 4" 
           opacity="0.1"
-        >
-          <animate 
-            attributeName="opacity" 
-            from="0" 
-            to="0.1" 
-            dur="1s" 
-            begin={`${i * 0.3}s`}
-            fill="freeze" 
-          />
-        </line>
+        />
+      ))}
+      
+      {[50, 100, 150, 200, 250, 300, 350].map((x, i) => (
+        <line 
+          key={`vgrid-${i}`}
+          x1={x} 
+          y1="0" 
+          x2={x} 
+          y2="150" 
+          stroke="currentColor" 
+          strokeWidth="0.5" 
+          strokeDasharray="4 4" 
+          opacity="0.1"
+        />
+      ))}
+      
+      {/* Simplified Line Chart */}
+      <path 
+        d="M0 120 C40 100, 80 110, 120 80 C160 50, 200 70, 240 40 C280 30, 320 50, 360 30 L400 20" 
+        stroke="currentColor" 
+        strokeWidth="1.5" 
+        strokeOpacity="0.3"
+        fill="none"
+      />
+      
+      {/* Subtle Area Fill */}
+      <path 
+        d="M0 120 C40 100, 80 110, 120 80 C160 50, 200 70, 240 40 C280 30, 320 50, 360 30 L400 20 L400 150 L0 150 Z" 
+        fill="currentColor" 
+        opacity="0.05"
+      />
+      
+      {/* Key Data Points - Minimal */}
+      {[
+        {x: 0, y: 120},
+        {x: 120, y: 80},
+        {x: 240, y: 40},
+        {x: 360, y: 30}
+      ].map((point, i) => (
+        <circle 
+          key={i}
+          cx={point.x} 
+          cy={point.y} 
+          r="2" 
+          fill="currentColor"
+          opacity="0.3"
+        />
       ))}
     </svg>
   );
   
   const DataFlowSVG = () => (
-    <svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute top-0 right-0 opacity-5 z-0">
+    <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute top-0 right-0 opacity-3 dark:opacity-5 z-0 w-1/2 max-w-[300px]">
       <defs>
         <linearGradient id="nodeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.7" />
-          <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.7" />
+          <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.5" />
+          <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.5" />
         </linearGradient>
-        <filter id="glow-node" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="3" result="blur" />
-          <feComposite in="SourceGraphic" in2="blur" operator="over" />
-        </filter>
       </defs>
       
-      <g opacity="0.3">
-        {[...Array(8)].map((_, i) => (
+      {/* Simplified Network Grid */}
+      <g opacity="0.2">
+        {[...Array(5)].map((_, i) => (
           <line 
             key={`grid-v-${i}`}
-            x1={100 * (i + 1)} 
+            x1={80 * (i + 1)} 
             y1="0" 
-            x2={100 * (i + 1)} 
-            y2="800" 
+            x2={80 * (i + 1)} 
+            y2="400" 
             stroke="currentColor" 
             strokeWidth="0.5" 
-            strokeDasharray="5 10"
+            strokeDasharray="3 6"
             opacity="0.2"
           />
         ))}
-        {[...Array(8)].map((_, i) => (
+        {[...Array(5)].map((_, i) => (
           <line 
             key={`grid-h-${i}`}
             x1="0" 
-            y1={100 * (i + 1)} 
-            x2="800" 
-            y2={100 * (i + 1)} 
+            y1={80 * (i + 1)} 
+            x2="400" 
+            y2={80 * (i + 1)} 
             stroke="currentColor" 
             strokeWidth="0.5" 
-            strokeDasharray="5 10"
+            strokeDasharray="3 6"
             opacity="0.2"
           />
         ))}
       </g>
       
+      {/* Simplified Data Nodes */}
       {[
-        {x: 100, y: 100, size: 12, delay: 0},
-        {x: 250, y: 150, size: 18, delay: 0.2},
-        {x: 400, y: 100, size: 14, delay: 0.4},
-        {x: 550, y: 150, size: 16, delay: 0.6},
-        {x: 700, y: 100, size: 12, delay: 0.8},
-        {x: 100, y: 250, size: 16, delay: 1.0},
-        {x: 250, y: 300, size: 12, delay: 1.2},
-        {x: 400, y: 250, size: 20, delay: 1.4},
-        {x: 550, y: 300, size: 14, delay: 1.6},
-        {x: 700, y: 250, size: 16, delay: 1.8},
-        {x: 100, y: 400, size: 14, delay: 2.0},
-        {x: 250, y: 450, size: 16, delay: 2.2},
-        {x: 400, y: 400, size: 12, delay: 2.4},
-        {x: 550, y: 450, size: 18, delay: 2.6},
-        {x: 700, y: 400, size: 14, delay: 2.8},
-        {x: 100, y: 550, size: 16, delay: 3.0},
-        {x: 250, y: 600, size: 12, delay: 3.2},
-        {x: 400, y: 550, size: 14, delay: 3.4},
-        {x: 550, y: 600, size: 16, delay: 3.6},
-        {x: 700, y: 550, size: 12, delay: 3.8},
-        {x: 100, y: 700, size: 18, delay: 4.0},
-        {x: 250, y: 750, size: 14, delay: 4.2},
-        {x: 400, y: 700, size: 16, delay: 4.4},
-        {x: 550, y: 750, size: 12, delay: 4.6},
-        {x: 700, y: 700, size: 14, delay: 4.8}
+        {x: 80, y: 80, size: 6},
+        {x: 160, y: 120, size: 8},
+        {x: 240, y: 80, size: 6},
+        {x: 320, y: 120, size: 8},
+        {x: 80, y: 160, size: 8},
+        {x: 160, y: 240, size: 6},
+        {x: 240, y: 160, size: 10},
+        {x: 320, y: 240, size: 6},
+        {x: 80, y: 320, size: 6},
+        {x: 160, y: 320, size: 8},
+        {x: 240, y: 320, size: 6},
+        {x: 320, y: 320, size: 8}
       ].map((node, i) => (
-        <g key={i} filter="url(#glow-node)">
-          <circle 
-            cx={node.x} 
-            cy={node.y} 
-            r="0" 
-            fill="url(#nodeGradient)"
-            opacity="0"
-          >
-            <animate 
-              attributeName="r" 
-              from="0" 
-              to={node.size} 
-              dur="0.8s" 
-              begin={`${node.delay}s`}
-              fill="freeze" 
-              calcMode="spline"
-              keySplines="0.4 0 0.2 1"
-            />
-            <animate 
-              attributeName="opacity" 
-              from="0" 
-              to="1" 
-              dur="0.8s" 
-              begin={`${node.delay}s`}
-              fill="freeze" 
-            />
-            <animate 
-              attributeName="opacity" 
-              values="1;0.5;1" 
-              dur="3s" 
-              begin={`${node.delay + 0.8}s`}
-              repeatCount="indefinite" 
-            />
-          </circle>
-          <circle 
-            cx={node.x} 
-            cy={node.y} 
-            r="0" 
-            stroke="white" 
-            strokeWidth="0.5" 
-            fill="none"
-            opacity="0"
-          >
-            <animate 
-              attributeName="r" 
-              from="0" 
-              to={node.size + 5} 
-              dur="0.8s" 
-              begin={`${node.delay}s`}
-              fill="freeze" 
-              calcMode="spline"
-              keySplines="0.4 0 0.2 1"
-            />
-            <animate 
-              attributeName="opacity" 
-              from="0" 
-              to="0.3" 
-              dur="0.8s" 
-              begin={`${node.delay}s`}
-              fill="freeze" 
-            />
-            <animate 
-              attributeName="r" 
-              values={`${node.size + 5};${node.size + 8};${node.size + 5}`} 
-              dur="3s" 
-              begin={`${node.delay + 0.8}s`}
-              repeatCount="indefinite" 
-            />
-          </circle>
-        </g>
-      ))}
-      
-      {[
-        {x1: 100, y1: 100, x2: 250, y2: 150, delay: 0.5},
-        {x1: 250, y1: 150, x2: 400, y2: 100, delay: 0.7},
-        {x1: 400, y1: 100, x2: 550, y2: 150, delay: 0.9},
-        {x1: 550, y1: 150, x2: 700, y2: 100, delay: 1.1},
-        {x1: 100, y1: 250, x2: 250, y2: 300, delay: 1.3},
-        {x1: 250, y1: 300, x2: 400, y2: 250, delay: 1.5},
-        {x1: 400, y1: 250, x2: 550, y2: 300, delay: 1.7},
-        {x1: 550, y1: 300, x2: 700, y2: 250, delay: 1.9},
-        {x1: 100, y1: 400, x2: 250, y2: 450, delay: 2.1},
-        {x1: 250, y1: 450, x2: 400, y2: 400, delay: 2.3},
-        {x1: 400, y1: 400, x2: 550, y2: 450, delay: 2.5},
-        {x1: 550, y1: 450, x2: 700, y2: 400, delay: 2.7},
-        {x1: 100, y1: 550, x2: 250, y2: 600, delay: 2.9},
-        {x1: 250, y1: 600, x2: 400, y2: 550, delay: 3.1},
-        {x1: 400, y1: 550, x2: 550, y2: 600, delay: 3.3},
-        {x1: 550, y1: 600, x2: 700, y2: 550, delay: 3.5},
-        {x1: 100, y1: 700, x2: 250, y2: 750, delay: 3.7},
-        {x1: 250, y1: 750, x2: 400, y2: 700, delay: 3.9},
-        {x1: 400, y1: 700, x2: 550, y2: 750, delay: 4.1},
-        {x1: 550, y1: 750, x2: 700, y2: 700, delay: 4.3},
-        {x1: 100, y1: 100, x2: 100, y2: 250, delay: 4.5},
-        {x1: 250, y1: 150, x2: 250, y2: 300, delay: 4.7},
-        {x1: 400, y1: 100, x2: 400, y2: 250, delay: 4.9},
-        {x1: 550, y1: 150, x2: 550, y2: 300, delay: 5.1},
-        {x1: 700, y1: 100, x2: 700, y2: 250, delay: 5.3},
-        {x1: 100, y1: 250, x2: 100, y2: 400, delay: 5.5},
-        {x1: 250, y1: 300, x2: 250, y2: 450, delay: 5.7},
-        {x1: 400, y1: 250, x2: 400, y2: 400, delay: 5.9},
-        {x1: 550, y1: 300, x2: 550, y2: 450, delay: 6.1},
-        {x1: 700, y1: 250, x2: 700, y2: 400, delay: 6.3}
-      ].map((line, i) => (
-        <path
-          key={`line-${i}`}
-          d={`M${line.x1} ${line.y1} L${line.x2} ${line.y2}`}
-          stroke="currentColor"
-          strokeWidth="1"
-          strokeDasharray="150"
-          strokeDashoffset="150"
+        <circle 
+          key={i}
+          cx={node.x} 
+          cy={node.y} 
+          r={node.size} 
+          fill="url(#nodeGradient)"
           opacity="0.3"
-        >
-          <animate
-            attributeName="stroke-dashoffset"
-            from="150"
-            to="0"
-            dur="1s"
-            begin={`${line.delay}s`}
-            fill="freeze"
-            calcMode="spline"
-            keySplines="0.4 0 0.2 1"
-          />
-          <animate
-            attributeName="opacity"
-            values="0.3;0.5;0.3"
-            dur="3s"
-            begin={`${line.delay + 1}s`}
-            repeatCount="indefinite"
-          />
-        </path>
+        />
       ))}
       
+      {/* Simplified Connection Lines */}
       {[
-        {x1: 100, y1: 100, x2: 250, y2: 150, delay: 1.0},
-        {x1: 250, y1: 150, x2: 400, y2: 100, delay: 1.5},
-        {x1: 400, y1: 100, x2: 550, y2: 150, delay: 2.0},
-        {x1: 550, y1: 150, x2: 700, y2: 100, delay: 2.5},
-        {x1: 100, y1: 250, x2: 250, y2: 300, delay: 3.0},
-        {x1: 250, y1: 300, x2: 400, y2: 250, delay: 3.5},
-        {x1: 400, y1: 250, x2: 550, y2: 300, delay: 4.0},
-        {x1: 550, y1: 300, x2: 700, y2: 250, delay: 4.5},
-        {x1: 100, y1: 400, x2: 250, y2: 450, delay: 5.0},
-        {x1: 250, y1: 450, x2: 400, y2: 400, delay: 5.5}
-      ].map((particle, i) => (
-        <circle
-          key={`particle-${i}`}
-          r="3"
-          fill="#3B82F6"
-          opacity="0"
-        >
-          <animate
-            attributeName="opacity"
-            values="0;0.8;0"
-            dur="2s"
-            begin={`${particle.delay}s`}
-            repeatCount="indefinite"
-          />
-          <animateMotion
-            path={`M${particle.x1},${particle.y1} L${particle.x2},${particle.y2}`}
-            dur="2s"
-            begin={`${particle.delay}s`}
-            repeatCount="indefinite"
-          />
-        </circle>
+        {x1: 80, y1: 80, x2: 160, y2: 120},
+        {x1: 160, y1: 120, x2: 240, y2: 80},
+        {x1: 240, y1: 80, x2: 320, y2: 120},
+        {x1: 80, y1: 160, x2: 160, y2: 240},
+        {x1: 160, y1: 240, x2: 240, y2: 160},
+        {x1: 240, y1: 160, x2: 320, y2: 240},
+        {x1: 80, y1: 320, x2: 160, y2: 320},
+        {x1: 160, y1: 320, x2: 240, y2: 320},
+        {x1: 240, y1: 320, x2: 320, y2: 320},
+        {x1: 80, y1: 80, x2: 80, y2: 160},
+        {x1: 160, y1: 120, x2: 160, y2: 240},
+        {x1: 240, y1: 80, x2: 240, y2: 160},
+        {x1: 320, y1: 120, x2: 320, y2: 240},
+        {x1: 80, y1: 160, x2: 80, y2: 320},
+        {x1: 160, y1: 240, x2: 160, y2: 320},
+        {x1: 240, y1: 160, x2: 240, y2: 320},
+        {x1: 320, y1: 240, x2: 320, y2: 320}
+      ].map((line, i) => (
+        <line
+          key={`line-${i}`}
+          x1={line.x1}
+          y1={line.y1}
+          x2={line.x2}
+          y2={line.y2}
+          stroke="currentColor"
+          strokeWidth="0.5"
+          strokeDasharray="3 3"
+          opacity="0.2"
+        />
       ))}
     </svg>
+  );
+  
+  // Business Analytics Floating Elements
+  const AnalyticsBadge = ({ icon, title, value, position, delay }: { 
+    icon: React.ReactNode, 
+    title: string, 
+    value: string,
+    position: string,
+    delay: string
+  }) => (
+    <motion.div
+      initial={{ opacity: 0, x: position.includes('left') ? -20 : 20, y: 0 }}
+      animate={{ opacity: 1, x: 0, y: 0 }}
+      transition={{ delay: parseFloat(delay), duration: 0.8 }}
+      className={`absolute ${position} z-20 animate-float`}
+      style={{ animationDelay: delay }}
+    >
+      <div className="bg-white p-2 sm:p-3 rounded-lg shadow-md flex items-center gap-2 border border-gray-200">
+        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white">
+          {icon}
+        </div>
+        <div>
+          <div className="text-xs text-gray-500">{title}</div>
+          <div className="text-sm font-bold text-gray-900">{value}</div>
+        </div>
+      </div>
+    </motion.div>
   );
   
   // Animation variants
@@ -512,22 +380,18 @@ export default function Hero() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.05,
-        delayChildren: 0.1,
-        duration: 0.3
+        staggerChildren: 0.2,
+        delayChildren: 0.3
       }
     }
   };
   
   const itemVariants = {
-    hidden: { y: 10, opacity: 0 },
+    hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { 
-        duration: 0.3,
-        ease: "easeOut"
-      }
+      transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] }
     }
   };
   
@@ -541,9 +405,9 @@ export default function Hero() {
   };
   
   return (
-    <section className="relative min-h-screen flex items-center py-16 md:py-20 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+    <section id="home" className="relative pt-24 md:pt-32 lg:pt-40 pb-16 md:pb-24 lg:pb-32 overflow-hidden isolate">
       {/* Background SVG Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <DataFlowSVG />
         <BusinessMetricsSVG />
       </div>
@@ -563,115 +427,94 @@ export default function Hero() {
               </span>
             </motion.div>
             
-            <motion.h1 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight text-gray-900">
+            <motion.h1 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
               Transforming Businesses Through <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Strategic Automation</span>
             </motion.h1>
             
             <motion.p variants={itemVariants} className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 md:mb-8 max-w-2xl">
-              I help businesses leverage cutting-edge automation and strategic innovation to achieve exceptional growth, operational excellence, and market leadership.
+              I help businesses streamline operations, increase efficiency, and drive growth through innovative automation strategies and executive leadership.
             </motion.p>
             
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mb-8 md:mb-12">
-              <Link 
-                href="#contact" 
-                className="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-2 text-sm md:text-base"
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
+              <Link
+                href="#contact"
+                className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300"
               >
-                Get in Touch
-                <FaArrowRight />
+                Get Started
+                <FaArrowRight className="ml-2 w-4 h-4" />
               </Link>
-              
-              <Link 
-                href="#projects" 
-                className="px-6 md:px-8 py-3 md:py-4 bg-white text-gray-900 font-medium rounded-full shadow-md hover:shadow-lg border border-gray-200 transition-all duration-300 transform hover:-translate-y-1 text-sm md:text-base"
+              <Link
+                href="#about"
+                className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors duration-300"
               >
-                View Case Studies
+                Learn More
+                <FaInfoCircle className="ml-2 w-4 h-4" />
               </Link>
             </motion.div>
             
-            {/* Key stats */}
-            <motion.div variants={itemVariants} className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6">
-              <motion.div 
-                variants={statsVariants}
-                className="bg-white p-3 md:p-4 rounded-lg shadow-md border border-gray-200 text-center"
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              >
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 text-blue-600">120%</div>
-                <div className="text-xs sm:text-sm text-gray-600">Revenue Growth</div>
-              </motion.div>
-              
-              <motion.div 
-                variants={statsVariants}
-                className="bg-white p-3 md:p-4 rounded-lg shadow-md border border-gray-200 text-center"
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              >
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 text-blue-600">15+</div>
-                <div className="text-xs sm:text-sm text-gray-600">Years Experience</div>
-              </motion.div>
-              
-              <motion.div 
-                variants={statsVariants}
-                className="bg-white p-3 md:p-4 rounded-lg shadow-md border border-gray-200 text-center"
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              >
-                <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 text-blue-600">95%+</div>
-                <div className="text-xs sm:text-sm text-gray-600">Client Retention</div>
-              </motion.div>
+            {/* Stats */}
+            <motion.div
+              variants={statsVariants}
+              className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 md:mt-12"
+            >
+              {stats.map((stat, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-lg p-4 shadow-md border border-gray-200"
+                >
+                  <div className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </motion.div>
           </div>
           
-          {/* Right column - Dashboard SVG and floating elements */}
+          {/* Right column - Dashboard visualization */}
           <motion.div 
             variants={itemVariants}
             className="order-1 lg:order-2 relative"
           >
-            <BusinessDashboardSVG />
+            <div className="relative z-10 bg-white p-3 rounded-lg shadow-md border border-gray-200">
+              <BusinessDashboardSVG />
+            </div>
+            
+            {/* Floating analytics badges */}
+            <AnalyticsBadge 
+              icon={<FaChartLine className="w-4 h-4 md:w-5 md:h-5" />}
+              title="Conversion Rate"
+              value="45% Increase"
+              position="top-6 left-0 lg:-left-20"
+              delay="1.0"
+            />
+            
+            <AnalyticsBadge 
+              icon={<FaChartPie className="w-4 h-4 md:w-5 md:h-5" />}
+              title="Market Share"
+              value="32% Growth"
+              position="bottom-6 left-0 lg:-left-20"
+              delay="1.3"
+            />
+            
+            <AnalyticsBadge 
+              icon={<FaChartBar className="w-4 h-4 md:w-5 md:h-5" />}
+              title="Efficiency"
+              value="65% Improvement"
+              position="top-6 right-0 lg:-right-20"
+              delay="1.6"
+            />
+            
+            <AnalyticsBadge 
+              icon={<FaCogs className="w-4 h-4 md:w-5 md:h-5" />}
+              title="Automation"
+              value="85% Coverage"
+              position="bottom-6 right-0 lg:-right-20"
+              delay="1.9"
+            />
           </motion.div>
-        </motion.div>
-        
-        {/* Social proof and links */}
-        <motion.div
-          variants={itemVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-          transition={{ delay: 2 }}
-          className="mt-16 flex flex-col md:flex-row items-center justify-between gap-8 border-t border-gray-200 pt-8"
-        >
-          <div className="text-center md:text-left">
-            <p className="text-sm text-gray-500 mb-2">Connect with me</p>
-            <div className="flex items-center gap-4">
-              <a href="https://linkedin.com/in/chedirachdi" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600 transition-colors">
-                <FaLinkedin className="text-2xl" />
-              </a>
-              <a href="https://twitter.com/chedirachdi" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600 transition-colors">
-                <FaTwitter className="text-2xl" />
-              </a>
-            </div>
-          </div>
-          
-          <div className="text-center">
-            <p className="text-sm text-gray-500 mb-2">Trusted by leading companies</p>
-            <div className="flex items-center gap-8">
-              {/* SVG Company Logos */}
-              <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto text-gray-400">
-                <rect x="10" y="10" width="100" height="20" rx="10" fill="currentColor" />
-                <path d="M30 20H90" stroke="white" strokeWidth="2" />
-                <circle cx="30" cy="20" r="5" fill="white" />
-                <circle cx="60" cy="20" r="5" fill="white" />
-                <circle cx="90" cy="20" r="5" fill="white" />
-              </svg>
-              
-              <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto text-gray-400">
-                <path d="M20 10H100V30H20V10Z" fill="currentColor" />
-                <path d="M30 15H90V25H30V15Z" fill="none" stroke="white" strokeWidth="2" />
-                <circle cx="60" cy="20" r="5" fill="white" />
-              </svg>
-              
-              <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto text-gray-400">
-                <path d="M60 5L110 35H10L60 5Z" fill="currentColor" />
-                <path d="M60 15L85 30H35L60 15Z" fill="white" />
-              </svg>
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>

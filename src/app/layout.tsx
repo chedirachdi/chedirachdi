@@ -8,8 +8,47 @@ import ScrollToTop from "@/components/ScrollToTop";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Chedi Rachdi | CEO & Business Automation Expert",
-  description: "Chedi Rachdi is a CEO and Business Automation Expert helping companies transform their operations through strategic leadership and innovative automation solutions.",
+  title: "Chedi Rachdi - Business Automation Expert & Software Developer",
+  description: "Experienced Business Automation Expert and Software Developer specializing in digital transformation, automation solutions, and strategic business growth.",
+  keywords: "Business Automation, Software Development, Digital Transformation, Strategic Planning, Leadership Development, CRM Solutions",
+  authors: [{ name: "Chedi Rachdi" }],
+  openGraph: {
+    title: "Chedi Rachdi - Business Automation Expert",
+    description: "Transforming businesses through strategic automation and innovative solutions.",
+    url: "https://chedirachdi.com",
+    siteName: "Chedi Rachdi Portfolio",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Chedi Rachdi - Business Automation Expert",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Chedi Rachdi - Business Automation Expert",
+    description: "Transforming businesses through strategic automation and innovative solutions.",
+    creator: "@chedirachdi",
+    images: ["/twitter-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "your-google-verification-code",
+  },
 };
 
 export default function RootLayout({
