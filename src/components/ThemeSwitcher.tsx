@@ -7,6 +7,7 @@ import { useThemeContext } from '@/providers/ThemeProvider';
 
 export default function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
+  const { theme, toggleTheme } = useThemeContext();
   
   // Wait for client-side hydration to complete
   useEffect(() => {
@@ -20,9 +21,6 @@ export default function ThemeSwitcher() {
     );
   }
   
-  // Now that we're mounted, we can safely use the theme context
-  const { theme, toggleTheme } = useThemeContext();
-
   return (
     <motion.button
       onClick={toggleTheme}

@@ -801,7 +801,7 @@ export default function Hero() {
             
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mb-12">
               <Link href="#contact" className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-md hover:shadow-lg transition-all flex items-center gap-2 group">
-                <span>Let's Connect</span>
+                <span>Let&apos;s Connect</span>
                 <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
               </Link>
               

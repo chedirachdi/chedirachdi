@@ -54,7 +54,7 @@ export default function Navbar() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [navLinks]);
 
   // Close mobile menu when clicking a link
   const handleLinkClick = () => {
@@ -139,7 +139,7 @@ export default function Navbar() {
               href="#contact"
               className="hidden md:inline-flex items-center px-5 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-0.5"
             >
-              Let's Connect
+              Let&apos;s Connect
             </Link>
 
             {/* Mobile menu button */}
@@ -187,7 +187,7 @@ export default function Navbar() {
                   onClick={handleLinkClick}
                   className="mt-2 inline-flex items-center justify-center px-5 py-3 text-base font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full shadow-md"
                 >
-                  Let's Connect
+                  Let&apos;s Connect
                 </Link>
                 
                 {/* Social links - mobile only */}

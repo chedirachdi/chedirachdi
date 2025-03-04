@@ -159,7 +159,7 @@ export default function Skills() {
               <div className="flex-1">
                 <h3 className="text-2xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Executive Leadership Excellence</h3>
                 <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  With over 15 years of experience as a CEO and business leader, I've developed exceptional executive leadership capabilities that drive organizational transformation and sustainable growth. My leadership approach combines strategic vision, operational excellence, and a deep understanding of business automation.
+                  With over 15 years of experience as a CEO and business leader, I&apos;ve developed exceptional executive leadership capabilities that drive organizational transformation and sustainable growth. My leadership approach combines strategic vision, operational excellence, and a deep understanding of business automation.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { FaArrowRight, FaChartLine, FaCogs, FaLightbulb, FaChartBar, FaChartPie, FaProjectDiagram } from 'react-icons/fa';
+import { FaArrowRight, FaChartLine, FaCogs, FaChartBar, FaChartPie } from 'react-icons/fa';
 
 export default function HeroNew() {
   const [isVisible, setIsVisible] = useState(false);

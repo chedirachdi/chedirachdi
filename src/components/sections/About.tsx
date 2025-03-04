@@ -79,7 +79,7 @@ export default function About() {
         <div className="space-y-6">
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-800/30 mb-6">
             <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-              I'm an <span className="font-semibold text-blue-600 dark:text-blue-400">Electromechanical Engineer</span> turned <span className="font-semibold text-indigo-600 dark:text-indigo-400">Software Developer</span> with a passion for automation and business transformation. With over 15 years of experience spanning hardware and software domains, I specialize in creating intelligent systems that bridge the physical and digital worlds.
+              I&apos;m an <span className="font-semibold text-blue-600 dark:text-blue-400">Electromechanical Engineer</span> turned <span className="font-semibold text-indigo-600 dark:text-indigo-400">Software Developer</span> with a passion for automation and business transformation. With over 15 years of experience spanning hardware and software domains, I specialize in creating intelligent systems that bridge the physical and digital worlds.
             </p>
           </div>
           

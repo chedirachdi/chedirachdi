@@ -713,7 +713,7 @@ export default function Experience() {
                   className="max-w-2xl mx-auto italic text-gray-700 dark:text-gray-300 flex flex-col items-center"
                 >
                   <FaBook className="text-2xl mb-2 text-purple-600 dark:text-purple-400" />
-                  <p className="text-lg mb-1">"{educationContent.quote}"</p>
+                  <p className="text-lg mb-1">&quot;{educationContent.quote}&quot;</p>
                   <p className="text-sm">— {educationContent.quoteAuthor}</p>
                 </motion.div>
               </div>
@@ -898,24 +898,13 @@ export default function Experience() {
       <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-indigo-500/5 to-transparent rounded-full blur-3xl"></div>
       
       <div className="container mx-auto px-4" ref={containerRef}>
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white"
-          >
-            Experience & <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Impact</span>
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-gray-600 dark:text-gray-400 text-lg"
-          >
-            A showcase of my professional journey, leadership achievements, and the transformative impact I've had on businesses.
-          </motion.p>
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+            Professional <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Experience</span>
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 text-lg">
+            A showcase of my professional journey, leadership achievements, and the transformative impact I&apos;ve had on businesses.
+          </p>
         </div>
         
         {/* Tabs */}

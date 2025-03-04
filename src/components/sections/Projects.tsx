@@ -3,7 +3,6 @@
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { FaChartLine, FaUsers, FaLightbulb, FaGlobe, FaRocket, FaHandshake } from 'react-icons/fa';
-import Image from 'next/image';
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('all');
