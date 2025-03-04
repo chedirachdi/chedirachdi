@@ -10,6 +10,7 @@ A beautiful, responsive personal portfolio website built with Next.js, TypeScrip
 - ⚡ Fast performance with Next.js
 - 🧩 Modular component structure
 - 🔄 Smooth animations with Framer Motion
+- 🔍 ESLint configured for code quality
 
 ## Tech Stack
 
