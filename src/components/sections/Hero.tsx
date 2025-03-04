@@ -132,7 +132,7 @@ export default function Hero() {
   );
   
   const BusinessMetricsSVG = () => (
-    <svg width="600" height="200" viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute bottom-0 left-0 opacity-10 dark:opacity-20 z-0">
+    <svg width="600" height="200" viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute bottom-0 left-0 opacity-10 z-0">
       <defs>
         <linearGradient id="metricGradient" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor="currentColor" stopOpacity="0.8" />
@@ -269,7 +269,7 @@ export default function Hero() {
   );
   
   const DataFlowSVG = () => (
-    <svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute top-0 right-0 opacity-5 dark:opacity-10 z-0">
+    <svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute top-0 right-0 opacity-5 z-0">
       <defs>
         <linearGradient id="nodeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.7" />
@@ -634,25 +634,25 @@ export default function Hero() {
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
           transition={{ delay: 2 }}
-          className="mt-16 flex flex-col md:flex-row items-center justify-between gap-8 border-t border-gray-200 dark:border-gray-700 pt-8"
+          className="mt-16 flex flex-col md:flex-row items-center justify-between gap-8 border-t border-gray-200 pt-8"
         >
           <div className="text-center md:text-left">
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">Connect with me</p>
+            <p className="text-sm text-gray-500 mb-2">Connect with me</p>
             <div className="flex items-center gap-4">
-              <a href="https://linkedin.com/in/chedirachdi" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              <a href="https://linkedin.com/in/chedirachdi" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600 transition-colors">
                 <FaLinkedin className="text-2xl" />
               </a>
-              <a href="https://twitter.com/chedirachdi" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+              <a href="https://twitter.com/chedirachdi" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-600 transition-colors">
                 <FaTwitter className="text-2xl" />
               </a>
             </div>
           </div>
           
           <div className="text-center">
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">Trusted by leading companies</p>
+            <p className="text-sm text-gray-500 mb-2">Trusted by leading companies</p>
             <div className="flex items-center gap-8">
               {/* SVG Company Logos */}
-              <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto text-gray-400 dark:text-gray-600">
+              <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto text-gray-400">
                 <rect x="10" y="10" width="100" height="20" rx="10" fill="currentColor" />
                 <path d="M30 20H90" stroke="white" strokeWidth="2" />
                 <circle cx="30" cy="20" r="5" fill="white" />
@@ -660,13 +660,13 @@ export default function Hero() {
                 <circle cx="90" cy="20" r="5" fill="white" />
               </svg>
               
-              <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto text-gray-400 dark:text-gray-600">
+              <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto text-gray-400">
                 <path d="M20 10H100V30H20V10Z" fill="currentColor" />
                 <path d="M30 15H90V25H30V15Z" fill="none" stroke="white" strokeWidth="2" />
                 <circle cx="60" cy="20" r="5" fill="white" />
               </svg>
               
-              <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto text-gray-400 dark:text-gray-600">
+              <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-auto text-gray-400">
                 <path d="M60 5L110 35H10L60 5Z" fill="currentColor" />
                 <path d="M60 15L85 30H35L60 15Z" fill="white" />
               </svg>

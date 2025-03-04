@@ -20,19 +20,19 @@ function ServiceCard({ icon, title, description, color }: { icon: React.ReactNod
 // Timeline Item Component
 function TimelineItem({ year, title, description, highlights }: { year: string, title: string, description: string, highlights?: string[] }) {
   return (
-    <div className="relative pl-8 border-l-2 border-blue-500 dark:border-blue-400">
-      <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500 dark:bg-blue-400"></div>
-      <div className="mb-1 text-sm font-medium text-blue-600 dark:text-blue-400">{year}</div>
-      <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{title}</h3>
-      <p className="text-gray-600 dark:text-gray-400 mb-3">{description}</p>
+    <div className="relative pl-8 border-l-2 border-blue-500">
+      <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500"></div>
+      <div className="mb-1 text-sm font-medium text-blue-600">{year}</div>
+      <h3 className="text-lg font-semibold mb-2 text-gray-900">{title}</h3>
+      <p className="text-gray-600 mb-3">{description}</p>
       
       {highlights && highlights.length > 0 && (
-        <div className="bg-gray-50 dark:bg-gray-800/50 p-3 rounded-lg border border-gray-100 dark:border-gray-700">
-          <h4 className="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Key Achievements:</h4>
+        <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
+          <h4 className="text-sm font-semibold mb-2 text-gray-700">Key Achievements:</h4>
           <ul className="space-y-1">
             {highlights.map((highlight, index) => (
-              <li key={index} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400 mt-1.5 flex-shrink-0"></div>
+              <li key={index} className="flex items-start gap-2 text-sm text-gray-600">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0"></div>
                 <span>{highlight}</span>
               </li>
             ))}
@@ -75,53 +75,53 @@ export default function About() {
       icon: <FaUsers />,
       content: (
         <div className="space-y-6">
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-800/30 mb-6">
-            <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-              I&apos;m an <span className="font-semibold text-blue-600 dark:text-blue-400">Electromechanical Engineer</span> turned <span className="font-semibold text-indigo-600 dark:text-indigo-400">Software Developer</span> with a passion for automation and business transformation. With over 15 years of experience spanning hardware and software domains, I specialize in creating intelligent systems that bridge the physical and digital worlds.
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100 mb-6">
+            <p className="text-gray-700 text-lg leading-relaxed">
+              I&apos;m an <span className="font-semibold text-blue-600">Electromechanical Engineer</span> turned <span className="font-semibold text-indigo-600">Software Developer</span> with a passion for automation and business transformation. With over 15 years of experience spanning hardware and software domains, I specialize in creating intelligent systems that bridge the physical and digital worlds.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
+            <div className="bg-white p-5 rounded-xl shadow-md border border-gray-100">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
                   <FaLightbulb />
                 </div>
-                <h3 className="font-bold text-gray-800 dark:text-gray-200">Technical Expertise</h3>
+                <h3 className="font-bold text-gray-800">Technical Expertise</h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-600">
                 My background in electromechanical engineering combined with software development gives me a unique perspective on creating integrated solutions that optimize both hardware and software components.
               </p>
             </div>
             
-            <div className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
+            <div className="bg-white p-5 rounded-xl shadow-md border border-gray-100">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600">
                   <FaLightbulb />
                 </div>
-                <h3 className="font-bold text-gray-800 dark:text-gray-200">AI & Automation</h3>
+                <h3 className="font-bold text-gray-800">AI & Automation</h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-600">
                 I leverage AI and automation technologies to create intelligent systems that streamline operations, enhance productivity, and drive business growth through data-driven insights.
               </p>
             </div>
           </div>
           
-          <div className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-md border border-gray-100 dark:border-gray-700">
+          <div className="bg-white p-5 rounded-xl shadow-md border border-gray-100">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-white">
                 <FaLightbulb />
               </div>
-              <h3 className="font-bold text-gray-800 dark:text-gray-200">My Approach</h3>
+              <h3 className="font-bold text-gray-800">My Approach</h3>
             </div>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <p className="text-gray-600 mb-4">
               I approach each project with a holistic mindset, focusing on the intersection of technology, business processes, and user experience. By understanding the complete ecosystem, I develop solutions that not only solve immediate problems but also create long-term value.
             </p>
             <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">Problem Solver</span>
-              <span className="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium">Systems Thinker</span>
-              <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium">Continuous Learner</span>
-              <span className="px-3 py-1 bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 rounded-full text-sm font-medium">Innovation Driven</span>
+              <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">Problem Solver</span>
+              <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">Systems Thinker</span>
+              <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">Continuous Learner</span>
+              <span className="px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-sm font-medium">Innovation Driven</span>
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@ export default function About() {
       icon: <FaChartLine />,
       content: (
         <div className="space-y-6">
-          <p className="text-gray-600 dark:text-gray-400 mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-4 rounded-xl border border-blue-100 dark:border-blue-800/30">
+          <p className="text-gray-600 mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-100">
             I offer specialized services that combine my expertise in engineering, software development, and business automation to help organizations optimize their operations and drive growth.
           </p>
           
@@ -164,23 +164,23 @@ export default function About() {
             />
           </div>
           
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-100 dark:border-gray-700 mt-8">
-            <h3 className="text-xl font-bold mb-4 text-gray-800 dark:text-gray-200 flex items-center gap-2">
-              <FaLightbulb className="text-blue-600 dark:text-blue-400" />
+          <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100 mt-8">
+            <h3 className="text-xl font-bold mb-4 text-gray-800 flex items-center gap-2">
+              <FaLightbulb className="text-blue-600" />
               <span>How I Deliver Value</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-4 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-900/30 rounded-lg">
-                <div className="font-bold text-blue-700 dark:text-blue-300 mb-2">Discovery</div>
-                <p className="text-sm text-gray-700 dark:text-gray-300">In-depth analysis of your current systems, challenges, and objectives to identify opportunities.</p>
+              <div className="p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg">
+                <div className="font-bold text-blue-700 mb-2">Discovery</div>
+                <p className="text-sm text-gray-700">In-depth analysis of your current systems, challenges, and objectives to identify opportunities.</p>
               </div>
-              <div className="p-4 bg-gradient-to-r from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-900/30 rounded-lg">
-                <div className="font-bold text-indigo-700 dark:text-indigo-300 mb-2">Solution Design</div>
-                <p className="text-sm text-gray-700 dark:text-gray-300">Custom-tailored solutions designed to address your specific needs and integrate with existing systems.</p>
+              <div className="p-4 bg-gradient-to-r from-indigo-50 to-indigo-100 rounded-lg">
+                <div className="font-bold text-indigo-700 mb-2">Solution Design</div>
+                <p className="text-sm text-gray-700">Custom-tailored solutions designed to address your specific needs and integrate with existing systems.</p>
               </div>
-              <div className="p-4 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-900/30 rounded-lg">
-                <div className="font-bold text-purple-700 dark:text-purple-300 mb-2">Implementation</div>
-                <p className="text-sm text-gray-700 dark:text-gray-300">Efficient development and deployment with continuous feedback and iterative improvements.</p>
+              <div className="p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg">
+                <div className="font-bold text-purple-700 mb-2">Implementation</div>
+                <p className="text-sm text-gray-700">Efficient development and deployment with continuous feedback and iterative improvements.</p>
               </div>
             </div>
           </div>
@@ -193,8 +193,8 @@ export default function About() {
       icon: <FaChartLine />,
       content: (
         <div className="space-y-8">
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-800/30 mb-6">
-            <p className="text-gray-700 dark:text-gray-300">
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100 mb-6">
+            <p className="text-gray-700">
               My professional journey spans from electromechanical engineering to software development and business automation, giving me a unique perspective on creating integrated solutions.
             </p>
           </div>
