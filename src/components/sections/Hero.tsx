@@ -21,309 +21,112 @@ export default function Hero() {
           <stop offset="100%" stopColor="#0F172A" />
         </linearGradient>
         <linearGradient id="chartGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#4ADE80" stopOpacity="1" />
-          <stop offset="100%" stopColor="#22C55E" stopOpacity="0.8" />
+          <stop offset="0%" stopColor="#4ADE80" />
+          <stop offset="100%" stopColor="#22C55E" />
         </linearGradient>
         <linearGradient id="chartGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#3B82F6" stopOpacity="1" />
-          <stop offset="100%" stopColor="#2563EB" stopOpacity="0.8" />
-        </linearGradient>
-        <linearGradient id="chartGradient3" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#FACC15" stopOpacity="1" />
-          <stop offset="100%" stopColor="#EAB308" stopOpacity="0.8" />
-        </linearGradient>
-        <linearGradient id="pieGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#EC4899" />
-          <stop offset="100%" stopColor="#DB2777" />
-        </linearGradient>
-        <linearGradient id="pieGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#8B5CF6" />
-          <stop offset="100%" stopColor="#7C3AED" />
-        </linearGradient>
-        <linearGradient id="pieGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#3B82F6" />
           <stop offset="100%" stopColor="#2563EB" />
         </linearGradient>
-        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="3" result="blur" />
-          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        <linearGradient id="chartGradient3" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#FACC15" />
+          <stop offset="100%" stopColor="#EAB308" />
+        </linearGradient>
+        <filter id="glow" x="-10%" y="-10%" width="120%" height="120%">
+          <feGaussianBlur stdDeviation="2" />
         </filter>
         <clipPath id="roundedRect">
           <rect width="600" height="400" rx="16" />
         </clipPath>
       </defs>
       
-      {/* Dashboard Background with Glass Effect */}
       <g clipPath="url(#roundedRect)">
         <rect width="600" height="400" fill="url(#dashboardGradient)" />
         <rect width="600" height="400" fill="white" fillOpacity="0.05" />
         
-        {/* Background Grid */}
         <g opacity="0.1">
-          {[...Array(20)].map((_, i) => (
+          {[...Array(10)].map((_, i) => (
             <line 
               key={`vline-${i}`} 
-              x1={i * 30} 
+              x1={i * 60} 
               y1="0" 
-              x2={i * 30} 
+              x2={i * 60} 
               y2="400" 
               stroke="white" 
               strokeWidth="1" 
               strokeDasharray="1 5"
             />
           ))}
-          {[...Array(15)].map((_, i) => (
+          {[...Array(8)].map((_, i) => (
             <line 
               key={`hline-${i}`} 
               x1="0" 
-              y1={i * 30} 
+              y1={i * 60} 
               x2="600" 
-              y2={i * 30} 
+              y2={i * 60} 
               stroke="white" 
               strokeWidth="1" 
               strokeDasharray="1 5"
             />
           ))}
         </g>
-        
-        {/* Decorative Elements */}
-        <circle cx="50" cy="50" r="100" fill="#3B82F6" opacity="0.05" />
-        <circle cx="550" cy="350" r="120" fill="#8B5CF6" opacity="0.05" />
       </g>
       
-      {/* Header */}
       <rect x="20" y="20" width="560" height="50" rx="10" fill="white" fillOpacity="0.07" />
-      <circle cx="45" cy="45" r="15" fill="white" fillOpacity="0.1">
-        <animate attributeName="opacity" values="0.1;0.2;0.1" dur="3s" repeatCount="indefinite" />
-      </circle>
+      <circle cx="45" cy="45" r="15" fill="white" fillOpacity="0.1" />
       <rect x="70" y="35" width="100" height="20" rx="5" fill="white" fillOpacity="0.1" />
       <rect x="400" y="35" width="160" height="20" rx="5" fill="white" fillOpacity="0.1" />
       
-      {/* Main Dashboard Content */}
-      <g className="dashboard-content">
-        {/* Left Panel - Bar Chart */}
-        <rect x="20" y="90" width="270" height="140" rx="10" fill="white" fillOpacity="0.07" />
-        <text x="40" y="115" fontSize="14" fontWeight="500" fill="white" opacity="0.9">Revenue Growth</text>
-        
-        {/* Bar Chart with Animation */}
-        <g>
-          {[
-            { x: 40, height: 80, delay: 0 },
-            { x: 80, height: 60, delay: 0.1 },
-            { x: 120, height: 100, delay: 0.2 },
-            { x: 160, height: 120, delay: 0.3 },
-            { x: 200, height: 140, delay: 0.4 },
-            { x: 240, height: 160, delay: 0.5 }
-          ].map((bar, i) => (
-            <g key={i}>
-              <rect 
-                x={bar.x} 
-                y={210 - bar.height} 
-                width="30" 
-                height={bar.height} 
-                fill="url(#chartGradient1)" 
-                opacity="0.9" 
-                rx="4"
-              >
-                <animate 
-                  attributeName="height" 
-                  from="0" 
-                  to={bar.height} 
-                  dur="1s" 
-                  begin={`${bar.delay}s`} 
-                  fill="freeze" 
-                  calcMode="spline"
-                  keySplines="0.4 0 0.2 1"
-                />
-                <animate 
-                  attributeName="y" 
-                  from="210" 
-                  to={210 - bar.height} 
-                  dur="1s" 
-                  begin={`${bar.delay}s`} 
-                  fill="freeze" 
-                  calcMode="spline"
-                  keySplines="0.4 0 0.2 1"
-                />
-              </rect>
-              <rect 
-                x={bar.x} 
-                y={210 - bar.height - 2} 
-                width="30" 
-                height="4" 
-                fill="white" 
-                opacity="0.3" 
-                rx="2"
-              >
-                <animate 
-                  attributeName="y" 
-                  from="210" 
-                  to={210 - bar.height - 2} 
-                  dur="1s" 
-                  begin={`${bar.delay}s`} 
-                  fill="freeze" 
-                  calcMode="spline"
-                  keySplines="0.4 0 0.2 1"
-                />
-              </rect>
-            </g>
-          ))}
-        </g>
-        
-        {/* Right Panel - Pie Chart */}
-        <rect x="310" y="90" width="270" height="140" rx="10" fill="white" fillOpacity="0.07" />
-        <text x="330" y="115" fontSize="14" fontWeight="500" fill="white" opacity="0.9">Market Segments</text>
-        
-        {/* Animated Pie Chart */}
-        <g transform="translate(445, 160)">
-          <path d="M0 0 L0 -50 A50 50 0 0 1 43 -25 Z" fill="url(#pieGradient1)">
-            <animate attributeName="opacity" from="0" to="1" dur="0.5s" fill="freeze" />
-          </path>
-          <path d="M0 0 L43 -25 A50 50 0 0 1 43 25 Z" fill="url(#pieGradient2)">
-            <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.2s" fill="freeze" />
-          </path>
-          <path d="M0 0 L43 25 A50 50 0 0 1 0 50 Z" fill="url(#pieGradient3)">
-            <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.4s" fill="freeze" />
-          </path>
-          <path d="M0 0 L0 50 A50 50 0 0 1 -43 25 Z" fill="#3B82F6">
-            <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.6s" fill="freeze" />
-          </path>
-          <path d="M0 0 L-43 25 A50 50 0 0 1 -43 -25 Z" fill="#8B5CF6">
-            <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.8s" fill="freeze" />
-          </path>
-          <path d="M0 0 L-43 -25 A50 50 0 0 1 0 -50 Z" fill="#EC4899">
-            <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1s" fill="freeze" />
-          </path>
-          <circle cx="0" cy="0" r="20" fill="url(#dashboardGradient)" stroke="white" strokeOpacity="0.2" strokeWidth="1" />
-        </g>
-        
-        {/* Legend with Hover Effect */}
-        <g>
-          <rect x="510" y="130" width="10" height="10" rx="2" fill="url(#pieGradient1)">
-            <animate attributeName="width" values="10;12;10" dur="2s" repeatCount="indefinite" begin="0.5s" />
-          </rect>
-          <text x="525" y="140" fontSize="12" fill="white" opacity="0.9">Enterprise</text>
-          
-          <rect x="510" y="150" width="10" height="10" rx="2" fill="url(#pieGradient2)">
-            <animate attributeName="width" values="10;12;10" dur="2s" repeatCount="indefinite" begin="1s" />
-          </rect>
-          <text x="525" y="160" fontSize="12" fill="white" opacity="0.9">SMB</text>
-          
-          <rect x="510" y="170" width="10" height="10" rx="2" fill="url(#pieGradient3)">
-            <animate attributeName="width" values="10;12;10" dur="2s" repeatCount="indefinite" begin="1.5s" />
-          </rect>
-          <text x="525" y="180" fontSize="12" fill="white" opacity="0.9">Startup</text>
-          
-          <rect x="510" y="190" width="10" height="10" rx="2" fill="#3B82F6">
-            <animate attributeName="width" values="10;12;10" dur="2s" repeatCount="indefinite" begin="2s" />
-          </rect>
-          <text x="525" y="200" fontSize="12" fill="white" opacity="0.9">Government</text>
-        </g>
-        
-        {/* Bottom Panels - KPIs with Animated Progress */}
-        <g>
-          <rect x="20" y="250" width="175" height="130" rx="10" fill="white" fillOpacity="0.07" />
-          <text x="40" y="275" fontSize="14" fontWeight="500" fill="white" opacity="0.9">Client Retention</text>
-          <text x="40" y="315" fontSize="28" fontWeight="bold" fill="white">95%</text>
-          <rect x="40" y="330" width="115" height="4" rx="2" fill="white" fillOpacity="0.1" />
-          <rect x="40" y="330" width="109" height="4" rx="2" fill="url(#chartGradient3)">
-            <animate attributeName="width" from="0" to="109" dur="1.5s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1" />
-          </rect>
-          <circle cx="149" cy="332" r="4" fill="white">
-            <animate attributeName="cx" from="40" to="149" dur="1.5s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1" />
-          </circle>
-        </g>
-        
-        <g>
-          <rect x="215" y="250" width="175" height="130" rx="10" fill="white" fillOpacity="0.07" />
-          <text x="235" y="275" fontSize="14" fontWeight="500" fill="white" opacity="0.9">Revenue Growth</text>
-          <text x="235" y="315" fontSize="28" fontWeight="bold" fill="white">+120%</text>
-          <rect x="235" y="330" width="115" height="4" rx="2" fill="white" fillOpacity="0.1" />
-          <rect x="235" y="330" width="115" height="4" rx="2" fill="url(#chartGradient1)">
-            <animate attributeName="width" from="0" to="115" dur="1.5s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1" />
-          </rect>
-          <circle cx="350" cy="332" r="4" fill="white">
-            <animate attributeName="cx" from="235" to="350" dur="1.5s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1" />
-          </circle>
-        </g>
-        
-        <g>
-          <rect x="410" y="250" width="170" height="130" rx="10" fill="white" fillOpacity="0.07" />
-          <text x="430" y="275" fontSize="14" fontWeight="500" fill="white" opacity="0.9">Experience</text>
-          <text x="430" y="315" fontSize="28" fontWeight="bold" fill="white">15+ yrs</text>
-          <rect x="430" y="330" width="115" height="4" rx="2" fill="white" fillOpacity="0.1" />
-          <rect x="430" y="330" width="115" height="4" rx="2" fill="url(#chartGradient2)">
-            <animate attributeName="width" from="0" to="115" dur="1.5s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1" />
-          </rect>
-          <circle cx="545" cy="332" r="4" fill="white">
-            <animate attributeName="cx" from="430" to="545" dur="1.5s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1" />
-          </circle>
-        </g>
-      </g>
-      
-      {/* Animated Elements */}
-      <g className="animated-elements">
-        {/* Pulsing Border */}
-        <rect x="3" y="3" width="594" height="394" rx="14" stroke="white" strokeOpacity="0.2" strokeWidth="1.5" fill="none">
-          <animate attributeName="strokeOpacity" values="0.2;0.4;0.2" dur="4s" repeatCount="indefinite" />
-        </rect>
-        
-        {/* Animated Dots */}
-        {[...Array(5)].map((_, i) => (
-          <circle 
-            key={i}
-            cx={100 + i * 100} 
-            cy="45" 
-            r="2" 
-            fill="white"
-          >
-            <animate 
-              attributeName="opacity" 
-              values="0.3;0.8;0.3" 
-              dur="3s" 
-              begin={`${i * 0.5}s`}
-              repeatCount="indefinite" 
-            />
-          </circle>
+      <g>
+        {[
+          { x: 40, height: 80, delay: 0 },
+          { x: 100, height: 60, delay: 0.1 },
+          { x: 160, height: 100, delay: 0.2 },
+          { x: 220, height: 120, delay: 0.3 }
+        ].map((bar, i) => (
+          <g key={i}>
+            <rect 
+              x={bar.x} 
+              y={210 - bar.height} 
+              width="40" 
+              height={bar.height} 
+              fill="url(#chartGradient1)" 
+              opacity="0.9" 
+              rx="4"
+            >
+              <animate 
+                attributeName="height" 
+                from="0" 
+                to={bar.height} 
+                dur="0.5s" 
+                begin={`${bar.delay}s`} 
+                fill="freeze" 
+                calcMode="ease-out"
+              />
+              <animate 
+                attributeName="y" 
+                from="210" 
+                to={210 - bar.height} 
+                dur="0.5s" 
+                begin={`${bar.delay}s`} 
+                fill="freeze" 
+                calcMode="ease-out"
+              />
+            </rect>
+          </g>
         ))}
-        
-        {/* Data Flow Lines */}
-        <path 
-          d="M45 60 L45 90" 
-          stroke="white" 
-          strokeOpacity="0.3" 
-          strokeWidth="1.5" 
-          strokeDasharray="3 3"
-        >
-          <animate attributeName="strokeDashoffset" from="0" to="12" dur="1s" repeatCount="indefinite" />
-        </path>
-        
-        <path 
-          d="M445 210 L445 250" 
-          stroke="white" 
-          strokeOpacity="0.3" 
-          strokeWidth="1.5" 
-          strokeDasharray="3 3"
-        >
-          <animate attributeName="strokeDashoffset" from="0" to="12" dur="1s" repeatCount="indefinite" />
-        </path>
-        
-        {/* Glowing Accent */}
-        <circle cx="45" cy="45" r="25" stroke="#3B82F6" strokeWidth="2" strokeOpacity="0.5" fill="none" filter="url(#glow)">
-          <animate attributeName="r" values="25;30;25" dur="3s" repeatCount="indefinite" />
-          <animate attributeName="strokeOpacity" values="0.5;0.2;0.5" dur="3s" repeatCount="indefinite" />
-        </circle>
       </g>
       
-      {/* Floating Notification */}
-      <g transform="translate(500, 70)">
-        <rect x="0" y="0" width="80" height="30" rx="15" fill="#10B981" fillOpacity="0.9">
-          <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2s" fill="freeze" />
-        </rect>
-        <text x="40" y="20" fontSize="12" fontWeight="bold" fill="white" textAnchor="middle" dominantBaseline="middle">
-          <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.2s" fill="freeze" />
-          +28.5% ↑
-        </text>
+      <g transform="translate(445, 160)">
+        <path d="M0 0 L0 -50 A50 50 0 0 1 43 -25 Z" fill="url(#chartGradient1)">
+          <animate attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" />
+        </path>
+        <path d="M0 0 L43 -25 A50 50 0 0 1 43 25 Z" fill="url(#chartGradient2)">
+          <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="0.1s" fill="freeze" />
+        </path>
+        <path d="M0 0 L43 25 A50 50 0 0 1 0 50 Z" fill="url(#chartGradient3)">
+          <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="0.2s" fill="freeze" />
+        </path>
       </g>
     </svg>
   );
@@ -341,7 +144,6 @@ export default function Hero() {
         </filter>
       </defs>
       
-      {/* Animated Line Chart */}
       <path 
         d="M0 150 C50 120, 100 180, 150 100 C200 20, 250 80, 300 60 C350 40, 400 120, 450 80 C500 40, 550 100, 600 50" 
         stroke="url(#metricGradient)" 
@@ -361,7 +163,6 @@ export default function Hero() {
         />
       </path>
       
-      {/* Area Fill */}
       <path 
         d="M0 150 C50 120, 100 180, 150 100 C200 20, 250 80, 300 60 C350 40, 400 120, 450 80 C500 40, 550 100, 600 50 L600 200 L0 200 Z" 
         fill="currentColor" 
@@ -377,7 +178,6 @@ export default function Hero() {
         />
       </path>
       
-      {/* Data Points with Pulse Animation */}
       {[
         {x: 0, y: 150, delay: 0},
         {x: 50, y: 120, delay: 0.2},
@@ -443,7 +243,6 @@ export default function Hero() {
         </g>
       ))}
       
-      {/* Grid Lines */}
       {[50, 100, 150].map((y, i) => (
         <line 
           key={`grid-${i}`}
@@ -482,7 +281,6 @@ export default function Hero() {
         </filter>
       </defs>
       
-      {/* Network Grid */}
       <g opacity="0.3">
         {[...Array(8)].map((_, i) => (
           <line 
@@ -512,7 +310,6 @@ export default function Hero() {
         ))}
       </g>
       
-      {/* Data Nodes */}
       {[
         {x: 100, y: 100, size: 12, delay: 0},
         {x: 250, y: 150, size: 18, delay: 0.2},
@@ -612,7 +409,6 @@ export default function Hero() {
         </g>
       ))}
       
-      {/* Connection Lines with Animation */}
       {[
         {x1: 100, y1: 100, x2: 250, y2: 150, delay: 0.5},
         {x1: 250, y1: 150, x2: 400, y2: 100, delay: 0.7},
@@ -674,7 +470,6 @@ export default function Hero() {
         </path>
       ))}
       
-      {/* Data Flow Particles */}
       {[
         {x1: 100, y1: 100, x2: 250, y2: 150, delay: 1.0},
         {x1: 250, y1: 150, x2: 400, y2: 100, delay: 1.5},
@@ -744,18 +539,22 @@ export default function Hero() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
+        staggerChildren: 0.05,
+        delayChildren: 0.1,
+        duration: 0.3
       }
     }
   };
   
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 10, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] }
+      transition: { 
+        duration: 0.3,
+        ease: "easeOut"
+      }
     }
   };
   
