@@ -39,6 +39,45 @@ function TabButton({
   );
 }
 
+// Service Card Component
+function ServiceCard({ icon, title, description, color }: { icon: React.ReactNode, title: string, description: string, color: string }) {
+  return (
+    <div className="bg-white rounded-lg p-4 md:p-5 shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
+      <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${color} flex items-center justify-center text-white mb-4 transform group-hover:scale-110 transition-transform`}>
+        {icon}
+      </div>
+      <h3 className="text-lg font-semibold mb-2 text-gray-900">{title}</h3>
+      <p className="text-gray-600 text-sm">{description}</p>
+    </div>
+  );
+}
+
+// Timeline Item Component
+function TimelineItem({ year, title, description, highlights }: { year: string, title: string, description: string, highlights?: string[] }) {
+  return (
+    <div className="relative pl-8 border-l-2 border-blue-500 dark:border-blue-400">
+      <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500 dark:bg-blue-400"></div>
+      <div className="mb-1 text-sm font-medium text-blue-600 dark:text-blue-400">{year}</div>
+      <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{title}</h3>
+      <p className="text-gray-600 dark:text-gray-400 mb-3">{description}</p>
+      
+      {highlights && highlights.length > 0 && (
+        <div className="bg-gray-50 dark:bg-gray-800/50 p-3 rounded-lg border border-gray-100 dark:border-gray-700">
+          <h4 className="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Key Achievements:</h4>
+          <ul className="space-y-1">
+            {highlights.map((highlight, index) => (
+              <li key={index} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400 mt-1.5 flex-shrink-0"></div>
+                <span>{highlight}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function About() {
   const [activeTab, setActiveTab] = useState('who');
 
@@ -289,45 +328,6 @@ export default function About() {
         </motion.div>
       </div>
     </section>
-  );
-}
-
-// Service Card Component
-function ServiceCard({ icon, title, description, color }: { icon: React.ReactNode, title: string, description: string, color: string }) {
-  return (
-    <div className="bg-white rounded-lg p-4 md:p-5 shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
-      <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${color} flex items-center justify-center text-white mb-4 transform group-hover:scale-110 transition-transform`}>
-        {icon}
-      </div>
-      <h3 className="text-lg font-semibold mb-2 text-gray-900">{title}</h3>
-      <p className="text-gray-600 text-sm">{description}</p>
-    </div>
-  );
-}
-
-// Timeline Item Component
-function TimelineItem({ year, title, description, highlights }: { year: string, title: string, description: string, highlights?: string[] }) {
-  return (
-    <div className="relative pl-8 border-l-2 border-blue-500 dark:border-blue-400">
-      <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500 dark:bg-blue-400"></div>
-      <div className="mb-1 text-sm font-medium text-blue-600 dark:text-blue-400">{year}</div>
-      <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{title}</h3>
-      <p className="text-gray-600 dark:text-gray-400 mb-3">{description}</p>
-      
-      {highlights && highlights.length > 0 && (
-        <div className="bg-gray-50 dark:bg-gray-800/50 p-3 rounded-lg border border-gray-100 dark:border-gray-700">
-          <h4 className="text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Key Achievements:</h4>
-          <ul className="space-y-1">
-            {highlights.map((highlight, index) => (
-              <li key={index} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400 mt-1.5 flex-shrink-0"></div>
-                <span>{highlight}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
   );
 }
 

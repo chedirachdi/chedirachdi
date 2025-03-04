@@ -1,20 +1,13 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { FaChartLine, FaBullhorn, FaUsers, FaLightbulb, FaCogs, FaHandshake, FaTrophy, FaChess, FaCode, FaDatabase, FaCloud, FaRobot } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { FaChartLine, FaBullhorn, FaUsers, FaLightbulb, FaCogs, FaHandshake, FaChess } from 'react-icons/fa';
 import { ReactNode } from 'react';
-
-interface Skill {
-  name: string;
-  level: number;
-  icon: ReactNode;
-}
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState('business');
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   // Animation variants
   const containerVariants = {

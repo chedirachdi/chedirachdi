@@ -507,33 +507,6 @@ export default function Hero() {
     </svg>
   );
   
-  // Business Analytics Floating Elements
-  const AnalyticsBadge = ({ icon, title, value, position, delay }: { 
-    icon: React.ReactNode, 
-    title: string, 
-    value: string,
-    position: string,
-    delay: string
-  }) => (
-    <motion.div
-      initial={{ opacity: 0, x: position.includes('left') ? -20 : 20, y: 0 }}
-      animate={{ opacity: 1, x: 0, y: 0 }}
-      transition={{ delay: parseFloat(delay), duration: 0.8 }}
-      className={`absolute ${position} z-20 animate-float`}
-      style={{ animationDelay: delay }}
-    >
-      <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg flex items-center gap-3 border border-gray-200 dark:border-gray-700">
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white">
-          {icon}
-        </div>
-        <div>
-          <div className="text-sm text-gray-500 dark:text-gray-400">{title}</div>
-          <div className="text-lg font-bold text-gray-900 dark:text-white">{value}</div>
-        </div>
-      </div>
-    </motion.div>
-  );
-  
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },

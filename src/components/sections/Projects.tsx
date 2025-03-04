@@ -7,7 +7,6 @@ import { FaChartLine, FaUsers, FaLightbulb, FaGlobe, FaRocket, FaHandshake } fro
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('all');
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   // Animation variants
   const containerVariants = {

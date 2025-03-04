@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaUsers, FaGlobeAmericas, FaHandshake } from 'react-icons/fa';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaArrowRight, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaExternalLinkAlt } from 'react-icons/fa';
 import Link from 'next/link';
 
 interface NetworkStat {
