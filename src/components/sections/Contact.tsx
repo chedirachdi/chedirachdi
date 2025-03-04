@@ -164,9 +164,11 @@ export default function Contact() {
                             href={item.link} 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-700 transition-colors"
+                            className="text-blue-600 hover:text-blue-700 transition-colors inline-flex items-center gap-1"
+                            aria-label={`Open ${item.title.toLowerCase()} ${item.value} in a new window`}
                           >
-                            <FaExternalLinkAlt className="text-sm" />
+                            <FaExternalLinkAlt className="text-sm" aria-hidden="true" />
+                            <span className="sr-only">Open in new window</span>
                           </a>
                         )}
                       </div>
@@ -212,10 +214,11 @@ export default function Contact() {
                     Let&apos;s discuss how we can help you achieve your business goals through strategic automation and innovation.
                   </p>
                   <Link
-                    href="mailto:contact@example.com"
+                    href="mailto:chedi@genlogic.io"
                     className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-white text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition-colors text-sm md:text-base"
+                    aria-label="Send an email to discuss business opportunities"
                   >
-                    <FaEnvelope />
+                    <FaEnvelope aria-hidden="true" />
                     Send a Message
                   </Link>
                 </motion.div>
