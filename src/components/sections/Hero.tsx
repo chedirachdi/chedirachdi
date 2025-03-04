@@ -17,154 +17,697 @@ export default function Hero() {
     <svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
       <defs>
         <linearGradient id="dashboardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#2c3e50" />
-          <stop offset="100%" stopColor="#1a2639" />
+          <stop offset="0%" stopColor="#1E293B" />
+          <stop offset="100%" stopColor="#0F172A" />
         </linearGradient>
         <linearGradient id="chartGradient1" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#4CAF50" />
-          <stop offset="100%" stopColor="#2E7D32" />
+          <stop offset="0%" stopColor="#4ADE80" stopOpacity="1" />
+          <stop offset="100%" stopColor="#22C55E" stopOpacity="0.8" />
         </linearGradient>
         <linearGradient id="chartGradient2" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#2196F3" />
-          <stop offset="100%" stopColor="#1565C0" />
+          <stop offset="0%" stopColor="#3B82F6" stopOpacity="1" />
+          <stop offset="100%" stopColor="#2563EB" stopOpacity="0.8" />
         </linearGradient>
         <linearGradient id="chartGradient3" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#FFC107" />
-          <stop offset="100%" stopColor="#FFA000" />
+          <stop offset="0%" stopColor="#FACC15" stopOpacity="1" />
+          <stop offset="100%" stopColor="#EAB308" stopOpacity="0.8" />
         </linearGradient>
         <linearGradient id="pieGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#E91E63" />
-          <stop offset="100%" stopColor="#C2185B" />
+          <stop offset="0%" stopColor="#EC4899" />
+          <stop offset="100%" stopColor="#DB2777" />
         </linearGradient>
         <linearGradient id="pieGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#9C27B0" />
-          <stop offset="100%" stopColor="#7B1FA2" />
+          <stop offset="0%" stopColor="#8B5CF6" />
+          <stop offset="100%" stopColor="#7C3AED" />
         </linearGradient>
         <linearGradient id="pieGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#3F51B5" />
-          <stop offset="100%" stopColor="#303F9F" />
+          <stop offset="0%" stopColor="#3B82F6" />
+          <stop offset="100%" stopColor="#2563EB" />
         </linearGradient>
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+        <clipPath id="roundedRect">
+          <rect width="600" height="400" rx="16" />
+        </clipPath>
       </defs>
       
-      {/* Dashboard Background */}
-      <rect width="600" height="400" rx="10" fill="url(#dashboardGradient)" />
+      {/* Dashboard Background with Glass Effect */}
+      <g clipPath="url(#roundedRect)">
+        <rect width="600" height="400" fill="url(#dashboardGradient)" />
+        <rect width="600" height="400" fill="white" fillOpacity="0.05" />
+        
+        {/* Background Grid */}
+        <g opacity="0.1">
+          {[...Array(20)].map((_, i) => (
+            <line 
+              key={`vline-${i}`} 
+              x1={i * 30} 
+              y1="0" 
+              x2={i * 30} 
+              y2="400" 
+              stroke="white" 
+              strokeWidth="1" 
+              strokeDasharray="1 5"
+            />
+          ))}
+          {[...Array(15)].map((_, i) => (
+            <line 
+              key={`hline-${i}`} 
+              x1="0" 
+              y1={i * 30} 
+              x2="600" 
+              y2={i * 30} 
+              stroke="white" 
+              strokeWidth="1" 
+              strokeDasharray="1 5"
+            />
+          ))}
+        </g>
+        
+        {/* Decorative Elements */}
+        <circle cx="50" cy="50" r="100" fill="#3B82F6" opacity="0.05" />
+        <circle cx="550" cy="350" r="120" fill="#8B5CF6" opacity="0.05" />
+      </g>
       
       {/* Header */}
-      <rect x="20" y="20" width="560" height="50" rx="5" fill="#ffffff10" />
-      <circle cx="45" cy="45" r="15" fill="#ffffff20" />
-      <rect x="70" y="35" width="100" height="20" rx="3" fill="#ffffff20" />
-      <rect x="400" y="35" width="160" height="20" rx="3" fill="#ffffff20" />
+      <rect x="20" y="20" width="560" height="50" rx="10" fill="white" fillOpacity="0.07" />
+      <circle cx="45" cy="45" r="15" fill="white" fillOpacity="0.1">
+        <animate attributeName="opacity" values="0.1;0.2;0.1" dur="3s" repeatCount="indefinite" />
+      </circle>
+      <rect x="70" y="35" width="100" height="20" rx="5" fill="white" fillOpacity="0.1" />
+      <rect x="400" y="35" width="160" height="20" rx="5" fill="white" fillOpacity="0.1" />
       
       {/* Main Dashboard Content */}
       <g className="dashboard-content">
         {/* Left Panel - Bar Chart */}
-        <rect x="20" y="90" width="270" height="140" rx="5" fill="#ffffff10" />
-        <text x="40" y="115" fontSize="14" fill="white" opacity="0.8">Revenue Growth</text>
+        <rect x="20" y="90" width="270" height="140" rx="10" fill="white" fillOpacity="0.07" />
+        <text x="40" y="115" fontSize="14" fontWeight="500" fill="white" opacity="0.9">Revenue Growth</text>
         
-        {/* Bar Chart */}
-        <rect x="40" y="130" width="30" height="80" fill="url(#chartGradient1)" opacity="0.9" />
-        <rect x="80" y="150" width="30" height="60" fill="url(#chartGradient1)" opacity="0.9" />
-        <rect x="120" y="110" width="30" height="100" fill="url(#chartGradient1)" opacity="0.9" />
-        <rect x="160" y="90" width="30" height="120" fill="url(#chartGradient1)" opacity="0.9" />
-        <rect x="200" y="70" width="30" height="140" fill="url(#chartGradient1)" opacity="0.9" />
-        <rect x="240" y="50" width="30" height="160" fill="url(#chartGradient1)" opacity="0.9" />
+        {/* Bar Chart with Animation */}
+        <g>
+          {[
+            { x: 40, height: 80, delay: 0 },
+            { x: 80, height: 60, delay: 0.1 },
+            { x: 120, height: 100, delay: 0.2 },
+            { x: 160, height: 120, delay: 0.3 },
+            { x: 200, height: 140, delay: 0.4 },
+            { x: 240, height: 160, delay: 0.5 }
+          ].map((bar, i) => (
+            <g key={i}>
+              <rect 
+                x={bar.x} 
+                y={210 - bar.height} 
+                width="30" 
+                height={bar.height} 
+                fill="url(#chartGradient1)" 
+                opacity="0.9" 
+                rx="4"
+              >
+                <animate 
+                  attributeName="height" 
+                  from="0" 
+                  to={bar.height} 
+                  dur="1s" 
+                  begin={`${bar.delay}s`} 
+                  fill="freeze" 
+                  calcMode="spline"
+                  keySplines="0.4 0 0.2 1"
+                />
+                <animate 
+                  attributeName="y" 
+                  from="210" 
+                  to={210 - bar.height} 
+                  dur="1s" 
+                  begin={`${bar.delay}s`} 
+                  fill="freeze" 
+                  calcMode="spline"
+                  keySplines="0.4 0 0.2 1"
+                />
+              </rect>
+              <rect 
+                x={bar.x} 
+                y={210 - bar.height - 2} 
+                width="30" 
+                height="4" 
+                fill="white" 
+                opacity="0.3" 
+                rx="2"
+              >
+                <animate 
+                  attributeName="y" 
+                  from="210" 
+                  to={210 - bar.height - 2} 
+                  dur="1s" 
+                  begin={`${bar.delay}s`} 
+                  fill="freeze" 
+                  calcMode="spline"
+                  keySplines="0.4 0 0.2 1"
+                />
+              </rect>
+            </g>
+          ))}
+        </g>
         
         {/* Right Panel - Pie Chart */}
-        <rect x="310" y="90" width="270" height="140" rx="5" fill="#ffffff10" />
-        <text x="330" y="115" fontSize="14" fill="white" opacity="0.8">Market Segments</text>
+        <rect x="310" y="90" width="270" height="140" rx="10" fill="white" fillOpacity="0.07" />
+        <text x="330" y="115" fontSize="14" fontWeight="500" fill="white" opacity="0.9">Market Segments</text>
         
-        {/* Pie Chart */}
-        <path d="M445 160 L445 110 A50 50 0 0 1 488 145 Z" fill="url(#pieGradient1)" />
-        <path d="M445 160 L488 145 A50 50 0 0 1 445 210 Z" fill="url(#pieGradient2)" />
-        <path d="M445 160 L445 210 A50 50 0 0 1 402 145 L445 160 Z" fill="url(#pieGradient3)" />
-        <path d="M445 160 L402 145 A50 50 0 0 1 445 110 Z" fill="#3F51B5" />
+        {/* Animated Pie Chart */}
+        <g transform="translate(445, 160)">
+          <path d="M0 0 L0 -50 A50 50 0 0 1 43 -25 Z" fill="url(#pieGradient1)">
+            <animate attributeName="opacity" from="0" to="1" dur="0.5s" fill="freeze" />
+          </path>
+          <path d="M0 0 L43 -25 A50 50 0 0 1 43 25 Z" fill="url(#pieGradient2)">
+            <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.2s" fill="freeze" />
+          </path>
+          <path d="M0 0 L43 25 A50 50 0 0 1 0 50 Z" fill="url(#pieGradient3)">
+            <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.4s" fill="freeze" />
+          </path>
+          <path d="M0 0 L0 50 A50 50 0 0 1 -43 25 Z" fill="#3B82F6">
+            <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.6s" fill="freeze" />
+          </path>
+          <path d="M0 0 L-43 25 A50 50 0 0 1 -43 -25 Z" fill="#8B5CF6">
+            <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.8s" fill="freeze" />
+          </path>
+          <path d="M0 0 L-43 -25 A50 50 0 0 1 0 -50 Z" fill="#EC4899">
+            <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="1s" fill="freeze" />
+          </path>
+          <circle cx="0" cy="0" r="20" fill="url(#dashboardGradient)" stroke="white" strokeOpacity="0.2" strokeWidth="1" />
+        </g>
         
-        {/* Legend */}
-        <rect x="510" y="130" width="10" height="10" fill="url(#pieGradient1)" />
-        <text x="525" y="140" fontSize="12" fill="white" opacity="0.8">Enterprise</text>
-        <rect x="510" y="150" width="10" height="10" fill="url(#pieGradient2)" />
-        <text x="525" y="160" fontSize="12" fill="white" opacity="0.8">SMB</text>
-        <rect x="510" y="170" width="10" height="10" fill="url(#pieGradient3)" />
-        <text x="525" y="180" fontSize="12" fill="white" opacity="0.8">Startup</text>
-        <rect x="510" y="190" width="10" height="10" fill="#3F51B5" />
-        <text x="525" y="200" fontSize="12" fill="white" opacity="0.8">Government</text>
+        {/* Legend with Hover Effect */}
+        <g>
+          <rect x="510" y="130" width="10" height="10" rx="2" fill="url(#pieGradient1)">
+            <animate attributeName="width" values="10;12;10" dur="2s" repeatCount="indefinite" begin="0.5s" />
+          </rect>
+          <text x="525" y="140" fontSize="12" fill="white" opacity="0.9">Enterprise</text>
+          
+          <rect x="510" y="150" width="10" height="10" rx="2" fill="url(#pieGradient2)">
+            <animate attributeName="width" values="10;12;10" dur="2s" repeatCount="indefinite" begin="1s" />
+          </rect>
+          <text x="525" y="160" fontSize="12" fill="white" opacity="0.9">SMB</text>
+          
+          <rect x="510" y="170" width="10" height="10" rx="2" fill="url(#pieGradient3)">
+            <animate attributeName="width" values="10;12;10" dur="2s" repeatCount="indefinite" begin="1.5s" />
+          </rect>
+          <text x="525" y="180" fontSize="12" fill="white" opacity="0.9">Startup</text>
+          
+          <rect x="510" y="190" width="10" height="10" rx="2" fill="#3B82F6">
+            <animate attributeName="width" values="10;12;10" dur="2s" repeatCount="indefinite" begin="2s" />
+          </rect>
+          <text x="525" y="200" fontSize="12" fill="white" opacity="0.9">Government</text>
+        </g>
         
-        {/* Bottom Panels - KPIs */}
-        <rect x="20" y="250" width="175" height="130" rx="5" fill="#ffffff10" />
-        <text x="40" y="275" fontSize="14" fill="white" opacity="0.8">Client Retention</text>
-        <text x="40" y="315" fontSize="28" fontWeight="bold" fill="white">95%</text>
-        <path d="M40 330 L155 330" stroke="#ffffff30" strokeWidth="2" />
-        <path d="M40 330 L147 330" stroke="url(#chartGradient3)" strokeWidth="2" />
+        {/* Bottom Panels - KPIs with Animated Progress */}
+        <g>
+          <rect x="20" y="250" width="175" height="130" rx="10" fill="white" fillOpacity="0.07" />
+          <text x="40" y="275" fontSize="14" fontWeight="500" fill="white" opacity="0.9">Client Retention</text>
+          <text x="40" y="315" fontSize="28" fontWeight="bold" fill="white">95%</text>
+          <rect x="40" y="330" width="115" height="4" rx="2" fill="white" fillOpacity="0.1" />
+          <rect x="40" y="330" width="109" height="4" rx="2" fill="url(#chartGradient3)">
+            <animate attributeName="width" from="0" to="109" dur="1.5s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1" />
+          </rect>
+          <circle cx="149" cy="332" r="4" fill="white">
+            <animate attributeName="cx" from="40" to="149" dur="1.5s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1" />
+          </circle>
+        </g>
         
-        <rect x="215" y="250" width="175" height="130" rx="5" fill="#ffffff10" />
-        <text x="235" y="275" fontSize="14" fill="white" opacity="0.8">Revenue Growth</text>
-        <text x="235" y="315" fontSize="28" fontWeight="bold" fill="white">+120%</text>
-        <path d="M235 330 L350 330" stroke="#ffffff30" strokeWidth="2" />
-        <path d="M235 330 L350 330" stroke="url(#chartGradient1)" strokeWidth="2" />
+        <g>
+          <rect x="215" y="250" width="175" height="130" rx="10" fill="white" fillOpacity="0.07" />
+          <text x="235" y="275" fontSize="14" fontWeight="500" fill="white" opacity="0.9">Revenue Growth</text>
+          <text x="235" y="315" fontSize="28" fontWeight="bold" fill="white">+120%</text>
+          <rect x="235" y="330" width="115" height="4" rx="2" fill="white" fillOpacity="0.1" />
+          <rect x="235" y="330" width="115" height="4" rx="2" fill="url(#chartGradient1)">
+            <animate attributeName="width" from="0" to="115" dur="1.5s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1" />
+          </rect>
+          <circle cx="350" cy="332" r="4" fill="white">
+            <animate attributeName="cx" from="235" to="350" dur="1.5s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1" />
+          </circle>
+        </g>
         
-        <rect x="410" y="250" width="170" height="130" rx="5" fill="#ffffff10" />
-        <text x="430" y="275" fontSize="14" fill="white" opacity="0.8">Experience</text>
-        <text x="430" y="315" fontSize="28" fontWeight="bold" fill="white">15+ yrs</text>
-        <path d="M430 330 L545 330" stroke="#ffffff30" strokeWidth="2" />
-        <path d="M430 330 L545 330" stroke="url(#chartGradient2)" strokeWidth="2" />
+        <g>
+          <rect x="410" y="250" width="170" height="130" rx="10" fill="white" fillOpacity="0.07" />
+          <text x="430" y="275" fontSize="14" fontWeight="500" fill="white" opacity="0.9">Experience</text>
+          <text x="430" y="315" fontSize="28" fontWeight="bold" fill="white">15+ yrs</text>
+          <rect x="430" y="330" width="115" height="4" rx="2" fill="white" fillOpacity="0.1" />
+          <rect x="430" y="330" width="115" height="4" rx="2" fill="url(#chartGradient2)">
+            <animate attributeName="width" from="0" to="115" dur="1.5s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1" />
+          </rect>
+          <circle cx="545" cy="332" r="4" fill="white">
+            <animate attributeName="cx" from="430" to="545" dur="1.5s" fill="freeze" calcMode="spline" keySplines="0.4 0 0.2 1" />
+          </circle>
+        </g>
       </g>
       
       {/* Animated Elements */}
       <g className="animated-elements">
-        <circle cx="45" cy="45" r="20" stroke="#ffffff30" strokeWidth="1" strokeDasharray="5 5" className="animate-slow-spin" style={{transformOrigin: '45px 45px'}} />
-        <rect x="20" y="20" width="560" height="360" rx="10" stroke="#ffffff10" strokeWidth="1" strokeDasharray="10 5" className="animate-pulse" style={{animationDuration: '4s'}} />
+        {/* Pulsing Border */}
+        <rect x="3" y="3" width="594" height="394" rx="14" stroke="white" strokeOpacity="0.2" strokeWidth="1.5" fill="none">
+          <animate attributeName="strokeOpacity" values="0.2;0.4;0.2" dur="4s" repeatCount="indefinite" />
+        </rect>
+        
+        {/* Animated Dots */}
+        {[...Array(5)].map((_, i) => (
+          <circle 
+            key={i}
+            cx={100 + i * 100} 
+            cy="45" 
+            r="2" 
+            fill="white"
+          >
+            <animate 
+              attributeName="opacity" 
+              values="0.3;0.8;0.3" 
+              dur="3s" 
+              begin={`${i * 0.5}s`}
+              repeatCount="indefinite" 
+            />
+          </circle>
+        ))}
+        
+        {/* Data Flow Lines */}
+        <path 
+          d="M45 60 L45 90" 
+          stroke="white" 
+          strokeOpacity="0.3" 
+          strokeWidth="1.5" 
+          strokeDasharray="3 3"
+        >
+          <animate attributeName="strokeDashoffset" from="0" to="12" dur="1s" repeatCount="indefinite" />
+        </path>
+        
+        <path 
+          d="M445 210 L445 250" 
+          stroke="white" 
+          strokeOpacity="0.3" 
+          strokeWidth="1.5" 
+          strokeDasharray="3 3"
+        >
+          <animate attributeName="strokeDashoffset" from="0" to="12" dur="1s" repeatCount="indefinite" />
+        </path>
+        
+        {/* Glowing Accent */}
+        <circle cx="45" cy="45" r="25" stroke="#3B82F6" strokeWidth="2" strokeOpacity="0.5" fill="none" filter="url(#glow)">
+          <animate attributeName="r" values="25;30;25" dur="3s" repeatCount="indefinite" />
+          <animate attributeName="strokeOpacity" values="0.5;0.2;0.5" dur="3s" repeatCount="indefinite" />
+        </circle>
+      </g>
+      
+      {/* Floating Notification */}
+      <g transform="translate(500, 70)">
+        <rect x="0" y="0" width="80" height="30" rx="15" fill="#10B981" fillOpacity="0.9">
+          <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2s" fill="freeze" />
+        </rect>
+        <text x="40" y="20" fontSize="12" fontWeight="bold" fill="white" textAnchor="middle" dominantBaseline="middle">
+          <animate attributeName="opacity" values="0;1" dur="0.5s" begin="2.2s" fill="freeze" />
+          +28.5% ↑
+        </text>
       </g>
     </svg>
   );
   
   const BusinessMetricsSVG = () => (
     <svg width="600" height="200" viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute bottom-0 left-0 opacity-10 dark:opacity-20 z-0">
-      {/* Line Chart */}
-      <path d="M0 150 C50 120, 100 180, 150 100 C200 20, 250 80, 300 60 C350 40, 400 120, 450 80 C500 40, 550 100, 600 50" stroke="currentColor" strokeWidth="3" fill="none" />
-      <path d="M0 150 C50 120, 100 180, 150 100 C200 20, 250 80, 300 60 C350 40, 400 120, 450 80 C500 40, 550 100, 600 50 L600 200 L0 200 Z" fill="currentColor" opacity="0.1" />
+      <defs>
+        <linearGradient id="metricGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="currentColor" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="currentColor" stopOpacity="0.2" />
+        </linearGradient>
+        <filter id="glow-small" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="2" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+      </defs>
       
-      {/* Data Points */}
-      {[0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600].map((x, i) => {
-        const y = i % 2 === 0 ? 150 - i * 5 : 150 + i * 5;
-        return (
-          <circle key={i} cx={x} cy={y} r="3" fill="currentColor" className="animate-pulse" style={{animationDelay: `${i * 0.1}s`}} />
-        );
-      })}
+      {/* Animated Line Chart */}
+      <path 
+        d="M0 150 C50 120, 100 180, 150 100 C200 20, 250 80, 300 60 C350 40, 400 120, 450 80 C500 40, 550 100, 600 50" 
+        stroke="url(#metricGradient)" 
+        strokeWidth="3" 
+        fill="none"
+        strokeDasharray="1200"
+        strokeDashoffset="1200"
+      >
+        <animate 
+          attributeName="stroke-dashoffset" 
+          from="1200" 
+          to="0" 
+          dur="3s" 
+          fill="freeze" 
+          calcMode="spline"
+          keySplines="0.4 0 0.2 1"
+        />
+      </path>
+      
+      {/* Area Fill */}
+      <path 
+        d="M0 150 C50 120, 100 180, 150 100 C200 20, 250 80, 300 60 C350 40, 400 120, 450 80 C500 40, 550 100, 600 50 L600 200 L0 200 Z" 
+        fill="currentColor" 
+        opacity="0"
+      >
+        <animate 
+          attributeName="opacity" 
+          from="0" 
+          to="0.1" 
+          dur="2s" 
+          begin="1s"
+          fill="freeze" 
+        />
+      </path>
+      
+      {/* Data Points with Pulse Animation */}
+      {[
+        {x: 0, y: 150, delay: 0},
+        {x: 50, y: 120, delay: 0.2},
+        {x: 100, y: 180, delay: 0.4},
+        {x: 150, y: 100, delay: 0.6},
+        {x: 200, y: 20, delay: 0.8},
+        {x: 250, y: 80, delay: 1.0},
+        {x: 300, y: 60, delay: 1.2},
+        {x: 350, y: 40, delay: 1.4},
+        {x: 400, y: 120, delay: 1.6},
+        {x: 450, y: 80, delay: 1.8},
+        {x: 500, y: 40, delay: 2.0},
+        {x: 550, y: 100, delay: 2.2},
+        {x: 600, y: 50, delay: 2.4}
+      ].map((point, i) => (
+        <g key={i} filter="url(#glow-small)">
+          <circle 
+            cx={point.x} 
+            cy={point.y} 
+            r="0" 
+            fill="currentColor"
+          >
+            <animate 
+              attributeName="r" 
+              from="0" 
+              to="4" 
+              dur="0.5s" 
+              begin={`${point.delay}s`}
+              fill="freeze" 
+            />
+            <animate 
+              attributeName="opacity" 
+              values="0;1;0.7" 
+              dur="3s" 
+              begin={`${point.delay + 0.5}s`}
+              repeatCount="indefinite" 
+            />
+          </circle>
+          <circle 
+            cx={point.x} 
+            cy={point.y} 
+            r="0" 
+            stroke="currentColor" 
+            strokeWidth="1" 
+            fill="none"
+          >
+            <animate 
+              attributeName="r" 
+              from="0" 
+              to="8" 
+              dur="0.5s" 
+              begin={`${point.delay}s`}
+              fill="freeze" 
+            />
+            <animate 
+              attributeName="opacity" 
+              values="0.5;0.2;0.5" 
+              dur="3s" 
+              begin={`${point.delay + 0.5}s`}
+              repeatCount="indefinite" 
+            />
+          </circle>
+        </g>
+      ))}
+      
+      {/* Grid Lines */}
+      {[50, 100, 150].map((y, i) => (
+        <line 
+          key={`grid-${i}`}
+          x1="0" 
+          y1={y} 
+          x2="600" 
+          y2={y} 
+          stroke="currentColor" 
+          strokeWidth="1" 
+          strokeDasharray="5 5" 
+          opacity="0.1"
+        >
+          <animate 
+            attributeName="opacity" 
+            from="0" 
+            to="0.1" 
+            dur="1s" 
+            begin={`${i * 0.3}s`}
+            fill="freeze" 
+          />
+        </line>
+      ))}
     </svg>
   );
   
   const DataFlowSVG = () => (
     <svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute top-0 right-0 opacity-5 dark:opacity-10 z-0">
-      {/* Connection Lines */}
-      {[...Array(20)].map((_, i) => {
-        const startX = Math.random() * 800;
-        const startY = Math.random() * 800;
-        const endX = Math.random() * 800;
-        const endY = Math.random() * 800;
-        return (
-          <path 
-            key={i}
-            d={`M${startX} ${startY} L${endX} ${endY}`} 
+      <defs>
+        <linearGradient id="nodeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.7" />
+          <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.7" />
+        </linearGradient>
+        <filter id="glow-node" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+      </defs>
+      
+      {/* Network Grid */}
+      <g opacity="0.3">
+        {[...Array(8)].map((_, i) => (
+          <line 
+            key={`grid-v-${i}`}
+            x1={100 * (i + 1)} 
+            y1="0" 
+            x2={100 * (i + 1)} 
+            y2="800" 
             stroke="currentColor" 
-            strokeWidth="1" 
-            strokeDasharray="5 5"
-            className="animate-pulse"
-            style={{ animationDelay: `${i * 0.2}s`, animationDuration: '3s' }}
+            strokeWidth="0.5" 
+            strokeDasharray="5 10"
+            opacity="0.2"
           />
-        );
-      })}
+        ))}
+        {[...Array(8)].map((_, i) => (
+          <line 
+            key={`grid-h-${i}`}
+            x1="0" 
+            y1={100 * (i + 1)} 
+            x2="800" 
+            y2={100 * (i + 1)} 
+            stroke="currentColor" 
+            strokeWidth="0.5" 
+            strokeDasharray="5 10"
+            opacity="0.2"
+          />
+        ))}
+      </g>
       
       {/* Data Nodes */}
-      {[...Array(15)].map((_, i) => {
-        const x = 100 + (i % 5) * 150;
-        const y = 100 + Math.floor(i / 5) * 150;
-        return (
-          <g key={i}>
-            <circle cx={x} cy={y} r="20" fill="none" stroke="currentColor" strokeWidth="1" />
-            <circle cx={x} cy={y} r="5" fill="currentColor" className="animate-pulse" style={{animationDelay: `${i * 0.3}s`}} />
-          </g>
-        );
-      })}
+      {[
+        {x: 100, y: 100, size: 12, delay: 0},
+        {x: 250, y: 150, size: 18, delay: 0.2},
+        {x: 400, y: 100, size: 14, delay: 0.4},
+        {x: 550, y: 150, size: 16, delay: 0.6},
+        {x: 700, y: 100, size: 12, delay: 0.8},
+        {x: 100, y: 250, size: 16, delay: 1.0},
+        {x: 250, y: 300, size: 12, delay: 1.2},
+        {x: 400, y: 250, size: 20, delay: 1.4},
+        {x: 550, y: 300, size: 14, delay: 1.6},
+        {x: 700, y: 250, size: 16, delay: 1.8},
+        {x: 100, y: 400, size: 14, delay: 2.0},
+        {x: 250, y: 450, size: 16, delay: 2.2},
+        {x: 400, y: 400, size: 12, delay: 2.4},
+        {x: 550, y: 450, size: 18, delay: 2.6},
+        {x: 700, y: 400, size: 14, delay: 2.8},
+        {x: 100, y: 550, size: 16, delay: 3.0},
+        {x: 250, y: 600, size: 12, delay: 3.2},
+        {x: 400, y: 550, size: 14, delay: 3.4},
+        {x: 550, y: 600, size: 16, delay: 3.6},
+        {x: 700, y: 550, size: 12, delay: 3.8},
+        {x: 100, y: 700, size: 18, delay: 4.0},
+        {x: 250, y: 750, size: 14, delay: 4.2},
+        {x: 400, y: 700, size: 16, delay: 4.4},
+        {x: 550, y: 750, size: 12, delay: 4.6},
+        {x: 700, y: 700, size: 14, delay: 4.8}
+      ].map((node, i) => (
+        <g key={i} filter="url(#glow-node)">
+          <circle 
+            cx={node.x} 
+            cy={node.y} 
+            r="0" 
+            fill="url(#nodeGradient)"
+            opacity="0"
+          >
+            <animate 
+              attributeName="r" 
+              from="0" 
+              to={node.size} 
+              dur="0.8s" 
+              begin={`${node.delay}s`}
+              fill="freeze" 
+              calcMode="spline"
+              keySplines="0.4 0 0.2 1"
+            />
+            <animate 
+              attributeName="opacity" 
+              from="0" 
+              to="1" 
+              dur="0.8s" 
+              begin={`${node.delay}s`}
+              fill="freeze" 
+            />
+            <animate 
+              attributeName="opacity" 
+              values="1;0.5;1" 
+              dur="3s" 
+              begin={`${node.delay + 0.8}s`}
+              repeatCount="indefinite" 
+            />
+          </circle>
+          <circle 
+            cx={node.x} 
+            cy={node.y} 
+            r="0" 
+            stroke="white" 
+            strokeWidth="0.5" 
+            fill="none"
+            opacity="0"
+          >
+            <animate 
+              attributeName="r" 
+              from="0" 
+              to={node.size + 5} 
+              dur="0.8s" 
+              begin={`${node.delay}s`}
+              fill="freeze" 
+              calcMode="spline"
+              keySplines="0.4 0 0.2 1"
+            />
+            <animate 
+              attributeName="opacity" 
+              from="0" 
+              to="0.3" 
+              dur="0.8s" 
+              begin={`${node.delay}s`}
+              fill="freeze" 
+            />
+            <animate 
+              attributeName="r" 
+              values={`${node.size + 5};${node.size + 8};${node.size + 5}`} 
+              dur="3s" 
+              begin={`${node.delay + 0.8}s`}
+              repeatCount="indefinite" 
+            />
+          </circle>
+        </g>
+      ))}
+      
+      {/* Connection Lines with Animation */}
+      {[
+        {x1: 100, y1: 100, x2: 250, y2: 150, delay: 0.5},
+        {x1: 250, y1: 150, x2: 400, y2: 100, delay: 0.7},
+        {x1: 400, y1: 100, x2: 550, y2: 150, delay: 0.9},
+        {x1: 550, y1: 150, x2: 700, y2: 100, delay: 1.1},
+        {x1: 100, y1: 250, x2: 250, y2: 300, delay: 1.3},
+        {x1: 250, y1: 300, x2: 400, y2: 250, delay: 1.5},
+        {x1: 400, y1: 250, x2: 550, y2: 300, delay: 1.7},
+        {x1: 550, y1: 300, x2: 700, y2: 250, delay: 1.9},
+        {x1: 100, y1: 400, x2: 250, y2: 450, delay: 2.1},
+        {x1: 250, y1: 450, x2: 400, y2: 400, delay: 2.3},
+        {x1: 400, y1: 400, x2: 550, y2: 450, delay: 2.5},
+        {x1: 550, y1: 450, x2: 700, y2: 400, delay: 2.7},
+        {x1: 100, y1: 550, x2: 250, y2: 600, delay: 2.9},
+        {x1: 250, y1: 600, x2: 400, y2: 550, delay: 3.1},
+        {x1: 400, y1: 550, x2: 550, y2: 600, delay: 3.3},
+        {x1: 550, y1: 600, x2: 700, y2: 550, delay: 3.5},
+        {x1: 100, y1: 700, x2: 250, y2: 750, delay: 3.7},
+        {x1: 250, y1: 750, x2: 400, y2: 700, delay: 3.9},
+        {x1: 400, y1: 700, x2: 550, y2: 750, delay: 4.1},
+        {x1: 550, y1: 750, x2: 700, y2: 700, delay: 4.3},
+        {x1: 100, y1: 100, x2: 100, y2: 250, delay: 4.5},
+        {x1: 250, y1: 150, x2: 250, y2: 300, delay: 4.7},
+        {x1: 400, y1: 100, x2: 400, y2: 250, delay: 4.9},
+        {x1: 550, y1: 150, x2: 550, y2: 300, delay: 5.1},
+        {x1: 700, y1: 100, x2: 700, y2: 250, delay: 5.3},
+        {x1: 100, y1: 250, x2: 100, y2: 400, delay: 5.5},
+        {x1: 250, y1: 300, x2: 250, y2: 450, delay: 5.7},
+        {x1: 400, y1: 250, x2: 400, y2: 400, delay: 5.9},
+        {x1: 550, y1: 300, x2: 550, y2: 450, delay: 6.1},
+        {x1: 700, y1: 250, x2: 700, y2: 400, delay: 6.3}
+      ].map((line, i) => (
+        <path
+          key={`line-${i}`}
+          d={`M${line.x1} ${line.y1} L${line.x2} ${line.y2}`}
+          stroke="currentColor"
+          strokeWidth="1"
+          strokeDasharray="150"
+          strokeDashoffset="150"
+          opacity="0.3"
+        >
+          <animate
+            attributeName="stroke-dashoffset"
+            from="150"
+            to="0"
+            dur="1s"
+            begin={`${line.delay}s`}
+            fill="freeze"
+            calcMode="spline"
+            keySplines="0.4 0 0.2 1"
+          />
+          <animate
+            attributeName="opacity"
+            values="0.3;0.5;0.3"
+            dur="3s"
+            begin={`${line.delay + 1}s`}
+            repeatCount="indefinite"
+          />
+        </path>
+      ))}
+      
+      {/* Data Flow Particles */}
+      {[
+        {x1: 100, y1: 100, x2: 250, y2: 150, delay: 1.0},
+        {x1: 250, y1: 150, x2: 400, y2: 100, delay: 1.5},
+        {x1: 400, y1: 100, x2: 550, y2: 150, delay: 2.0},
+        {x1: 550, y1: 150, x2: 700, y2: 100, delay: 2.5},
+        {x1: 100, y1: 250, x2: 250, y2: 300, delay: 3.0},
+        {x1: 250, y1: 300, x2: 400, y2: 250, delay: 3.5},
+        {x1: 400, y1: 250, x2: 550, y2: 300, delay: 4.0},
+        {x1: 550, y1: 300, x2: 700, y2: 250, delay: 4.5},
+        {x1: 100, y1: 400, x2: 250, y2: 450, delay: 5.0},
+        {x1: 250, y1: 450, x2: 400, y2: 400, delay: 5.5}
+      ].map((particle, i) => (
+        <circle
+          key={`particle-${i}`}
+          r="3"
+          fill="#3B82F6"
+          opacity="0"
+        >
+          <animate
+            attributeName="opacity"
+            values="0;0.8;0"
+            dur="2s"
+            begin={`${particle.delay}s`}
+            repeatCount="indefinite"
+          />
+          <animateMotion
+            path={`M${particle.x1},${particle.y1} L${particle.x2},${particle.y2}`}
+            dur="2s"
+            begin={`${particle.delay}s`}
+            repeatCount="indefinite"
+          />
+        </circle>
+      ))}
     </svg>
   );
   

@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBriefcase, FaGraduationCap, FaBuilding, FaChartLine, FaUsers, FaRocket, FaGlobeAmericas, FaLightbulb, FaCogs, FaTrophy, FaHandshake, FaChess } from 'react-icons/fa';
+import { FaBriefcase, FaGraduationCap, FaBuilding, FaChartLine, FaUsers, FaRocket, FaGlobeAmericas, FaLightbulb, FaCogs, FaTrophy, FaHandshake, FaChess, FaChartBar, FaBook, FaCertificate, FaUniversity, FaLaptopCode, FaBrain, FaRobot, FaWater } from 'react-icons/fa';
 
 export default function Experience() {
   const [activeTab, setActiveTab] = useState('leadership');
@@ -91,6 +91,7 @@ export default function Experience() {
   const businessImpactContent = {
     title: "Business Transformation",
     description: "I help businesses leverage automation and strategic innovation to achieve exceptional growth and operational excellence.",
+    tagline: "Driving measurable business outcomes through strategic transformation and innovative automation solutions.",
     capabilities: [
       {
         title: "Marketing Automation",
@@ -118,43 +119,128 @@ export default function Experience() {
       }
     ],
     results: [
-      { metric: "Average Revenue Growth", value: "120%", suffix: "" },
-      { metric: "Marketing ROI Improvement", value: "65%", suffix: "" },
-      { metric: "Operational Efficiency", value: "40%", suffix: "+" },
-      { metric: "Client Retention Rate", value: "95%", suffix: "+" }
+      { 
+        metric: "Average Revenue Growth", 
+        value: "120", 
+        suffix: "%",
+        description: "Consistent revenue growth across client businesses through strategic automation and optimization",
+        icon: <FaChartLine className="text-xl" />,
+        color: "#4F46E5"
+      },
+      { 
+        metric: "Marketing ROI Improvement", 
+        value: "65", 
+        suffix: "%",
+        description: "Enhanced marketing return on investment through data-driven campaign optimization",
+        icon: <FaChartBar className="text-xl" />,
+        color: "#0891B2"
+      },
+      { 
+        metric: "Operational Efficiency", 
+        value: "40", 
+        suffix: "+%",
+        description: "Increased operational efficiency through streamlined processes and automation",
+        icon: <FaCogs className="text-xl" />,
+        color: "#0D9488"
+      },
+      { 
+        metric: "Client Retention Rate", 
+        value: "95", 
+        suffix: "+%",
+        description: "Exceptional client satisfaction and retention through consistent value delivery",
+        icon: <FaHandshake className="text-xl" />,
+        color: "#9333EA"
+      }
+    ],
+    caseStudies: [
+      {
+        title: "E-Commerce Transformation",
+        description: "Implemented comprehensive automation strategy for a mid-sized e-commerce business, resulting in 135% revenue growth and 45% reduction in operational costs.",
+        metrics: ["135% Revenue Growth", "45% Cost Reduction", "3x Customer Lifetime Value"],
+        color: "#4F46E5"
+      },
+      {
+        title: "SaaS Growth Acceleration",
+        description: "Developed and executed strategic growth plan for SaaS platform, achieving 200% user acquisition improvement and 70% increase in customer retention.",
+        metrics: ["200% User Growth", "70% Retention Increase", "55% CAC Reduction"],
+        color: "#0891B2"
+      }
     ]
   };
   
   const educationContent = {
     title: "Education & Knowledge",
     description: "My academic foundation and continuous learning that powers my business leadership and innovation strategies.",
+    quote: "Education is not the learning of facts, but the training of the mind to think.",
+    quoteAuthor: "Albert Einstein",
     education: [
       {
-        title: "Master of Business Administration (MBA)",
-        institution: "University of Tunis",
-        period: "2010 - 2012",
-        focus: "Business Strategy and Marketing",
-        description: "Specialized in international business development with a thesis on digital marketing automation's impact on business growth.",
+        title: "Engineer's Degree, Electromechanical Engineering",
+        institution: "Electromechanical school systems Tunis",
+        period: "1999 - 2004",
+        focus: "Electro-Mechanical Engineers",
+        description: "As an electro-mechanical engineer, I worked with both electrical and mechanical aspects of engineering projects. This involved developing and manufacturing various products including appliances, medical instrumentation, industrial machines and robotics.",
         icon: <FaGraduationCap className="text-2xl" />,
-        color: "#9333EA"
+        color: "#9333EA",
+        achievements: [
+          "Design and development of electromechanical systems",
+          "Production, maintenance and repair of industrial equipment",
+          "Economics evaluation, statistical analysis and quality control"
+        ]
       },
       {
-        title: "Bachelor of Science in Business Administration",
-        institution: "University of Tunis",
-        period: "2006 - 2010",
-        focus: "Marketing and Sales Management",
-        description: "Focused on business fundamentals with specialization in marketing strategies and customer relationship management.",
-        icon: <FaGraduationCap className="text-2xl" />,
-        color: "#DB2777"
+        title: "Python for Everybody",
+        institution: "University of Michigan",
+        period: "Nov 2021 - May 2022",
+        focus: "Python, Information Technology",
+        description: "Comprehensive course covering the basics of programming computers using Python, from simple instructions to more complex programming concepts without requiring advanced mathematics.",
+        icon: <FaLaptopCode className="text-2xl" />,
+        color: "#DB2777",
+        achievements: [
+          "Mastered Python fundamentals and programming basics",
+          "Completed all chapters of 'Python for Everybody' textbook",
+          "Prepared foundation for advanced programming courses"
+        ]
       },
       {
-        title: "Professional Certification in Digital Marketing",
-        institution: "Google Digital Academy",
-        period: "2018",
-        focus: "Digital Marketing and Automation",
-        description: "Comprehensive certification covering advanced digital marketing techniques, automation workflows, and analytics.",
-        icon: <FaGraduationCap className="text-2xl" />,
-        color: "#C026D3"
+        title: "Email Marketing Certification",
+        institution: "HubSpot Academy",
+        period: "2017",
+        focus: "Email Marketing",
+        description: "Specialized certification in email marketing strategies, automation, and best practices through HubSpot's comprehensive training program for marketers and sales representatives.",
+        icon: <FaCertificate className="text-2xl" />,
+        color: "#C026D3",
+        achievements: [
+          "Mastered inbound marketing methodologies",
+          "Learned email marketing automation techniques",
+          "Applied HubSpot tools for marketing campaigns"
+        ]
+      }
+    ],
+    continuousLearning: [
+      {
+        title: "AI & Prompt Engineering with Claude",
+        provider: "Cursor AI",
+        year: "2023",
+        description: "Mastering AI-assisted coding and prompt engineering techniques to enhance development workflows and automate complex tasks.",
+        icon: <FaRobot className="text-xl" />,
+        color: "#0891B2"
+      },
+      {
+        title: "Fullstack Development",
+        provider: "Self-Directed Learning",
+        year: "2020-Present",
+        description: "Continuous development of fullstack skills using React, Next.js, Node.js, and various backend technologies to build scalable business applications.",
+        icon: <FaLaptopCode className="text-xl" />,
+        color: "#4F46E5"
+      },
+      {
+        title: "Windsurfing Instructor Certification",
+        provider: "International Windsurfing Association",
+        year: "2019",
+        description: "Professional certification in windsurfing instruction, combining passion for water sports with teaching and leadership skills.",
+        icon: <FaWater className="text-xl" />,
+        color: "#0D9488"
       }
     ]
   };
@@ -317,120 +403,486 @@ export default function Experience() {
       case 'impact':
         return (
           <div className="space-y-16">
-            <div className="text-center max-w-3xl mx-auto">
-              <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">{businessImpactContent.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400">{businessImpactContent.description}</p>
-            </div>
-            
-            {/* Results metrics */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-              {businessImpactContent.results.map((result, index) => (
+            {/* Header with animated background */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="relative rounded-2xl overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-indigo-600/10 dark:from-blue-900/30 dark:to-indigo-900/30 z-0"></div>
+              <div className="absolute inset-0 z-0 overflow-hidden">
+                <svg width="100%" height="100%" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute opacity-5 dark:opacity-10">
+                  {/* Connection Lines */}
+                  {[...Array(15)].map((_, i) => (
+                    <path 
+                      key={i}
+                      d={`M${100 + i * 50} ${100} L${700 - i * 30} ${700}`} 
+                      stroke="currentColor" 
+                      strokeWidth="1" 
+                      strokeDasharray="5 5"
+                      className="animate-pulse"
+                      style={{ animationDelay: `${i * 0.1}s` }}
+                    />
+                  ))}
+                  
+                  {/* Data Nodes */}
+                  {[...Array(10)].map((_, i) => (
+                    <circle 
+                      key={i}
+                      cx={100 + (i % 5) * 150} 
+                      cy={100 + Math.floor(i / 5) * 300}
+                      r="8"
+                      fill="currentColor"
+                      className="animate-pulse"
+                      style={{ animationDelay: `${i * 0.2}s` }}
+                    />
+                  ))}
+                </svg>
+              </div>
+              
+              <div className="relative z-10 py-16 px-8 text-center">
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg text-center relative overflow-hidden"
-                >
-                  <div className="absolute -bottom-4 -right-4 text-primary-200 dark:text-primary-800">
-                    <HexagonPattern />
-                  </div>
-                  <h4 className="text-4xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
-                    {result.value}{result.suffix}
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-400 font-medium">{result.metric}</p>
-                </motion.div>
-              ))}
-            </div>
-            
-            {/* Capabilities */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {businessImpactContent.capabilities.map((capability, index) => (
-                <motion.div
-                  key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 relative overflow-hidden"
+                  transition={{ delay: 0.2 }}
+                  className="inline-block px-6 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-medium text-sm mb-6"
                 >
-                  <div className="absolute -bottom-4 -right-4 text-primary-200 dark:text-primary-800">
-                    <WavePattern />
-                  </div>
-                  
-                  <div 
-                    className="w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-lg"
-                    style={{ 
-                      background: `linear-gradient(135deg, ${capability.color}, ${capability.color}CC)`,
-                      boxShadow: `0 10px 25px -5px ${capability.color}33`
-                    }}
-                  >
-                    {capability.icon}
-                  </div>
-                  
-                  <h4 className="text-xl font-bold mb-4 text-gray-800 dark:text-gray-200">{capability.title}</h4>
-                  <p className="text-gray-600 dark:text-gray-400">{capability.description}</p>
+                  Strategic Business Transformation
                 </motion.div>
-              ))}
+                
+                <motion.h3 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                  className="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-gray-200"
+                >
+                  {businessImpactContent.title}
+                </motion.h3>
+                
+                <motion.p 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                  className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto"
+                >
+                  {businessImpactContent.description}
+                </motion.p>
+              </div>
+            </motion.div>
+            
+            {/* Results metrics - redesigned with animated elements */}
+            <div className="mb-16">
+              <motion.h4
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-2xl font-bold mb-10 text-center text-gray-800 dark:text-gray-200"
+              >
+                Measurable <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Business Impact</span>
+              </motion.h4>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {businessImpactContent.results.map((result, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                  >
+                    <div 
+                      className="h-2 w-full bg-gradient-to-r from-blue-600 to-indigo-600"
+                    ></div>
+                    <div className="p-6">
+                      <div className="flex flex-col items-center mb-4">
+                        <div className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 mb-1">
+                          {index === 0 ? "120%" : index === 1 ? "65%" : index === 2 ? "40%+" : "95%+"}
+                        </div>
+                        <div className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+                          {result.metric}
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-center gap-2 mt-4">
+                        <div className="w-10 h-10 rounded-full flex items-center justify-center bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+                          {index === 0 ? <FaChartLine /> : index === 1 ? <FaChartBar /> : index === 2 ? <FaCogs /> : <FaHandshake />}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
+            
+            {/* Capabilities - redesigned with better visuals */}
+            <div>
+              <motion.h4
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-2xl font-bold mb-10 text-center text-gray-800 dark:text-gray-200"
+              >
+                Transformation <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Capabilities</span>
+              </motion.h4>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {businessImpactContent.capabilities.map((capability, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 relative overflow-hidden group hover:shadow-xl transition-all duration-300"
+                  >
+                    <div className="absolute -bottom-4 -right-4 text-primary-200 dark:text-primary-800 opacity-10 group-hover:opacity-20 transition-opacity">
+                      <WavePattern />
+                    </div>
+                    
+                    <div className="flex items-start gap-6">
+                      <div 
+                        className="w-16 h-16 rounded-full flex items-center justify-center shadow-lg flex-shrink-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white"
+                      >
+                        {capability.icon}
+                      </div>
+                      
+                      <div>
+                        <h4 className="text-xl font-bold mb-3 text-gray-800 dark:text-gray-200">{capability.title}</h4>
+                        <p className="text-gray-600 dark:text-gray-400">{capability.description}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Case Studies Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="mb-8"
+            >
+              <h4 className="text-2xl font-bold mb-10 text-center text-gray-800 dark:text-gray-200">
+                Featured <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Success Stories</span>
+              </h4>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700"
+                >
+                  <div className="p-8">
+                    <h5 className="text-xl font-bold mb-4 text-gray-800 dark:text-gray-200">E-Commerce Transformation</h5>
+                    <p className="text-gray-600 dark:text-gray-400 mb-6">
+                      Implemented comprehensive automation strategy for a mid-sized e-commerce business, resulting in 135% revenue growth and 45% reduction in operational costs.
+                    </p>
+                    
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 rounded-full text-sm font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                        135% Revenue Growth
+                      </span>
+                      <span className="px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300">
+                        45% Cost Reduction
+                      </span>
+                      <span className="px-3 py-1 rounded-full text-sm font-medium bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300">
+                        3x Customer Lifetime Value
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700"
+                >
+                  <div className="p-8">
+                    <h5 className="text-xl font-bold mb-4 text-gray-800 dark:text-gray-200">SaaS Growth Acceleration</h5>
+                    <p className="text-gray-600 dark:text-gray-400 mb-6">
+                      Developed and executed strategic growth plan for SaaS platform, achieving 200% user acquisition improvement and 70% increase in customer retention.
+                    </p>
+                    
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 rounded-full text-sm font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                        200% User Growth
+                      </span>
+                      <span className="px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300">
+                        70% Retention Increase
+                      </span>
+                      <span className="px-3 py-1 rounded-full text-sm font-medium bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300">
+                        55% CAC Reduction
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
         );
         
       case 'education':
         return (
           <div className="space-y-16">
-            <div className="text-center max-w-3xl mx-auto">
-              <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">{educationContent.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400">{educationContent.description}</p>
-            </div>
-            
-            <div className="space-y-12">
-              {educationContent.education.map((item, index) => (
+            {/* Header with animated background */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="relative rounded-2xl overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-pink-600/10 dark:from-purple-900/30 dark:to-pink-900/30 z-0"></div>
+              <div className="absolute inset-0 z-0 overflow-hidden">
+                <svg width="100%" height="100%" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute opacity-5 dark:opacity-10">
+                  {/* Books Pattern */}
+                  {[...Array(8)].map((_, i) => (
+                    <path 
+                      key={i}
+                      d={`M${100 + i * 80} 100 L${100 + i * 80} 200 L${160 + i * 80} 200 L${160 + i * 80} 100 Z`} 
+                      stroke="currentColor" 
+                      strokeWidth="1"
+                      fill="none"
+                      className="animate-pulse"
+                      style={{ animationDelay: `${i * 0.2}s` }}
+                    />
+                  ))}
+                  
+                  {/* Connection Lines */}
+                  {[...Array(10)].map((_, i) => (
+                    <path 
+                      key={`line-${i}`}
+                      d={`M${100} ${300 + i * 30} L${700} ${300 + i * 30}`} 
+                      stroke="currentColor" 
+                      strokeWidth="1" 
+                      strokeDasharray="5 5"
+                      className="animate-pulse"
+                      style={{ animationDelay: `${i * 0.1}s` }}
+                    />
+                  ))}
+                </svg>
+              </div>
+              
+              <div className="relative z-10 py-16 px-8 text-center">
                 <motion.div
-                  key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg border border-gray-200 dark:border-gray-700 relative overflow-hidden"
+                  transition={{ delay: 0.2 }}
+                  className="inline-block px-6 py-2 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 font-medium text-sm mb-6"
                 >
-                  <div className="absolute top-5 right-5 text-primary-200 dark:text-primary-800 transform rotate-12">
-                    <CirclePattern />
-                  </div>
-                  
-                  <div className="flex flex-col md:flex-row gap-8">
-                    <div>
-                      <div 
-                        className="w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-lg"
-                        style={{ 
-                          background: `linear-gradient(135deg, ${item.color}, ${item.color}CC)`,
-                          boxShadow: `0 10px 25px -5px ${item.color}33`
-                        }}
-                      >
-                        {item.icon}
-                      </div>
+                  Academic Excellence & Continuous Learning
+                </motion.div>
+                
+                <motion.h3 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                  className="text-3xl md:text-4xl font-bold mb-4 text-gray-800 dark:text-gray-200"
+                >
+                  {educationContent.title}
+                </motion.h3>
+                
+                <motion.p 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                  className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-8"
+                >
+                  {educationContent.description}
+                </motion.p>
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 }}
+                  className="max-w-2xl mx-auto italic text-gray-700 dark:text-gray-300 flex flex-col items-center"
+                >
+                  <FaBook className="text-2xl mb-2 text-purple-600 dark:text-purple-400" />
+                  <p className="text-lg mb-1">"{educationContent.quote}"</p>
+                  <p className="text-sm">— {educationContent.quoteAuthor}</p>
+                </motion.div>
+              </div>
+            </motion.div>
+            
+            {/* Formal Education */}
+            <div>
+              <motion.h4
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-2xl font-bold mb-10 text-center text-gray-800 dark:text-gray-200"
+              >
+                Academic <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">Credentials</span>
+              </motion.h4>
+              
+              <div className="space-y-12">
+                {educationContent.education.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 relative group hover:shadow-xl transition-all duration-300"
+                  >
+                    <div 
+                      className="h-2 w-full"
+                      style={{ backgroundColor: item.color }}
+                    ></div>
+                    <div className="absolute top-5 right-5 text-primary-200 dark:text-primary-800 transform rotate-12 opacity-10 group-hover:opacity-20 transition-opacity">
+                      <CirclePattern />
                     </div>
                     
-                    <div className="flex-1">
-                      <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                        <h4 className="text-xl font-bold text-gray-800 dark:text-gray-200">{item.title}</h4>
-                        <div className="text-sm font-medium text-gray-500 dark:text-gray-400 md:ml-4">
-                          {item.period}
+                    <div className="p-8">
+                      <div className="flex flex-col md:flex-row gap-8">
+                        <div className="flex-shrink-0">
+                          <div 
+                            className="w-20 h-20 rounded-full flex items-center justify-center shadow-lg"
+                            style={{ 
+                              background: `linear-gradient(135deg, ${item.color}, ${item.color}CC)`,
+                              boxShadow: `0 10px 25px -5px ${item.color}33`
+                            }}
+                          >
+                            {item.icon}
+                          </div>
+                        </div>
+                        
+                        <div className="flex-1">
+                          <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                            <h4 className="text-2xl font-bold text-gray-800 dark:text-gray-200">{item.title}</h4>
+                            <div className="text-sm font-medium text-gray-500 dark:text-gray-400 md:ml-4 px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700">
+                              {item.period}
+                            </div>
+                          </div>
+                          
+                          <div className="mb-4">
+                            <div className="text-lg font-medium mb-1" style={{ color: item.color }}>{item.institution}</div>
+                            <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">Focus: {item.focus}</div>
+                            <p className="text-gray-600 dark:text-gray-400 mb-6">{item.description}</p>
+                          </div>
+                          
+                          <div className="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-lg border border-gray-100 dark:border-gray-700">
+                            <h5 className="font-semibold mb-3 text-gray-700 dark:text-gray-300 flex items-center gap-2">
+                              <FaTrophy className="text-sm" style={{ color: item.color }} />
+                              Key Achievements
+                            </h5>
+                            <ul className="space-y-2">
+                              {item.achievements.map((achievement, i) => (
+                                <li key={i} className="flex items-start gap-2 text-gray-600 dark:text-gray-400">
+                                  <div className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" style={{ backgroundColor: item.color }}></div>
+                                  <span>{achievement}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         </div>
                       </div>
-                      
-                      <div className="mb-4">
-                        <div className="text-lg font-medium mb-1" style={{ color: item.color }}>{item.institution}</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-400">Focus: {item.focus}</div>
-                      </div>
-                      
-                      <p className="text-gray-600 dark:text-gray-400">{item.description}</p>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
+              </div>
             </div>
+            
+            {/* Continuous Learning */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <h4 className="text-2xl font-bold mb-10 text-center text-gray-800 dark:text-gray-200">
+                Continuous <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">Professional Development</span>
+              </h4>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {educationContent.continuousLearning.map((course, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700 group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                  >
+                    <div className="p-6">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div 
+                          className="w-12 h-12 rounded-full flex items-center justify-center"
+                          style={{ 
+                            backgroundColor: `${course.color}15`,
+                            color: course.color
+                          }}
+                        >
+                          {course.icon}
+                        </div>
+                        <div>
+                          <div className="text-sm text-gray-500 dark:text-gray-400">{course.year}</div>
+                          <div className="font-medium text-gray-900 dark:text-white">{course.provider}</div>
+                        </div>
+                      </div>
+                      <h5 className="text-lg font-bold mb-3 text-gray-800 dark:text-gray-200">{course.title}</h5>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{course.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+            
+            {/* Learning Philosophy */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="bg-gradient-to-r from-purple-600/10 to-pink-600/10 dark:from-purple-900/30 dark:to-pink-900/30 rounded-2xl p-8 border border-purple-200 dark:border-purple-800 shadow-lg relative overflow-hidden"
+            >
+              <div className="absolute -bottom-4 -right-4 text-primary-200 dark:text-primary-800 opacity-10">
+                <HexagonPattern />
+              </div>
+              
+              <h4 className="text-xl font-bold mb-6 text-center text-gray-800 dark:text-gray-200">My Learning Philosophy</h4>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow">
+                  <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400 mb-4">
+                    <FaBrain className="text-xl" />
+                  </div>
+                  <h5 className="font-bold text-gray-800 dark:text-gray-200 mb-2">Continuous Growth</h5>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Embracing lifelong learning as a core principle for personal and professional development.</p>
+                </div>
+                
+                <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow">
+                  <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400 mb-4">
+                    <FaLightbulb className="text-xl" />
+                  </div>
+                  <h5 className="font-bold text-gray-800 dark:text-gray-200 mb-2">Practical Application</h5>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Translating theoretical knowledge into actionable strategies and tangible business results.</p>
+                </div>
+                
+                <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow">
+                  <div className="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400 mb-4">
+                    <FaUsers className="text-xl" />
+                  </div>
+                  <h5 className="font-bold text-gray-800 dark:text-gray-200 mb-2">Knowledge Sharing</h5>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Actively mentoring and sharing expertise to elevate teams and drive collective success.</p>
+                </div>
+              </div>
+            </motion.div>
           </div>
         );
         

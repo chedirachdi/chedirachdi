@@ -3,45 +3,25 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaSun, FaMoon } from 'react-icons/fa';
+import { useThemeContext } from '@/providers/ThemeProvider';
 
 export default function ThemeSwitcher() {
-  const [theme, setTheme] = useState('light');
   const [mounted, setMounted] = useState(false);
-
-  // Initialize theme from localStorage or system preference
+  
+  // Wait for client-side hydration to complete
   useEffect(() => {
     setMounted(true);
-    
-    // Check for saved theme preference or use system preference
-    const savedTheme = localStorage.getItem('theme');
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    
-    const initialTheme = savedTheme || systemTheme;
-    setTheme(initialTheme);
-    
-    // Apply the theme to the document
-    if (initialTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
   }, []);
-
-  // Toggle theme function
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    
-    if (newTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  };
-
+  
   // Don't render anything until mounted to prevent hydration mismatch
-  if (!mounted) return null;
+  if (!mounted) {
+    return (
+      <div className="w-10 h-10 rounded-full flex items-center justify-center bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700"></div>
+    );
+  }
+  
+  // Now that we're mounted, we can safely use the theme context
+  const { theme, toggleTheme } = useThemeContext();
 
   return (
     <motion.button

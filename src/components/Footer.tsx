@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FaLinkedinIn, FaEnvelope, FaMapMarkerAlt, FaPhone, FaChevronRight } from 'react-icons/fa';
 
@@ -55,7 +56,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 pt-16 pb-8 relative overflow-hidden">
+    <footer className="bg-gray-50 border-t border-gray-200 pt-16 pb-8 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-blue-500/5 to-transparent rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-indigo-500/5 to-transparent rounded-full blur-3xl"></div>
@@ -71,15 +72,21 @@ export default function Footer() {
           {/* Brand column */}
           <motion.div variants={itemVariants} className="md:col-span-1">
             <div className="flex items-center mb-4">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md">
-                CR
+              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md overflow-hidden">
+                <Image 
+                  src="/chedi.jpeg" 
+                  alt="Chedi Rachdi" 
+                  width={48} 
+                  height={48} 
+                  className="object-cover w-full h-full"
+                />
               </div>
               <div className="ml-3">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Chedi Rachdi</h3>
+                <h3 className="text-xl font-bold text-gray-900">Chedi Rachdi</h3>
                 <p className="text-sm bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 font-medium">CEO & Business Automation Expert</p>
               </div>
             </div>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">
+            <p className="text-gray-600 mb-6">
               Helping businesses transform through strategic automation and leadership excellence.
             </p>
             <div className="flex space-x-3">
@@ -90,7 +97,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white text-gray-700 hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
                 >
                   {link.icon}
                 </a>
@@ -100,17 +107,17 @@ export default function Footer() {
           
           {/* Navigation column */}
           <motion.div variants={itemVariants} className="md:col-span-1">
-            <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white relative inline-block">
+            <h3 className="text-lg font-semibold mb-4 text-gray-900 relative inline-block">
               Navigation
               <span className="absolute -bottom-1 left-0 w-1/2 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600"></span>
             </h3>
             <ul className="space-y-2">
               {navLinks.map((link, index) => (
                 <li key={index} className="flex items-center">
-                  <FaChevronRight className="text-blue-500 dark:text-blue-400 mr-2 text-xs" />
+                  <FaChevronRight className="text-blue-500 mr-2 text-xs" />
                   <Link 
                     href={link.href}
-                    className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -121,17 +128,17 @@ export default function Footer() {
           
           {/* Services column */}
           <motion.div variants={itemVariants} className="md:col-span-1">
-            <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white relative inline-block">
+            <h3 className="text-lg font-semibold mb-4 text-gray-900 relative inline-block">
               Services
               <span className="absolute -bottom-1 left-0 w-1/2 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600"></span>
             </h3>
             <ul className="space-y-2">
               {services.map((service, index) => (
                 <li key={index} className="flex items-center">
-                  <FaChevronRight className="text-blue-500 dark:text-blue-400 mr-2 text-xs" />
+                  <FaChevronRight className="text-blue-500 mr-2 text-xs" />
                   <Link 
                     href={service.href}
-                    className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="text-gray-600 hover:text-blue-600 transition-colors"
                   >
                     {service.label}
                   </Link>
@@ -142,46 +149,46 @@ export default function Footer() {
           
           {/* Contact column */}
           <motion.div variants={itemVariants} className="md:col-span-1">
-            <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white relative inline-block">
+            <h3 className="text-lg font-semibold mb-4 text-gray-900 relative inline-block">
               Contact
               <span className="absolute -bottom-1 left-0 w-1/2 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600"></span>
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start">
-                <div className="mt-1 mr-3 w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                <div className="mt-1 mr-3 w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
                   <FaEnvelope className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Email</p>
+                  <p className="text-sm text-gray-500 mb-1">Email</p>
                   <a 
                     href="mailto:chedi@genlogic.io" 
-                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="text-gray-700 hover:text-blue-600 transition-colors"
                   >
                     chedi@genlogic.io
                   </a>
                 </div>
               </li>
               <li className="flex items-start">
-                <div className="mt-1 mr-3 w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                <div className="mt-1 mr-3 w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
                   <FaPhone className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Phone</p>
+                  <p className="text-sm text-gray-500 mb-1">Phone</p>
                   <a 
                     href="tel:+447401137621" 
-                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    className="text-gray-700 hover:text-blue-600 transition-colors"
                   >
                     +44 7401 137621
                   </a>
                 </div>
               </li>
               <li className="flex items-start">
-                <div className="mt-1 mr-3 w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                <div className="mt-1 mr-3 w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
                   <FaMapMarkerAlt className="w-4 h-4" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Location</p>
-                  <span className="text-gray-700 dark:text-gray-300">Europe</span>
+                  <p className="text-sm text-gray-500 mb-1">Location</p>
+                  <span className="text-gray-700">Europe</span>
                 </div>
               </li>
             </ul>
@@ -189,11 +196,11 @@ export default function Footer() {
         </motion.div>
         
         {/* Divider */}
-        <div className="border-t border-gray-200 dark:border-gray-800 my-8"></div>
+        <div className="border-t border-gray-200 my-8"></div>
         
         {/* Bottom section */}
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 md:mb-0">
+          <p className="text-gray-600 text-sm mb-4 md:mb-0">
             © {currentYear} Chedi Rachdi. All rights reserved.
           </p>
         </div>

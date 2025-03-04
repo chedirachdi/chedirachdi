@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes, FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
-import ThemeSwitcher from './ThemeSwitcher';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -65,7 +65,7 @@ export default function Navbar() {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? 'py-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg shadow-lg border-b border-gray-200/50 dark:border-gray-800/50' 
+          ? 'py-3 bg-white/90 backdrop-blur-lg shadow-lg border-b border-gray-200/50' 
           : 'py-5 bg-transparent'
       }`}
     >
@@ -74,11 +74,17 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="relative z-10 group">
             <div className="flex items-center">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:shadow-blue-500/20 transition-all duration-300">
-                CR
+              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:shadow-blue-500/20 transition-all duration-300 overflow-hidden">
+                <Image 
+                  src="/chedi.jpeg" 
+                  alt="Chedi Rachdi" 
+                  width={40} 
+                  height={40} 
+                  className="object-cover w-full h-full"
+                />
               </div>
               <div className="ml-3">
-                <h1 className="text-xl font-bold text-gray-900 dark:text-white">Chedi Rachdi</h1>
+                <h1 className="text-xl font-bold text-gray-900">Chedi Rachdi</h1>
                 <p className="text-xs bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 font-medium">CEO & Business Automation Expert</p>
               </div>
             </div>
@@ -92,8 +98,8 @@ export default function Navbar() {
                 href={link.href}
                 className={`relative px-4 py-2 text-sm font-medium transition-colors ${
                   activeSection === link.href.substring(1)
-                    ? 'text-blue-600 dark:text-blue-400'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+                    ? 'text-blue-600'
+                    : 'text-gray-700 hover:text-blue-600'
                 }`}
               >
                 {link.label}
@@ -121,15 +127,12 @@ export default function Navbar() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
+                  className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
                 >
                   {link.icon}
                 </a>
               ))}
             </div>
-
-            {/* Theme switcher */}
-            <ThemeSwitcher />
 
             {/* Contact button - desktop only */}
             <Link
@@ -142,7 +145,7 @@ export default function Navbar() {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors"
+              className="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-blue-50 transition-colors"
               aria-label="Toggle menu"
             >
               {isOpen ? <FaTimes /> : <FaBars />}
@@ -159,7 +162,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-lg"
+            className="md:hidden bg-white border-t border-gray-200 shadow-lg"
           >
             <div className="container mx-auto px-4 py-6">
               <nav className="flex flex-col space-y-4">
@@ -170,8 +173,8 @@ export default function Navbar() {
                     onClick={handleLinkClick}
                     className={`py-2 text-base font-medium ${
                       activeSection === link.href.substring(1)
-                        ? 'text-blue-600 dark:text-blue-400'
-                        : 'text-gray-700 dark:text-gray-300'
+                        ? 'text-blue-600'
+                        : 'text-gray-700'
                     }`}
                   >
                     {link.label}
@@ -188,7 +191,7 @@ export default function Navbar() {
                 </Link>
                 
                 {/* Social links - mobile only */}
-                <div className="flex items-center space-x-4 pt-4 border-t border-gray-200 dark:border-gray-800">
+                <div className="flex items-center space-x-4 pt-4 border-t border-gray-200">
                   {socialLinks.map((link, index) => (
                     <a
                       key={index}
@@ -196,7 +199,7 @@ export default function Navbar() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={link.label}
-                      className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 hover:text-white transition-all duration-300"
+                      className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-600 hover:text-white transition-all duration-300"
                     >
                       {link.icon}
                     </a>
