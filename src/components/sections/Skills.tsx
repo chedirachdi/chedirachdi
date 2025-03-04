@@ -3,7 +3,6 @@
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaChartLine, FaBullhorn, FaUsers, FaLightbulb, FaCogs, FaHandshake, FaChess } from 'react-icons/fa';
-import { ReactNode } from 'react';
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState('business');
@@ -249,75 +248,5 @@ export default function Skills() {
         </motion.div>
       </div>
     </section>
-  );
-}
-
-// Skills Radar Chart Component
-function SkillsRadarChart() {
-  return (
-    <svg width="100%" height="400" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="max-w-lg">
-      {/* Background */}
-      <circle cx="250" cy="200" r="150" fill="#EFF6FF" />
-      
-      {/* Radar levels */}
-      <circle cx="250" cy="200" r="150" fill="none" stroke="#E2E8F0" strokeWidth="1" />
-      <circle cx="250" cy="200" r="120" fill="none" stroke="#E2E8F0" strokeWidth="1" />
-      <circle cx="250" cy="200" r="90" fill="none" stroke="#E2E8F0" strokeWidth="1" />
-      <circle cx="250" cy="200" r="60" fill="none" stroke="#E2E8F0" strokeWidth="1" />
-      <circle cx="250" cy="200" r="30" fill="none" stroke="#E2E8F0" strokeWidth="1" />
-      
-      {/* Axis lines */}
-      <line x1="250" y1="50" x2="250" y2="350" stroke="#E2E8F0" strokeWidth="1" />
-      <line x1="100" y1="200" x2="400" y2="200" stroke="#E2E8F0" strokeWidth="1" />
-      <line x1="152.5" y1="102.5" x2="347.5" y2="297.5" stroke="#E2E8F0" strokeWidth="1" />
-      <line x1="152.5" y1="297.5" x2="347.5" y2="102.5" stroke="#E2E8F0" strokeWidth="1" />
-      
-      {/* Skill points */}
-      <path 
-        d="M250,65 L355,130 L355,270 L250,335 L145,270 L145,130 Z" 
-        fill="url(#skillGradient)" 
-        fillOpacity="0.3" 
-        stroke="url(#skillGradient)" 
-        strokeWidth="2"
-      />
-      
-      <circle cx="250" cy="65" r="6" fill="#3B82F6" />
-      <circle cx="355" cy="130" r="6" fill="#3B82F6" />
-      <circle cx="355" cy="270" r="6" fill="#3B82F6" />
-      <circle cx="250" cy="335" r="6" fill="#3B82F6" />
-      <circle cx="145" cy="270" r="6" fill="#3B82F6" />
-      <circle cx="145" cy="130" r="6" fill="#3B82F6" />
-      
-      {/* Skill labels */}
-      <text x="250" y="40" textAnchor="middle" fill="currentColor" className="text-gray-700 dark:text-gray-300" fontWeight="bold">
-        Business Strategy
-      </text>
-      <text x="380" y="130" textAnchor="start" fill="currentColor" className="text-gray-700 dark:text-gray-300" fontWeight="bold">
-        Marketing
-      </text>
-      <text x="380" y="270" textAnchor="start" fill="currentColor" className="text-gray-700 dark:text-gray-300" fontWeight="bold">
-        Technology
-      </text>
-      <text x="250" y="365" textAnchor="middle" fill="currentColor" className="text-gray-700 dark:text-gray-300" fontWeight="bold">
-        Leadership
-      </text>
-      <text x="120" y="270" textAnchor="end" fill="currentColor" className="text-gray-700 dark:text-gray-300" fontWeight="bold">
-        Client Relations
-      </text>
-      <text x="120" y="130" textAnchor="end" fill="currentColor" className="text-gray-700 dark:text-gray-300" fontWeight="bold">
-        Innovation
-      </text>
-      
-      {/* Center point */}
-      <circle cx="250" cy="200" r="4" fill="#3B82F6" />
-      
-      {/* Gradient definition */}
-      <defs>
-        <linearGradient id="skillGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#3B82F6" />
-          <stop offset="100%" stopColor="#8B5CF6" />
-        </linearGradient>
-      </defs>
-    </svg>
   );
 } 

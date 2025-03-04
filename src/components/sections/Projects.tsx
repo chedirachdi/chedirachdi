@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { FaChartLine, FaUsers, FaLightbulb, FaGlobe, FaRocket, FaHandshake } from 'react-icons/fa';
 
 export default function Projects() {
