@@ -175,7 +175,7 @@ export default function Contact() {
                     <div>
                       <h4 className="text-lg md:text-xl font-semibold mb-2">Ready to collaborate?</h4>
                       <p className="text-blue-100 mb-6 text-sm md:text-base">
-                        I'm always open to discussing new projects, opportunities, and partnerships.
+                        I&apos;m always open to discussing new projects, opportunities, and partnerships.
                       </p>
                     </div>
                     <div>
