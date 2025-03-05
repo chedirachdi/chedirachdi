@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaGraduationCap, FaChartLine, FaUsers, FaRocket, FaGlobeAmericas, FaLightbulb, FaCogs, FaHandshake, FaChess, FaChartBar, FaCertificate, FaLaptopCode, FaRobot, FaWater, FaCheckCircle, FaArrowCircleUp } from 'react-icons/fa';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { FaGraduationCap, FaChartLine, FaUsers, FaRocket, FaGlobeAmericas, FaLightbulb, FaCogs, FaHandshake, FaChess, FaChartBar, FaCertificate, FaLaptopCode, FaRobot, FaWater, FaCheckCircle, FaBuilding } from 'react-icons/fa';
 
 // Optimize animation variants
 const containerVariants = {
@@ -22,37 +22,15 @@ const itemVariants = {
   visible: {
     y: 0,
     opacity: 1,
-    transition: { 
+    transition: {
       duration: 0.3,
       ease: "easeOut"
     }
   }
 };
 
-// Optimize tab transitions
-const tabVariants = {
-  hidden: { opacity: 0, x: -10 },
-  visible: { 
-    opacity: 1, 
-    x: 0,
-    transition: {
-      duration: 0.2,
-      ease: "easeOut"
-    }
-  },
-  exit: { 
-    opacity: 0, 
-    x: 10,
-    transition: {
-      duration: 0.2,
-      ease: "easeIn"
-    }
-  }
-};
-
 export default function Experience() {
   const [activeTab, setActiveTab] = useState('leadership');
-  const containerRef = useRef(null);
   
   // Define the leadership achievements and business impact sections
   const leadershipContent = {
