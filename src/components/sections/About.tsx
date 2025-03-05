@@ -3,43 +3,79 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaChartLine, FaUsers, FaLightbulb } from 'react-icons/fa';
+import SectionWrapper from '../layout/SectionWrapper';
 
 // Service Card Component
 function ServiceCard({ icon, title, description, color }: { icon: React.ReactNode, title: string, description: string, color: string }) {
   return (
-    <div className="bg-white rounded-lg p-4 md:p-5 shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300 group">
-      <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${color} flex items-center justify-center text-white mb-4 transform group-hover:scale-110 transition-transform`}>
-        {icon}
+    <motion.div
+      whileHover={{ y: -5, scale: 1.02 }}
+      className="group relative"
+    >
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-300" />
+      <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 relative h-full hover:border-blue-200 transition-all duration-300">
+        <div className={`w-16 h-16 rounded-2xl ${color} flex items-center justify-center text-white mb-6 shadow-lg transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+          <div className="text-2xl">{icon}</div>
+        </div>
+        <h3 className="text-xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">{title}</h3>
+        <p className="text-gray-600 leading-relaxed">{description}</p>
       </div>
-      <h3 className="text-lg font-semibold mb-2 text-gray-900">{title}</h3>
-      <p className="text-gray-600 text-sm">{description}</p>
-    </div>
+    </motion.div>
   );
 }
 
 // Timeline Item Component
 function TimelineItem({ year, title, description, highlights }: { year: string, title: string, description: string, highlights?: string[] }) {
   return (
-    <div className="relative pl-8 border-l-2 border-blue-500">
-      <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500"></div>
-      <div className="mb-1 text-sm font-medium text-blue-600">{year}</div>
-      <h3 className="text-lg font-semibold mb-2 text-gray-900">{title}</h3>
-      <p className="text-gray-600 mb-3">{description}</p>
+    <motion.div 
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      className="relative pl-12 pb-12"
+    >
+      {/* Timeline Line */}
+      <div className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-blue-500 via-indigo-500 to-transparent" />
       
-      {highlights && highlights.length > 0 && (
-        <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
-          <h4 className="text-sm font-semibold mb-2 text-gray-700">Key Achievements:</h4>
-          <ul className="space-y-1">
-            {highlights.map((highlight, index) => (
-              <li key={index} className="flex items-start gap-2 text-sm text-gray-600">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 flex-shrink-0"></div>
-                <span>{highlight}</span>
-              </li>
-            ))}
-          </ul>
+      {/* Timeline Dot */}
+      <div className="absolute -left-3 top-0">
+        <div className="relative w-6 h-6">
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 animate-pulse opacity-50" />
+          <div className="absolute inset-1 rounded-full bg-white" />
+          <div className="absolute inset-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600" />
         </div>
-      )}
-    </div>
+      </div>
+
+      {/* Year Badge */}
+      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-500/5 to-indigo-500/5 border border-blue-100 mb-4">
+        <span className="text-blue-600 font-semibold">{year}</span>
+      </div>
+
+      {/* Content */}
+      <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-xl hover:border-blue-200">
+        <h3 className="text-xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">{title}</h3>
+        <p className="text-gray-600 mb-6 leading-relaxed">{description}</p>
+        
+        {highlights && highlights.length > 0 && (
+          <div className="space-y-3">
+            <h4 className="text-sm font-semibold text-blue-600 mb-4">Key Achievements</h4>
+            <div className="grid gap-3">
+              {highlights.map((highlight, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex items-start gap-3 group"
+                >
+                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-300" />
+                  <span className="text-gray-600">{highlight}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </motion.div>
   );
 }
 
@@ -77,7 +113,7 @@ export default function About() {
         <div className="space-y-6">
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100 mb-6">
             <p className="text-gray-700 text-lg leading-relaxed">
-              I&apos;m an <span className="font-semibold text-blue-600">Electromechanical Engineer</span> turned <span className="font-semibold text-indigo-600">Software Developer</span> with a passion for automation and business transformation. With over 15 years of experience spanning hardware and software domains, I specialize in creating intelligent systems that bridge the physical and digital worlds.
+              I'm a <span className="font-semibold text-blue-600">Marketing Automation Expert</span> and <span className="font-semibold text-indigo-600">Business Development Leader</span> with a proven track record in transforming businesses through innovative automation solutions. As the CEO of GenLogic and with extensive experience in multiple leadership roles, I specialize in creating strategic frameworks that drive growth and efficiency.
             </p>
           </div>
           
@@ -87,22 +123,22 @@ export default function About() {
                 <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
                   <FaLightbulb />
                 </div>
-                <h3 className="font-bold text-gray-800">Technical Expertise</h3>
+                <h3 className="font-bold text-gray-800">Marketing Automation</h3>
               </div>
               <p className="text-gray-600">
-                My background in electromechanical engineering combined with software development gives me a unique perspective on creating integrated solutions that optimize both hardware and software components.
+                I excel in implementing comprehensive marketing automation solutions, focusing on lead nurturing, campaign management, and CRM integration to optimize direct sales and drive business growth.
               </p>
             </div>
             
             <div className="bg-white p-5 rounded-xl shadow-md border border-gray-100">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600">
-                  <FaLightbulb />
+                  <FaChartLine />
                 </div>
-                <h3 className="font-bold text-gray-800">AI & Automation</h3>
+                <h3 className="font-bold text-gray-800">Strategic Leadership</h3>
               </div>
               <p className="text-gray-600">
-                I leverage AI and automation technologies to create intelligent systems that streamline operations, enhance productivity, and drive business growth through data-driven insights.
+                With experience leading multiple successful ventures, I bring a strategic approach to business development, focusing on market expansion, stakeholder management, and sustainable growth.
               </p>
             </div>
           </div>
@@ -115,13 +151,13 @@ export default function About() {
               <h3 className="font-bold text-gray-800">My Approach</h3>
             </div>
             <p className="text-gray-600 mb-4">
-              I approach each project with a holistic mindset, focusing on the intersection of technology, business processes, and user experience. By understanding the complete ecosystem, I develop solutions that not only solve immediate problems but also create long-term value.
+              I approach each project with a focus on innovation and excellence, leveraging deep sector knowledge and analytical insights to provide candid, impartial advice. My expertise in cultural and creative industries, combined with technical knowledge in automation, enables me to deliver transformative solutions.
             </p>
             <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">Problem Solver</span>
-              <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">Systems Thinker</span>
-              <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">Continuous Learner</span>
-              <span className="px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-sm font-medium">Innovation Driven</span>
+              <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">Marketing Expert</span>
+              <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium">Business Strategist</span>
+              <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">Automation Specialist</span>
+              <span className="px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-sm font-medium">Innovation Leader</span>
             </div>
           </div>
         </div>
@@ -134,33 +170,33 @@ export default function About() {
       content: (
         <div className="space-y-6">
           <p className="text-gray-600 mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-100">
-            I offer specialized services that combine my expertise in engineering, software development, and business automation to help organizations optimize their operations and drive growth.
+            As a marketing automation expert and business development leader, I offer comprehensive solutions that help organizations optimize their operations, drive growth, and achieve sustainable success in the digital age.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <ServiceCard 
               icon={<FaUsers />}
-              title="Full-Stack Development"
-              description="Custom web and mobile applications built with modern technologies like React, Next.js, and Node.js to solve specific business challenges."
-              color="from-blue-500 to-indigo-600"
+              title="Marketing Automation"
+              description="Comprehensive marketing automation solutions including lead nurturing, campaign management, and CRM integration for optimized direct sales performance."
+              color="bg-gradient-to-r from-blue-500 to-indigo-600"
             />
             <ServiceCard 
               icon={<FaLightbulb />}
-              title="AI & Automation Solutions"
-              description="Intelligent systems that leverage AI, machine learning, and automation to streamline workflows and enhance decision-making processes."
-              color="from-indigo-500 to-purple-600"
+              title="Strategic Consulting"
+              description="Expert guidance in business strategy, market expansion, and operational optimization for cultural and creative industries."
+              color="bg-gradient-to-r from-indigo-500 to-purple-600"
+            />
+            <ServiceCard 
+              icon={<FaChartLine />}
+              title="Sales Optimization"
+              description="Advanced sales strategies and automation tools to streamline processes, improve conversion rates, and maximize revenue potential."
+              color="bg-gradient-to-r from-purple-500 to-pink-600"
             />
             <ServiceCard 
               icon={<FaLightbulb />}
-              title="Systems Integration"
-              description="Seamless integration of hardware and software systems to create unified solutions that optimize operational efficiency."
-              color="from-purple-500 to-pink-600"
-            />
-            <ServiceCard 
-              icon={<FaLightbulb />}
-              title="Digital Transformation"
-              description="Strategic guidance and implementation support for organizations looking to embrace digital technologies and modernize their operations."
-              color="from-pink-500 to-rose-600"
+              title="Business Transformation"
+              description="End-to-end business transformation services focusing on digital innovation, process automation, and sustainable growth strategies."
+              color="bg-gradient-to-r from-pink-500 to-rose-600"
             />
           </div>
           
@@ -171,16 +207,16 @@ export default function About() {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg">
-                <div className="font-bold text-blue-700 mb-2">Discovery</div>
-                <p className="text-sm text-gray-700">In-depth analysis of your current systems, challenges, and objectives to identify opportunities.</p>
+                <div className="font-bold text-blue-700 mb-2">Analysis & Strategy</div>
+                <p className="text-sm text-gray-700">Comprehensive assessment of your current systems and processes to develop targeted automation strategies.</p>
               </div>
               <div className="p-4 bg-gradient-to-r from-indigo-50 to-indigo-100 rounded-lg">
-                <div className="font-bold text-indigo-700 mb-2">Solution Design</div>
-                <p className="text-sm text-gray-700">Custom-tailored solutions designed to address your specific needs and integrate with existing systems.</p>
+                <div className="font-bold text-indigo-700 mb-2">Implementation</div>
+                <p className="text-sm text-gray-700">Expert implementation of marketing automation tools and processes, ensuring seamless integration with existing systems.</p>
               </div>
               <div className="p-4 bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg">
-                <div className="font-bold text-purple-700 mb-2">Implementation</div>
-                <p className="text-sm text-gray-700">Efficient development and deployment with continuous feedback and iterative improvements.</p>
+                <div className="font-bold text-purple-700 mb-2">Optimization</div>
+                <p className="text-sm text-gray-700">Continuous monitoring and optimization of automated processes to maximize ROI and business impact.</p>
               </div>
             </div>
           </div>
@@ -195,33 +231,60 @@ export default function About() {
         <div className="space-y-8">
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100 mb-6">
             <p className="text-gray-700">
-              My professional journey spans from electromechanical engineering to software development and business automation, giving me a unique perspective on creating integrated solutions.
+              With over 20 years of experience in business development and marketing automation, I've led multiple successful ventures and helped businesses transform their operations through innovative technology solutions and strategic planning.
             </p>
           </div>
           
           <TimelineItem 
-            year="2020 - Present"
-            title="Independent Software Developer & Automation Specialist"
-            description="Developing custom software solutions and automation systems for businesses across various industries, with a focus on integrating AI and machine learning technologies."
-            highlights={["Created custom automation solutions for e-commerce businesses", "Developed AI-powered analytics dashboards", "Implemented integrated hardware-software systems"]}
+            year="Dec 2023 - Present"
+            title="Owner / Marketing Automation Guru - GenLogic"
+            description="Leading an esteemed international consultancy specializing in strategy and planning for cultural and creative industries, with a focus on marketing automation for direct sales."
+            highlights={[
+              "Developed comprehensive marketing automation strategies for direct sales optimization",
+              "Implemented advanced lead nurturing and campaign management systems",
+              "Integrated CRM solutions for improved sales and marketing alignment",
+              "Provided strategic consulting for cultural and creative industry clients",
+              "Established innovative automation frameworks for business growth"
+            ]}
           />
+          
           <TimelineItem 
-            year="2015 - 2020"
-            title="Systems Integration Engineer"
-            description="Led the design and implementation of integrated systems combining hardware and software components for industrial automation applications."
-            highlights={["Reduced operational costs by 35% through automation", "Integrated IoT sensors with cloud-based monitoring systems", "Optimized production processes using data analytics"]}
+            year="Jan 2022 - Present"
+            title="CEO / Managing Partner - NAZAX Application Run"
+            description="Leading business development and strategic growth initiatives while managing key client relationships and market expansion."
+            highlights={[
+              "Developed and executed comprehensive growth strategies",
+              "Managed and expanded client relationships",
+              "Led stakeholder negotiations and contract management",
+              "Identified new business opportunities and revenue streams",
+              "Analyzed market trends and competitive landscape"
+            ]}
           />
+          
           <TimelineItem 
-            year="2010 - 2015"
-            title="Electromechanical Engineer"
-            description="Designed and developed electromechanical systems for industrial applications, focusing on efficiency and reliability."
-            highlights={["Designed control systems for manufacturing equipment", "Implemented preventive maintenance protocols", "Optimized energy consumption in industrial systems"]}
+            year="Apr 2023 - Jul 2024"
+            title="Chief Executive Officer - WEBBEC"
+            description="Spearheaded innovative recruitment solutions and talent acquisition strategies for diverse organizations."
+            highlights={[
+              "Implemented innovative sourcing strategies across traditional and modern channels",
+              "Developed comprehensive screening and selection methodologies",
+              "Created structured onboarding programs for client organizations",
+              "Enhanced candidate experience through technology integration",
+              "Established strategic partnerships for talent acquisition"
+            ]}
           />
+          
           <TimelineItem 
-            year="2004 - 2010"
-            title="Technical Specialist"
-            description="Provided technical support and maintenance for complex electromechanical systems, developing a deep understanding of system integration challenges."
-            highlights={["Troubleshot and resolved complex system failures", "Implemented system upgrades and modifications", "Trained technical teams on system operations"]}
+            year="Aug 2022 - Feb 2023"
+            title="Tech Sales Manager - Celantur"
+            description="Led technical sales initiatives and strategic business development for mobile mapping solutions and geospatial data services."
+            highlights={[
+              "Developed technical sales strategies for complex mapping solutions",
+              "Managed key client relationships and technical implementations",
+              "Created strategic frameworks for market expansion",
+              "Led negotiations with technical stakeholders",
+              "Analyzed market opportunities in geospatial technology"
+            ]}
           />
         </div>
       )
@@ -229,65 +292,103 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4 max-w-6xl">
+    <section className="relative py-20 sm:py-32 bg-gradient-to-br from-gray-50 via-white to-blue-50 overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(99,102,241,0.1),transparent_50%)]" />
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: 'linear-gradient(to right, rgba(59,130,246,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(59,130,246,0.03) 1px, transparent 1px)',
+            backgroundSize: '3rem 3rem'
+          }}
+        />
+      </div>
+
+      <div className="container mx-auto px-4 max-w-6xl relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="space-y-6 md:space-y-8"
+          className="space-y-12"
         >
-          {/* Section header */}
-          <div className="text-center max-w-3xl mx-auto">
-            <motion.div variants={itemVariants} className="inline-block mb-3">
-              <div className="w-12 md:w-16 h-1 bg-blue-600 rounded-full mx-auto"></div>
+          {/* Enhanced Section Header */}
+          <div className="text-center max-w-3xl mx-auto relative">
+            <motion.div 
+              variants={itemVariants} 
+              className="absolute -top-12 left-1/2 -translate-x-1/2 w-40 h-40 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 rounded-full blur-3xl"
+            />
+            <motion.div variants={itemVariants} className="inline-block">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/5 to-indigo-500/5 border border-blue-100 mb-6">
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 animate-pulse" />
+                <span className="text-blue-600 font-medium text-sm">
+                  Discover My Story
+                </span>
+              </div>
             </motion.div>
             <motion.h2 
               variants={itemVariants}
-              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-gray-900"
+              className="text-5xl font-bold mb-6 relative text-gray-900"
             >
-              About <span className="text-blue-600">Me</span>
+              Marketing <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Automation</span> Expert
             </motion.h2>
-            <motion.p 
+            <motion.p
               variants={itemVariants}
-              className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4 md:px-0"
+              className="text-gray-800 text-lg max-w-2xl mx-auto font-medium"
             >
-              Discover my journey, expertise, and the value I bring to businesses
+              CEO of GenLogic | International Business Consultant | Specializing in Marketing Automation & Strategic Growth for Cultural and Creative Industries
             </motion.p>
           </div>
 
-          {/* Tab navigation */}
-          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3 md:gap-4">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-4 md:px-6 py-2 md:py-3 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 ${
-                  activeTab === tab.id
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                <div className="flex items-center gap-2">
-                  {tab.icon}
-                  {tab.label}
-                </div>
-              </button>
-            ))}
-          </motion.div>
+          {/* Enhanced Tabs Navigation */}
+          <div className="flex justify-center mb-12">
+            <div className="p-1.5 bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-purple-500/10 rounded-2xl">
+              <div className="inline-flex bg-white rounded-xl p-1.5 shadow-sm">
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`relative flex items-center gap-2 px-8 py-3.5 rounded-lg text-sm font-medium transition-all duration-300 ${
+                      activeTab === tab.id
+                        ? 'text-white shadow-lg'
+                        : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    }`}
+                  >
+                    {activeTab === tab.id && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                    <span className="relative flex items-center gap-2">
+                      {tab.icon}
+                      {tab.label}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
 
-          {/* Tab content */}
+          {/* Enhanced Tab Content */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              variants={itemVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="mt-6 md:mt-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="relative"
             >
-              {tabs.find(tab => tab.id === activeTab)?.content}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-indigo-500/5 to-purple-500/5 rounded-3xl blur-3xl" />
+              <div className="bg-white/80 backdrop-blur-xl rounded-3xl border border-gray-100/50 p-8 shadow-xl relative">
+                <div className="relative">
+                  {tabs.find(tab => tab.id === activeTab)?.content}
+                </div>
+              </div>
             </motion.div>
           </AnimatePresence>
         </motion.div>

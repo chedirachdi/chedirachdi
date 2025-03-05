@@ -102,154 +102,206 @@ export default function Contact() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
-      transition: { duration: 0.2 }
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
     }
   };
 
   const IconComponent = ({ name }: { name: keyof typeof Icons }) => {
     const Icon = Icons[name];
-    return <Icon className="w-5 h-5" />;
+    return <Icon className="text-2xl" />;
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4 max-w-6xl" ref={ref}>
+    <section id="contact" className="relative py-20 sm:py-32 bg-gradient-to-br from-gray-50 via-white to-blue-50 overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(99,102,241,0.1),transparent_50%)]" />
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: 'linear-gradient(to right, rgba(59,130,246,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(59,130,246,0.03) 1px, transparent 1px)',
+            backgroundSize: '3rem 3rem'
+          }}
+        />
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10" ref={ref}>
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="space-y-6 md:space-y-8"
+          viewport={{ once: true, amount: 0.1 }}
+          className="space-y-16"
         >
           {/* Section header */}
-          <div className="text-center max-w-3xl mx-auto">
-            <div className="w-12 md:w-16 h-1 bg-blue-600 rounded-full mx-auto mb-3"></div>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-gray-900">
-              Let&apos;s <span className="text-blue-600">Connect</span>
-            </h2>
-            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4 md:px-0">
-              I&apos;m always open to discussing new projects, opportunities, and partnerships.
-            </p>
+          <div className="text-center max-w-3xl mx-auto relative">
+            <motion.div variants={itemVariants} className="inline-block">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/5 to-indigo-500/5 border border-blue-100 mb-6">
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 animate-pulse" />
+                <span className="text-blue-600 font-medium text-sm">
+                  Let's Connect
+                </span>
+              </div>
+            </motion.div>
+            <motion.h2 
+              variants={itemVariants}
+              className="text-5xl font-bold mb-6 relative"
+            >
+              <span className="text-gray-900">Ready to </span>
+              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">Transform</span>
+              <span className="text-gray-900"> Your Business?</span>
+            </motion.h2>
+            <motion.p 
+              variants={itemVariants}
+              className="text-gray-600 text-lg max-w-2xl mx-auto"
+            >
+              Let's discuss how my expertise in marketing automation and business development can help your organization achieve sustainable growth
+            </motion.p>
           </div>
 
-          {/* Contact grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 items-stretch">
-            {/* Contact information - 2 columns */}
-            <div className="lg:col-span-2 space-y-4 md:space-y-6">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">
-                Contact Information
-              </h3>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                {contactInfo.map((item, index) => (
-                  <motion.div 
-                    key={index}
-                    variants={itemVariants}
-                    className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-200 overflow-hidden"
-                  >
-                    <div className={`h-1 bg-gradient-to-r ${item.gradient}`}></div>
-                    <div className="p-4 md:p-6">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white">
-                          <IconComponent name={item.iconName} />
-                        </div>
-                        <h4 className="text-lg font-semibold text-gray-900">{item.title}</h4>
-                      </div>
-                      <p className="text-gray-600 mb-4">{item.description}</p>
-                      <div className="flex items-center gap-2">
-                        <span className="text-blue-600">{item.value}</span>
-                        {item.link && (
-                          <a 
-                            href={item.link} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-700 transition-colors inline-flex items-center gap-1"
-                            aria-label={`Open ${item.title.toLowerCase()} ${item.value} in a new window`}
-                          >
-                            <IconComponent name="FaExternalLinkAlt" />
-                            <span className="sr-only">Open in new window</span>
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                {/* Social links card */}
-                <div className="col-span-full sm:col-span-1 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-200 overflow-hidden">
-                  <div className="h-1" style={{ backgroundColor: '#0077B5' }}></div>
-                  <div className="p-4 md:p-6">
-                    <h4 className="text-base md:text-lg font-semibold text-gray-900 mb-4">Connect on</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {socialLinks.map((social, index) => (
-                        <a
-                          key={index}
-                          href={social.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-3 md:px-4 py-2 rounded-lg text-white hover:opacity-90 transition-opacity duration-200 text-sm md:text-base"
-                          style={{ backgroundColor: social.color }}
-                        >
-                          <IconComponent name={social.iconName} />
-                          <span>{social.name}</span>
-                        </a>
-                      ))}
+          {/* Network Stats */}
+          <motion.div 
+            variants={itemVariants}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
+            {networkStats.map((stat, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ y: -5 }}
+                className="bg-white/80 backdrop-blur-md rounded-2xl p-8 border border-blue-100/30 shadow-sm hover:shadow-md transition-all duration-300"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center text-white">
+                    <IconComponent name={stat.iconName} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">{stat.title}</h3>
+                    <p className="text-sm text-gray-500 mb-4">{stat.subtitle}</p>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                        {stat.value}
+                      </span>
+                      <span className="text-sm text-gray-500">{stat.label}</span>
                     </div>
                   </div>
                 </div>
-                
-                {/* Call to action */}
-                <div className="col-span-full sm:col-span-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl shadow-lg p-4 md:p-6 text-white">
-                  <h4 className="text-lg md:text-xl font-semibold mb-2">Ready to Transform Your Business?</h4>
-                  <p className="text-white/90 mb-4 text-sm md:text-base">
-                    Let&apos;s discuss how we can help you achieve your business goals through strategic automation and innovation.
-                  </p>
-                  <Link
-                    href="mailto:chedi@genlogic.io"
-                    className="inline-flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 bg-white text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition-colors text-sm md:text-base"
-                    aria-label="Send an email to discuss business opportunities"
-                  >
-                    <IconComponent name="FaEnvelope" />
-                    Send a Message
-                  </Link>
-                </div>
-              </div>
-            </div>
+              </motion.div>
+            ))}
+          </motion.div>
 
-            {/* Network section */}
-            <div className="space-y-4 md:space-y-6">
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 border-b border-gray-200 pb-2">
-                My Network
-              </h3>
-              <div className="grid grid-cols-1 gap-4 md:gap-6">
-                {networkStats.map((stat, index) => (
+          {/* Contact Information and CTA */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            {/* Contact Information */}
+            <motion.div variants={itemVariants} className="space-y-8">
+              <h3 className="text-2xl font-bold text-gray-900">Get in Touch</h3>
+              
+              <div className="space-y-6">
+                {contactInfo.map((item, index) => (
                   <motion.div
                     key={index}
-                    variants={itemVariants}
-                    className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-200 p-4 md:p-6"
+                    whileHover={{ x: 5 }}
+                    className="flex items-center gap-4 group"
                   >
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white">
-                        <IconComponent name={stat.iconName} />
-                      </div>
-                      <div>
-                        <h4 className="text-lg font-semibold text-gray-900">{stat.title}</h4>
-                        <p className="text-sm text-gray-600">{stat.subtitle}</p>
-                      </div>
+                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${item.gradient} flex items-center justify-center text-white shadow-sm group-hover:shadow-md transition-all duration-300`}>
+                      <IconComponent name={item.iconName} />
                     </div>
-                    <div className="flex items-center justify-between mt-3">
-                      <span className="text-2xl font-bold text-blue-600">{stat.value}</span>
-                      <span className="text-sm text-gray-600">{stat.label}</span>
+                    <div>
+                      <h4 className="text-sm text-gray-500">{item.title}</h4>
+                      {item.link ? (
+                        <a 
+                          href={item.link} 
+                          className="text-lg font-semibold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent hover:underline"
+                        >
+                          {item.value}
+                        </a>
+                      ) : (
+                        <p className="text-lg font-semibold text-gray-900">{item.value}</p>
+                      )}
+                      <p className="text-sm text-gray-500 mt-1">{item.description}</p>
                     </div>
                   </motion.div>
                 ))}
               </div>
-            </div>
+
+              {/* Social Links */}
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Connect Online</h3>
+                <div className="flex gap-4">
+                  {socialLinks.map((link, index) => (
+                    <motion.a
+                      key={index}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1 }}
+                      className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 border border-blue-100/30"
+                    >
+                      <IconComponent name={link.iconName} />
+                    </motion.a>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Call to Action Card */}
+            <motion.div 
+              variants={itemVariants}
+              className="bg-white/80 backdrop-blur-md rounded-2xl overflow-hidden shadow-md border border-blue-100/30"
+            >
+              <div className="h-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600"></div>
+              <div className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Let's Collaborate</h3>
+                <p className="text-gray-600 mb-6">
+                  I'm always open to discussing new projects, creative ideas, and opportunities to be part of your vision. Whether you need help with marketing automation, business strategy, or digital transformation, I'm here to help you succeed.
+                </p>
+                
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500/10 to-indigo-500/10 flex items-center justify-center text-blue-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <p className="text-gray-700">Personalized marketing automation solutions</p>
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500/10 to-indigo-500/10 flex items-center justify-center text-blue-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <p className="text-gray-700">Strategic business development consulting</p>
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500/10 to-indigo-500/10 flex items-center justify-center text-blue-600">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <p className="text-gray-700">Innovative digital transformation solutions</p>
+                  </div>
+                </div>
+                
+                <div className="mt-8">
+                  <a 
+                    href="mailto:chedi@genlogic.io" 
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-medium rounded-xl shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300"
+                  >
+                    <IconComponent name="FaEnvelope" />
+                    Get in Touch
+                  </a>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>

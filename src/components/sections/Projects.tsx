@@ -35,90 +35,89 @@ export default function Projects() {
   const achievements = [
     {
       id: 1,
-      title: "Marketing Automation Platform",
-      description: "Developed and implemented a comprehensive marketing automation platform that increased client conversion rates by 45% and streamlined campaign management processes.",
+      title: "GenLogic Automation Suite",
+      description: "Developed a comprehensive marketing automation ecosystem for cultural and creative industries, resulting in 75% improved lead qualification and 45% increase in conversion rates.",
       category: "automation",
       image: "/images/projects/automation-platform.jpg",
       icon: <FaRocket />,
       stats: [
-        { label: "Conversion Increase", value: "45%" },
-        { label: "Time Efficiency", value: "65%" }
+        { label: "Lead Quality", value: "+75%" },
+        { label: "Conversion Rate", value: "+45%" }
       ],
-      tags: ["Marketing Automation", "CRM Integration", "Analytics"]
+      tags: ["Marketing Automation", "Lead Nurturing", "CRM Integration"]
     },
     {
       id: 2,
-      title: "Business Growth Strategy",
-      description: "Designed and executed a strategic business growth plan for a mid-size company, resulting in 120% revenue growth over 18 months and successful market expansion.",
+      title: "NAZAX Growth Initiative",
+      description: "Led strategic business development program at NAZAX, implementing automated sales processes and CRM systems that drove 150% revenue growth in 12 months.",
       category: "strategy",
       image: "/images/projects/business-growth.jpg",
       icon: <FaChartLine />,
       stats: [
-        { label: "Revenue Growth", value: "120%" },
-        { label: "Market Expansion", value: "3 Regions" }
+        { label: "Revenue Growth", value: "150%" },
+        { label: "Process Efficiency", value: "+85%" }
       ],
-      tags: ["Strategic Planning", "Market Analysis", "Revenue Growth"]
+      tags: ["Business Strategy", "Sales Automation", "Revenue Growth"]
     },
     {
       id: 3,
-      title: "Client Relationship Management System",
-      description: "Implemented a custom CRM solution that improved client retention by 35% and enhanced team collaboration through streamlined communication channels.",
+      title: "WEBBEC Recruitment Platform",
+      description: "Designed and implemented an automated talent acquisition platform, reducing hiring time by 60% and improving candidate matching accuracy by 80%.",
       category: "automation",
       image: "/images/projects/crm-system.jpg",
       icon: <FaHandshake />,
       stats: [
-        { label: "Client Retention", value: "35%" },
-        { label: "Team Efficiency", value: "40%" }
+        { label: "Hiring Speed", value: "-60%" },
+        { label: "Match Accuracy", value: "80%" }
       ],
-      tags: ["CRM", "Client Management", "Team Collaboration"]
+      tags: ["Recruitment Automation", "AI Matching", "HR Tech"]
     },
     {
       id: 4,
-      title: "Leadership Development Program",
-      description: "Created and led a comprehensive leadership development program that improved team performance by 50% and reduced turnover rates by 25% within the organization.",
-      category: "leadership",
-      image: "/images/projects/leadership-program.jpg",
-      icon: <FaUsers />,
-      stats: [
-        { label: "Performance Boost", value: "50%" },
-        { label: "Reduced Turnover", value: "25%" }
-      ],
-      tags: ["Leadership", "Team Building", "Organizational Development"]
-    },
-    {
-      id: 5,
-      title: "Digital Transformation Initiative",
-      description: "Led a company-wide digital transformation initiative that modernized operations, resulting in 30% cost reduction and improved customer satisfaction scores.",
+      title: "Cultural Sector Transformation",
+      description: "Spearheaded digital transformation for multiple cultural organizations, implementing automated marketing and engagement systems.",
       category: "strategy",
       image: "/images/projects/digital-transformation.jpg",
       icon: <FaGlobe />,
       stats: [
-        { label: "Cost Reduction", value: "30%" },
-        { label: "Satisfaction Increase", value: "42%" }
+        { label: "Engagement", value: "+120%" },
+        { label: "ROI", value: "+95%" }
       ],
-      tags: ["Digital Transformation", "Process Optimization", "Customer Experience"]
+      tags: ["Cultural Sector", "Digital Transformation", "Automation"]
+    },
+    {
+      id: 5,
+      title: "Direct Sales Automation",
+      description: "Created an integrated direct sales automation system that combines lead nurturing, campaign management, and performance analytics.",
+      category: "automation",
+      image: "/images/projects/automation-sales.jpg",
+      icon: <FaLightbulb />,
+      stats: [
+        { label: "Sales Efficiency", value: "+70%" },
+        { label: "Lead Response", value: "-65%" }
+      ],
+      tags: ["Direct Sales", "Lead Automation", "Analytics"]
     },
     {
       id: 6,
-      title: "Innovation Workshop Series",
-      description: "Developed and facilitated an innovation workshop series that generated 15 viable business ideas, with 3 successfully implemented, creating new revenue streams.",
-      category: "leadership",
-      image: "/images/projects/innovation-workshop.jpg",
-      icon: <FaLightbulb />,
+      title: "Marketing Analytics Platform",
+      description: "Developed a comprehensive marketing analytics platform that provides real-time insights and automated reporting for campaign optimization.",
+      category: "automation",
+      image: "/images/projects/analytics-platform.jpg",
+      icon: <FaChartLine />,
       stats: [
-        { label: "Ideas Generated", value: "15" },
-        { label: "Implemented", value: "3" }
+        { label: "Data Accuracy", value: "99%" },
+        { label: "Time Saved", value: "85%" }
       ],
-      tags: ["Innovation", "Ideation", "Business Development"]
+      tags: ["Analytics", "Automation", "Marketing Intelligence"]
     }
   ];
 
   // Filter categories
   const filters = [
-    { id: 'all', label: 'All Achievements' },
-    { id: 'automation', label: 'Automation' },
-    { id: 'strategy', label: 'Strategy' },
-    { id: 'leadership', label: 'Leadership' }
+    { id: 'all', label: 'All Projects' },
+    { id: 'automation', label: 'Automation Solutions' },
+    { id: 'strategy', label: 'Strategic Initiatives' }
   ];
 
   // Filter achievements based on active filter with animation handling
@@ -126,45 +125,69 @@ export default function Projects() {
     activeFilter === 'all' || achievement.category === activeFilter
   );
 
+  // Color themes for different projects
+  const getCardColors = (id: number) => {
+    const themes = {
+      1: { accent: '#3B82F6' }, // Blue
+      2: { accent: '#8B5CF6' }, // Purple
+      3: { accent: '#10B981' }, // Emerald
+      4: { accent: '#F97316' }, // Orange
+      5: { accent: '#06B6D4' }, // Cyan
+      6: { accent: '#8B5CF6' }  // Violet
+    };
+    return themes[id as keyof typeof themes];
+  };
+
   return (
-    <section id="projects" className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4 sm:px-6 max-w-7xl" ref={ref}>
+    <section id="projects" className="relative py-20 sm:py-32 bg-white overflow-hidden">
+      {/* Minimal background elements */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(0,0,0,0.02),transparent_50%)]" />
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10" ref={ref}>
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="space-y-8 md:space-y-12"
+          className="space-y-16"
         >
           {/* Section header */}
-          <div className="text-center max-w-3xl mx-auto mb-8 md:mb-12">
-            <motion.div variants={itemVariants} className="inline-block mb-4">
-              <div className="w-12 md:w-16 h-1 bg-blue-600 rounded-full mx-auto"></div>
+          <div className="text-center max-w-3xl mx-auto relative">
+            <motion.div variants={itemVariants} className="inline-block">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/5 to-indigo-500/5 border border-blue-100 mb-6">
+                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 animate-pulse" />
+                <span className="text-blue-600 font-medium text-sm">
+                  Featured Work
+                </span>
+              </div>
             </motion.div>
             <motion.h2 
               variants={itemVariants}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-gray-900"
+              className="text-5xl font-bold mb-6 relative"
             >
-              Featured <span className="text-blue-600">Projects</span>
+              <span className="text-gray-900">Transformative</span>{" "}
+              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">Solutions</span>
             </motion.h2>
             <motion.p 
               variants={itemVariants}
-              className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto"
+              className="text-gray-600 text-lg max-w-2xl mx-auto"
             >
-              Explore my portfolio of successful projects and business transformations
+              Explore my portfolio of successful automation and business transformation projects
             </motion.p>
           </div>
 
           {/* Filter buttons */}
-          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3 md:gap-4 mb-8 md:mb-12">
+          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4 mb-12">
             {filters.map((filter) => (
               <button
                 key={filter.id}
                 onClick={() => setActiveFilter(filter.id)}
-                className={`px-4 md:px-6 py-2 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-300 ${
+                className={`px-6 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
                   activeFilter === filter.id
-                    ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md transform hover:-translate-y-0.5'
-                    : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 hover:border-gray-300'
+                    ? 'bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-lg transform hover:-translate-y-0.5'
+                    : 'bg-gradient-to-r from-blue-500/5 to-indigo-500/5 text-blue-600 border border-blue-100 hover:shadow-md'
                 }`}
               >
                 {filter.label}
@@ -172,14 +195,16 @@ export default function Projects() {
             ))}
           </motion.div>
           
-          {/* Projects grid */}
+          {/* Projects grid with premium styling */}
           <motion.div
             layout={!prefersReducedMotion}
             variants={containerVariants}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12"
           >
             <AnimatePresence mode="wait">
-              {filteredAchievements.map((achievement) => (
+              {filteredAchievements.map((achievement) => {
+                const colors = getCardColors(achievement.id);
+                return (
                 <motion.div
                   layout={!prefersReducedMotion}
                   key={achievement.id}
@@ -188,26 +213,60 @@ export default function Projects() {
                   animate="visible"
                   exit="hidden"
                   transition={{ duration: 0.3 }}
-                  className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 flex flex-col h-full transform transition-all duration-300 hover:shadow-xl"
+                  className="group relative bg-white/90 backdrop-blur-md rounded-2xl overflow-hidden shadow-md border border-blue-100/30 flex flex-col h-full transform transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:border-blue-200/50"
                 >
-                  <div className="relative h-48 md:h-52 bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center">
-                    <div className="absolute inset-0 opacity-20 bg-pattern-grid"></div>
-                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-3xl md:text-4xl">
-                      {achievement.icon}
-                    </div>
+                  {/* Background Elements */}
+                  <div className="absolute inset-0">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.05),transparent_50%)]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(99,102,241,0.05),transparent_50%)]" />
                   </div>
                   
-                  <div className="p-6 md:p-8 flex-grow">
-                    <h3 className="text-xl md:text-2xl font-bold mb-3 text-gray-900">{achievement.title}</h3>
-                    <p className="text-base text-gray-600 mb-6">{achievement.description}</p>
+                  {/* Header with gradient */}
+                  <div className="relative h-48 bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center overflow-hidden">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.2),transparent_50%)]" />
+                    <div 
+                      className="absolute inset-0 opacity-20"
+                      style={{
+                        backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)',
+                        backgroundSize: '1.5rem 1.5rem'
+                      }}
+                    />
                     
-                    {/* Achievement stats */}
+                    {/* Icon with animation */}
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="relative w-20 h-20 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-4xl transform transition-transform duration-300 shadow-lg"
+                    >
+                      {achievement.icon}
+                    </motion.div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="p-6 flex-grow relative z-10">
+                    <h3 className="text-xl font-bold mb-3">
+                      <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                        {achievement.title}
+                      </span>
+                    </h3>
+                    
+                    <p className="text-gray-600 mb-6 text-sm leading-relaxed">
+                      {achievement.description}
+                    </p>
+                    
+                    {/* Stats */}
                     <div className="grid grid-cols-2 gap-4 mb-6">
                       {achievement.stats.map((stat, index) => (
-                        <div key={index} className="bg-gray-50 p-3 md:p-4 rounded-lg text-center">
-                          <p className="text-sm text-gray-500 mb-1">{stat.label}</p>
-                          <p className="text-lg md:text-xl font-bold text-blue-600">{stat.value}</p>
-                        </div>
+                        <motion.div
+                          key={index}
+                          whileHover={{ scale: 1.03 }}
+                          className="bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-3 rounded-xl text-center border border-blue-100/50 shadow-sm transition-all duration-300 hover:shadow-md"
+                        >
+                          <p className="text-xs text-gray-500 mb-1">{stat.label}</p>
+                          <p className="text-lg font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                            {stat.value}
+                          </p>
+                        </motion.div>
                       ))}
                     </div>
                     
@@ -216,7 +275,7 @@ export default function Projects() {
                       {achievement.tags.map((tag, index) => (
                         <span
                           key={index}
-                          className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm font-medium"
+                          className="px-3 py-1 bg-gradient-to-r from-blue-500/5 to-indigo-500/5 text-blue-600 rounded-full text-xs font-medium border border-blue-100"
                         >
                           {tag}
                         </span>
@@ -224,7 +283,8 @@ export default function Projects() {
                     </div>
                   </div>
                 </motion.div>
-              ))}
+                );
+              })}
             </AnimatePresence>
           </motion.div>
         </motion.div>
