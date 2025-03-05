@@ -146,7 +146,7 @@ export default function Contact() {
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/5 to-indigo-500/5 border border-blue-100 mb-6">
                 <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 animate-pulse" />
                 <span className="text-blue-600 font-medium text-sm">
-                  Let's Connect
+                  Let&apos;s Connect
                 </span>
               </div>
             </motion.div>

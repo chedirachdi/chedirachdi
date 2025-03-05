@@ -3,8 +3,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaChartLine, FaUsers, FaLightbulb } from 'react-icons/fa';
-import { Tab } from '@headlessui/react';
-import { useMediaQuery } from 'react-responsive';
 
 // Service Card Component
 function ServiceCard({ icon, title, description, color }: { icon: React.ReactNode, title: string, description: string, color: string }) {

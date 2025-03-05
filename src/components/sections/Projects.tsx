@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaChartLine, FaUsers, FaGlobeAmericas, FaLightbulb, FaRocket, FaHandshake } from 'react-icons/fa';
+import { FaChartLine, FaGlobeAmericas, FaLightbulb, FaRocket, FaHandshake } from 'react-icons/fa';
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -215,7 +215,7 @@ export default function Projects() {
                 </div>
                 
                 {/* Header with gradient */}
-                <div className="relative h-48 bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center overflow-hidden">
+                <div className="relative h-48 bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center overflow-hidden" style={{ background: `linear-gradient(to right, ${cardColors.accent}, #6366f1)` }}>
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.2),transparent_50%)]" />
                   <div 
                     className="absolute inset-0 opacity-20"
