@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FaArrowRight, FaChartLine, FaCogs, FaRobot, FaLightbulb, FaCode, FaDatabase, FaBrain, FaServer, FaCloud, FaShieldAlt, FaClock, FaArrowUp } from 'react-icons/fa';
+import Image from 'next/image';
 
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -60,29 +61,18 @@ export default function Hero() {
               </div>
             </motion.div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-5xl lg:text-6xl font-bold leading-tight mb-6"
-            >
-              <span className="text-gray-900">
-                Transforming
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 mb-4">
+              <span className="block">Marketing Automation</span>
+              <span className="block mt-1">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Expert & Strategist
+                </span>
               </span>
-              <br />
-              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                Business Through Innovation
-              </span>
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-lg text-gray-600 mb-8 max-w-lg"
-            >
-              Leverage cutting-edge automation and AI solutions to streamline operations, boost efficiency, and drive unprecedented growth for your business.
-            </motion.p>
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mb-8">
+              Helping businesses leverage automation to scale their marketing efforts and drive growth. Let&apos;s transform your business together.
+            </p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}

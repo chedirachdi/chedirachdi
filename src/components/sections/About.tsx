@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaChartLine, FaUsers, FaLightbulb } from 'react-icons/fa';
-import SectionWrapper from '../layout/SectionWrapper';
+import { Tab } from '@headlessui/react';
+import { useMediaQuery } from 'react-responsive';
 
 // Service Card Component
 function ServiceCard({ icon, title, description, color }: { icon: React.ReactNode, title: string, description: string, color: string }) {
@@ -113,7 +114,7 @@ export default function About() {
         <div className="space-y-6">
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100 mb-6">
             <p className="text-gray-700 text-lg leading-relaxed">
-              I'm a <span className="font-semibold text-blue-600">Marketing Automation Expert</span> and <span className="font-semibold text-indigo-600">Business Development Leader</span> with a proven track record in transforming businesses through innovative automation solutions. As the CEO of GenLogic and with extensive experience in multiple leadership roles, I specialize in creating strategic frameworks that drive growth and efficiency.
+              I&apos;m a <span className="font-semibold text-blue-600">Marketing Automation Expert</span> and <span className="font-semibold text-indigo-600">Business Development Leader</span> with a proven track record in transforming businesses through innovative automation solutions. As the CEO of GenLogic and with extensive experience in multiple leadership roles, I specialize in creating strategic frameworks that drive growth and efficiency.
             </p>
           </div>
           
@@ -208,7 +209,7 @@ export default function About() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg">
                 <div className="font-bold text-blue-700 mb-2">Analysis & Strategy</div>
-                <p className="text-sm text-gray-700">Comprehensive assessment of your current systems and processes to develop targeted automation strategies.</p>
+                <p className="text-sm text-gray-700">Comprehensive assessment of your current systems and processes to develop targeted automation strategies that align with your business&apos;s unique needs and goals.</p>
               </div>
               <div className="p-4 bg-gradient-to-r from-indigo-50 to-indigo-100 rounded-lg">
                 <div className="font-bold text-indigo-700 mb-2">Implementation</div>

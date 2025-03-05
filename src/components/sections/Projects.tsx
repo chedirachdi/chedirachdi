@@ -1,31 +1,27 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { FaChartLine, FaUsers, FaLightbulb, FaGlobe, FaRocket, FaHandshake } from 'react-icons/fa';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { FaChartLine, FaUsers, FaGlobeAmericas, FaLightbulb, FaRocket, FaHandshake } from 'react-icons/fa';
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('all');
-  const ref = useRef(null);
-  const prefersReducedMotion = useReducedMotion();
 
   // Optimized animation variants
   const containerVariants = {
-    hidden: prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 20 },
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      y: 0,
       transition: {
         duration: 0.4,
-        staggerChildren: prefersReducedMotion ? 0 : 0.1
+        staggerChildren: 0.1
       }
     }
   };
 
   const itemVariants = {
-    hidden: prefersReducedMotion ? { opacity: 0 } : { y: 20, opacity: 0 },
+    hidden: { opacity: 0 },
     visible: {
-      y: 0,
       opacity: 1,
       transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
     }
@@ -78,7 +74,7 @@ export default function Projects() {
       description: "Spearheaded digital transformation for multiple cultural organizations, implementing automated marketing and engagement systems.",
       category: "strategy",
       image: "/images/projects/digital-transformation.jpg",
-      icon: <FaGlobe />,
+      icon: <FaGlobeAmericas />,
       stats: [
         { label: "Engagement", value: "+120%" },
         { label: "ROI", value: "+95%" }
@@ -145,7 +141,7 @@ export default function Projects() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(0,0,0,0.02),transparent_50%)]" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10" ref={ref}>
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -174,7 +170,7 @@ export default function Projects() {
               variants={itemVariants}
               className="text-gray-600 text-lg max-w-2xl mx-auto"
             >
-              Explore my portfolio of successful automation and business transformation projects
+              Explore my portfolio of business achievements that have driven growth and innovation. Each project showcases my expertise in marketing automation, strategic planning, and business development.
             </motion.p>
           </div>
 
@@ -197,95 +193,96 @@ export default function Projects() {
           
           {/* Projects grid with premium styling */}
           <motion.div
-            layout={!prefersReducedMotion}
+            layout={true}
             variants={containerVariants}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12"
           >
-            <AnimatePresence mode="wait">
-              {filteredAchievements.map((achievement) => {
-                const colors = getCardColors(achievement.id);
-                return (
-                <motion.div
-                  layout={!prefersReducedMotion}
-                  key={achievement.id}
-                  variants={itemVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="hidden"
-                  transition={{ duration: 0.3 }}
-                  className="group relative bg-white/90 backdrop-blur-md rounded-2xl overflow-hidden shadow-md border border-blue-100/30 flex flex-col h-full transform transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:border-blue-200/50"
-                >
-                  {/* Background Elements */}
-                  <div className="absolute inset-0">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.05),transparent_50%)]" />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(99,102,241,0.05),transparent_50%)]" />
+            {filteredAchievements.map((achievement) => {
+              const colors = getCardColors(achievement.id);
+              return (
+              <motion.div
+                layout={true}
+                key={achievement.id}
+                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                transition={{ duration: 0.3 }}
+                className="group relative bg-white/90 backdrop-blur-md rounded-2xl overflow-hidden shadow-md border border-blue-100/30 flex flex-col h-full transform transition-all duration-500 hover:-translate-y-1 hover:shadow-lg hover:border-blue-200/50"
+              >
+                {/* Background Elements */}
+                <div className="absolute inset-0">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.05),transparent_50%)]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(99,102,241,0.05),transparent_50%)]" />
+                </div>
+                
+                {/* Header with gradient */}
+                <div className="relative h-48 bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center overflow-hidden">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.2),transparent_50%)]" />
+                  <div 
+                    className="absolute inset-0 opacity-20"
+                    style={{
+                      backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)',
+                      backgroundSize: '1.5rem 1.5rem'
+                    }}
+                  />
+                  
+                  {/* Icon with animation */}
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="relative w-20 h-20 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-4xl transform transition-transform duration-300 shadow-lg"
+                  >
+                    {achievement.icon}
+                  </motion.div>
+                </div>
+                
+                {/* Content */}
+                <div className="p-6 flex-grow relative z-10">
+                  <h3 className="text-xl font-bold mb-3">
+                    <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                      {achievement.title}
+                    </span>
+                  </h3>
+                  
+                  <p className="text-gray-600 mb-6 text-sm leading-relaxed">
+                    {achievement.description}
+                  </p>
+                  
+                  {/* Stats */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    {achievement.stats.map((stat, index) => (
+                      <motion.div
+                        key={index}
+                        whileHover={{ scale: 1.03 }}
+                        className="bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-3 rounded-xl text-center border border-blue-100/50 shadow-sm transition-all duration-300 hover:shadow-md"
+                      >
+                        <p className="text-xs text-gray-500 mb-1">{stat.label}</p>
+                        <p className="text-lg font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                          {stat.value}
+                        </p>
+                      </motion.div>
+                    ))}
                   </div>
                   
-                  {/* Header with gradient */}
-                  <div className="relative h-48 bg-gradient-to-r from-blue-600 to-indigo-600 flex items-center justify-center overflow-hidden">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.2),transparent_50%)]" />
-                    <div 
-                      className="absolute inset-0 opacity-20"
-                      style={{
-                        backgroundImage: 'linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px)',
-                        backgroundSize: '1.5rem 1.5rem'
-                      }}
-                    />
-                    
-                    {/* Icon with animation */}
-                    <motion.div
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                      className="relative w-20 h-20 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-4xl transform transition-transform duration-300 shadow-lg"
-                    >
-                      {achievement.icon}
-                    </motion.div>
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="p-6 flex-grow relative z-10">
-                    <h3 className="text-xl font-bold mb-3">
-                      <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                        {achievement.title}
+                  {/* Tags */}
+                  <div className="text-sm text-gray-600 mt-2">
+                    <span className="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">
+                      {achievement.category}
+                    </span>
+                    {achievement.tags.map((tag, tagIndex) => (
+                      <span 
+                        key={tagIndex}
+                        className="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2"
+                      >
+                        {tag}
                       </span>
-                    </h3>
-                    
-                    <p className="text-gray-600 mb-6 text-sm leading-relaxed">
-                      {achievement.description}
-                    </p>
-                    
-                    {/* Stats */}
-                    <div className="grid grid-cols-2 gap-4 mb-6">
-                      {achievement.stats.map((stat, index) => (
-                        <motion.div
-                          key={index}
-                          whileHover={{ scale: 1.03 }}
-                          className="bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-3 rounded-xl text-center border border-blue-100/50 shadow-sm transition-all duration-300 hover:shadow-md"
-                        >
-                          <p className="text-xs text-gray-500 mb-1">{stat.label}</p>
-                          <p className="text-lg font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                            {stat.value}
-                          </p>
-                        </motion.div>
-                      ))}
-                    </div>
-                    
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2">
-                      {achievement.tags.map((tag, index) => (
-                        <span
-                          key={index}
-                          className="px-3 py-1 bg-gradient-to-r from-blue-500/5 to-indigo-500/5 text-blue-600 rounded-full text-xs font-medium border border-blue-100"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                    ))}
                   </div>
-                </motion.div>
-                );
-              })}
-            </AnimatePresence>
+                </div>
+              </motion.div>
+              );
+            })}
           </motion.div>
         </motion.div>
       </div>

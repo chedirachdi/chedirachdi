@@ -2,19 +2,19 @@
 
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
-import dynamic from 'next/dynamic';
-import Link from 'next/link';
+import { FaUsers, FaGlobeAmericas, FaHandshake } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaExternalLinkAlt } from 'react-icons/fa';
 
 // Dynamically import icons to reduce initial bundle size
 const Icons = {
-  FaUsers: dynamic(() => import('react-icons/fa').then(mod => mod.FaUsers)),
-  FaGlobeAmericas: dynamic(() => import('react-icons/fa').then(mod => mod.FaGlobeAmericas)),
-  FaHandshake: dynamic(() => import('react-icons/fa').then(mod => mod.FaHandshake)),
-  FaEnvelope: dynamic(() => import('react-icons/fa').then(mod => mod.FaEnvelope)),
-  FaPhone: dynamic(() => import('react-icons/fa').then(mod => mod.FaPhone)),
-  FaMapMarkerAlt: dynamic(() => import('react-icons/fa').then(mod => mod.FaMapMarkerAlt)),
-  FaLinkedin: dynamic(() => import('react-icons/fa').then(mod => mod.FaLinkedin)),
-  FaExternalLinkAlt: dynamic(() => import('react-icons/fa').then(mod => mod.FaExternalLinkAlt))
+  FaUsers: FaUsers,
+  FaGlobeAmericas: FaGlobeAmericas,
+  FaHandshake: FaHandshake,
+  FaEnvelope: FaEnvelope,
+  FaPhone: FaPhone,
+  FaMapMarkerAlt: FaMapMarkerAlt,
+  FaLinkedin: FaLinkedin,
+  FaExternalLinkAlt: FaExternalLinkAlt
 };
 
 interface NetworkStat {
@@ -259,7 +259,7 @@ export default function Contact() {
               <div className="p-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Let's Collaborate</h3>
                 <p className="text-gray-600 mb-6">
-                  I'm always open to discussing new projects, creative ideas, and opportunities to be part of your vision. Whether you need help with marketing automation, business strategy, or digital transformation, I'm here to help you succeed.
+                  I&apos;m always open to discussing new projects, creative ideas, and opportunities to be part of your vision. Whether you need help with marketing automation, business strategy, or digital transformation, I&apos;m here to help you succeed.
                 </p>
                 
                 <div className="space-y-6">
