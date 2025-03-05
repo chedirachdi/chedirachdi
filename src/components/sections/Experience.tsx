@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGraduationCap, FaChartLine, FaUsers, FaRocket, FaGlobeAmericas, FaLightbulb, FaCogs, FaHandshake, FaChess, FaChartBar, FaCertificate, FaLaptopCode, FaRobot, FaWater } from 'react-icons/fa';
+import { FaGraduationCap, FaChartLine, FaUsers, FaRocket, FaGlobeAmericas, FaLightbulb, FaCogs, FaHandshake, FaChess, FaChartBar, FaCertificate, FaLaptopCode, FaRobot, FaWater, FaCheckCircle, FaArrowCircleUp } from 'react-icons/fa';
 
 // Optimize animation variants
 const containerVariants = {
@@ -292,14 +292,14 @@ export default function Experience() {
   };
   
   return (
-    <section id="experience" className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4 max-w-6xl" ref={containerRef}>
+    <section id="experience" className="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
+      <div className="container mx-auto px-4 max-w-6xl">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="space-y-6 md:space-y-8"
+          className="space-y-6 sm:space-y-8 md:space-y-12"
         >
           {/* Section header */}
           <div className="text-center max-w-3xl mx-auto">
@@ -308,228 +308,224 @@ export default function Experience() {
             </motion.div>
             <motion.h2 
               variants={itemVariants}
-              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-gray-900"
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-gray-900"
             >
               Professional <span className="text-blue-600">Experience</span>
             </motion.h2>
             <motion.p 
               variants={itemVariants}
-              className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4 md:px-0"
+              className="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4 md:px-0"
             >
-              A track record of leadership, innovation, and business transformation
+              My journey as a CEO and business leader, showcasing key achievements and capabilities
             </motion.p>
           </div>
 
-          {/* Tab navigation */}
-          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3 md:gap-4">
-            {['leadership', 'business', 'education'].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-4 md:px-6 py-2 md:py-3 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 ${
-                  activeTab === tab
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
-              </button>
-            ))}
-          </motion.div>
+          {/* Tabs */}
+          <motion.div variants={itemVariants} className="mt-6 md:mt-8">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-6 md:mb-8">
+              {['leadership', 'business', 'education'].map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 rounded-lg text-xs sm:text-sm md:text-base font-medium transition-colors duration-200 ${
+                    activeTab === tab
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  }`}
+                >
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    {tab === 'leadership' && <FaGraduationCap className="w-4 h-4 sm:w-4 sm:h-4" />}
+                    {tab === 'business' && <FaChartLine className="w-4 h-4 sm:w-4 sm:h-4" />}
+                    {tab === 'education' && <FaGraduationCap className="w-4 h-4 sm:w-4 sm:h-4" />}
+                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                  </div>
+                </button>
+              ))}
+            </div>
 
-          {/* Tab content */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              variants={tabVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="mt-6 md:mt-8"
-            >
-              {activeTab === 'leadership' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                  {leadershipContent.achievements.map((achievement, index) => (
+            {/* Leadership Tab */}
+            <div className={activeTab === 'leadership' ? 'block' : 'hidden'}>
+              <div className="space-y-6 md:space-y-8">
+                {leadershipContent.achievements.map((achievement, index) => (
+                  <motion.div
+                    key={index}
+                    variants={itemVariants}
+                    className="bg-white rounded-xl p-4 sm:p-6 md:p-8 shadow-md border border-gray-100"
+                  >
+                    <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-6">
+                      <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r ${achievement.color} flex-shrink-0 flex items-center justify-center text-white text-xl sm:text-2xl`}>
+                        {achievement.icon}
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 sm:mb-3">
+                          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">{achievement.title}</h3>
+                          <div className="text-xs sm:text-sm text-gray-500 mt-1 sm:mt-0">{achievement.period}</div>
+                        </div>
+                        <div className="text-sm sm:text-base text-blue-600 font-medium mb-2 sm:mb-3">{achievement.role}</div>
+                        <p className="text-sm sm:text-base text-gray-600 mb-4">{achievement.description}</p>
+                        <div className="space-y-2">
+                          {achievement.highlights.map((highlight, idx) => (
+                            <div key={idx} className="flex items-start gap-2">
+                              <div className="text-blue-600 mt-1">
+                                <FaCheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                              </div>
+                              <p className="text-xs sm:text-sm text-gray-700 flex-1">{highlight}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Business Impact Tab */}
+            <div className={activeTab === 'business' ? 'block' : 'hidden'}>
+              <div className="space-y-6 md:space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                  {businessImpactContent.capabilities.map((capability, index) => (
                     <motion.div
                       key={index}
                       variants={itemVariants}
-                      className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-200 overflow-hidden"
+                      className="bg-white rounded-xl p-4 sm:p-6 shadow-md border border-gray-100"
                     >
-                      <div className="p-4 md:p-6">
-                        <div className="flex items-center gap-4 mb-4">
-                          <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-blue-600 flex items-center justify-center text-white">
-                            {achievement.icon}
-                          </div>
-                          <div>
-                            <h3 className="text-lg md:text-xl font-semibold text-gray-900">
-                              {achievement.title}
-                            </h3>
-                            <p className="text-sm text-gray-500">
-                              {achievement.period}
-                            </p>
-                          </div>
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r ${capability.color} flex-shrink-0 flex items-center justify-center text-white text-lg sm:text-xl`}>
+                          {capability.icon}
                         </div>
-                        <p className="text-sm md:text-base text-gray-600 mb-4">
-                          {achievement.description}
-                        </p>
-                        <ul className="space-y-2">
-                          {achievement.highlights.map((highlight, i) => (
-                            <li key={i} className="flex items-start gap-2 text-sm md:text-base text-gray-600">
-                              <span className="text-blue-600 mt-1">•</span>
-                              {highlight}
-                            </li>
-                          ))}
-                        </ul>
+                        <div className="flex-1">
+                          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">{capability.title}</h3>
+                          <p className="text-xs sm:text-sm text-gray-600">{capability.description}</p>
+                        </div>
                       </div>
                     </motion.div>
                   ))}
                 </div>
-              )}
 
-              {activeTab === 'business' && (
-                <div className="space-y-6 md:space-y-8">
-                  {/* Capabilities */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                    {businessImpactContent.capabilities.map((capability, index) => (
-                      <motion.div
-                        key={index}
-                        variants={itemVariants}
-                        className="bg-white rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-all duration-200"
-                      >
-                        <div className="mb-4">
-                          <div className="w-12 h-12 rounded-lg bg-blue-600 flex items-center justify-center text-white mb-4">
-                            {capability.icon}
-                          </div>
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                            {capability.title}
-                          </h3>
-                          <p className="text-sm text-gray-600">
-                            {capability.description}
-                          </p>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* Results */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div className="mt-6 md:mt-8">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-center mb-4 sm:mb-6 text-gray-900">Results</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                     {businessImpactContent.results.map((result, index) => (
                       <motion.div
                         key={index}
                         variants={itemVariants}
-                        className="bg-white rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-all duration-200"
+                        className="bg-white rounded-xl p-3 sm:p-4 md:p-6 shadow-md border border-gray-100"
                       >
-                        <div className="flex items-center gap-3 mb-3">
-                          {result.icon}
-                          <span className="text-2xl font-bold text-gray-900">
-                            {result.value}{result.suffix}
-                          </span>
+                        <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+                          <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r ${result.color} flex-shrink-0 flex items-center justify-center text-white text-lg sm:text-xl`}>
+                            {result.icon}
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">{result.metric}</h4>
+                            <p className="text-xs sm:text-sm text-gray-600">{result.description}</p>
+                          </div>
                         </div>
-                        <h4 className="font-medium text-gray-900 mb-2">
-                          {result.metric}
-                        </h4>
-                        <p className="text-sm text-gray-600">
-                          {result.description}
-                        </p>
                       </motion.div>
                     ))}
                   </div>
+                </div>
+              </div>
+            </div>
 
-                  {/* Case Studies */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                    {businessImpactContent.caseStudies.map((study, index) => (
+            {/* Case Studies Tab */}
+            <div className={activeTab === 'business' ? 'block' : 'hidden'}>
+              <div className="space-y-6 md:space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                  {businessImpactContent.caseStudies.map((study, index) => (
+                    <motion.div
+                      key={index}
+                      variants={itemVariants}
+                      className="bg-white rounded-xl p-4 sm:p-6 shadow-md border border-gray-100"
+                    >
+                      <h4 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">{study.title}</h4>
+                      <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">{study.description}</p>
+                      <div className="space-y-2 sm:space-y-3">
+                        {study.metrics.map((metric, idx) => (
+                          <div key={idx} className="flex items-start gap-2 sm:gap-3">
+                            <div className="text-blue-600 mt-0.5">
+                              <FaCheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                            </div>
+                            <p className="text-xs sm:text-sm text-gray-700 flex-1">{metric}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Education Tab */}
+            <div className={activeTab === 'education' ? 'block' : 'hidden'}>
+              <div className="space-y-6 md:space-y-8">
+                <div className="bg-white rounded-xl p-4 sm:p-6 md:p-8 shadow-md border border-gray-100">
+                  <div className="text-center mb-4 sm:mb-6">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-2 sm:mb-3">Educational Background</h3>
+                    <p className="text-xs sm:text-sm md:text-base text-gray-600 max-w-3xl mx-auto">
+                      My formal education and continuous learning journey that has shaped my expertise
+                    </p>
+                    <div className="mt-3 sm:mt-4 md:mt-6 p-3 sm:p-4 bg-gray-50 rounded-lg inline-block">
+                      <p className="text-xs sm:text-sm italic text-gray-600">
+                        &quot;Education is not the learning of facts, but the training of the mind to think.&quot; - Albert Einstein
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 sm:space-y-6">
+                    {educationContent.education.map((edu, index) => (
                       <motion.div
                         key={index}
                         variants={itemVariants}
-                        className="bg-white rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-all duration-200"
+                        className="border-l-2 border-blue-600 pl-3 sm:pl-4 md:pl-6 py-1 sm:py-2"
                       >
-                        <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                          {study.title}
-                        </h3>
-                        <p className="text-gray-600 mb-4">
-                          {study.description}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {study.metrics.map((metric, i) => (
-                            <span
-                              key={i}
-                              className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm"
-                            >
-                              {metric}
-                            </span>
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-1 sm:mb-2">
+                          <h4 className="text-base sm:text-lg font-bold text-gray-900">{edu.title}</h4>
+                          <div className="text-xs sm:text-sm text-gray-500">{edu.period}</div>
+                        </div>
+                        <div className="text-xs sm:text-sm text-blue-600 font-medium mb-1 sm:mb-2">{edu.institution}</div>
+                        <p className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3">{edu.description}</p>
+                        <div className="space-y-1 sm:space-y-2">
+                          {edu.achievements.map((achievement, idx) => (
+                            <div key={idx} className="flex items-start gap-2">
+                              <div className="text-blue-600 mt-0.5">
+                                <FaCheckCircle className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                              </div>
+                              <p className="text-xs sm:text-sm text-gray-700 flex-1">{achievement}</p>
+                            </div>
                           ))}
                         </div>
                       </motion.div>
                     ))}
                   </div>
                 </div>
-              )}
 
-              {activeTab === 'education' && (
-                <div className="space-y-6 md:space-y-8">
-                  {/* Formal Education */}
-                  <div className="grid grid-cols-1 gap-4 md:gap-6">
+                <div className="mt-6 md:mt-8">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-center mb-4 sm:mb-6 text-gray-900">Certifications</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
                     {educationContent.education.map((edu, index) => (
                       <motion.div
                         key={index}
                         variants={itemVariants}
-                        className="bg-white rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-all duration-200"
+                        className="bg-white rounded-xl p-3 sm:p-4 md:p-5 shadow-md border border-gray-100"
                       >
-                        <div className="flex flex-col md:flex-row md:items-start gap-4">
-                          <div className="w-12 h-12 rounded-lg bg-blue-600 flex items-center justify-center text-white">
+                        <div className="flex items-start gap-2 sm:gap-3">
+                          <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r ${edu.color} flex-shrink-0 flex items-center justify-center text-white text-sm sm:text-base`}>
                             {edu.icon}
                           </div>
                           <div className="flex-1">
-                            <h3 className="text-xl font-semibold text-gray-900">
-                              {edu.title}
-                            </h3>
-                            <p className="text-sm text-gray-500 mb-2">
-                              {edu.institution} • {edu.period}
-                            </p>
-                            <p className="text-gray-600 mb-4">
-                              {edu.description}
-                            </p>
-                            <div className="space-y-2">
-                              {edu.achievements.map((achievement, i) => (
-                                <div key={i} className="flex items-start gap-2">
-                                  <span className="text-blue-600 mt-1">•</span>
-                                  <span className="text-gray-600">{achievement}</span>
-                                </div>
-                              ))}
-                            </div>
+                            <h4 className="text-sm sm:text-base font-bold text-gray-900 mb-0.5 sm:mb-1">{edu.title}</h4>
+                            <div className="text-xs text-gray-500 mb-1 sm:mb-2">{edu.institution}</div>
+                            <p className="text-xs text-gray-600">{edu.description}</p>
                           </div>
                         </div>
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* Continuous Learning */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                    {educationContent.continuousLearning.map((learning, index) => (
-                      <motion.div
-                        key={index}
-                        variants={itemVariants}
-                        className="bg-white rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-all duration-200"
-                      >
-                        <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white mb-4">
-                          {learning.icon}
-                        </div>
-                        <h4 className="text-lg font-semibold text-gray-900 mb-1">
-                          {learning.title}
-                        </h4>
-                        <p className="text-sm text-gray-500 mb-3">
-                          {learning.provider} • {learning.year}
-                        </p>
-                        <p className="text-sm text-gray-600">
-                          {learning.description}
-                        </p>
                       </motion.div>
                     ))}
                   </div>
                 </div>
-              )}
-            </motion.div>
-          </AnimatePresence>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

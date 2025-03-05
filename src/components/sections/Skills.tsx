@@ -124,7 +124,7 @@ export default function Skills() {
   ];
 
   return (
-    <section id="skills" className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
+    <section id="skills" className="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4 max-w-6xl" ref={ref}>
         <motion.div
           variants={containerVariants}
@@ -146,25 +146,25 @@ export default function Skills() {
             </motion.h2>
             <motion.p 
               variants={itemVariants}
-              className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4 md:px-0"
+              className="text-sm sm:text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4 md:px-0"
             >
               A comprehensive overview of my technical and business capabilities
             </motion.p>
           </div>
 
           {/* Category navigation */}
-          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3 md:gap-4">
+          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`px-4 md:px-6 py-2 md:py-3 rounded-lg text-sm md:text-base font-medium transition-colors duration-200 ${
+                className={`px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-3 rounded-lg text-xs sm:text-sm md:text-base font-medium transition-colors duration-200 ${
                   activeCategory === category.id
                     ? 'bg-blue-600 text-white'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5 sm:gap-2">
                   {category.icon}
                   {category.label}
                 </div>
@@ -176,50 +176,56 @@ export default function Skills() {
           <motion.div variants={itemVariants} className="mt-6 md:mt-8">
             {categories.map((category) => (
               <div key={category.id} className={activeCategory === category.id ? 'block' : 'hidden'}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
                   {category.skills.map((skill, index) => (
                     <motion.div
                       key={index}
                       variants={itemVariants}
-                      className="bg-white rounded-lg p-4 md:p-6 shadow-md border border-gray-200"
+                      className="bg-white rounded-lg p-3 sm:p-4 md:p-6 shadow-md border border-gray-200"
                     >
-                      <div className="flex items-center gap-3 mb-3">
-                        <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white">
+                      <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white">
                           {skill.icon}
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900">{skill.name}</h3>
+                        <h3 className="text-base sm:text-lg font-semibold text-gray-900">{skill.name}</h3>
                       </div>
-                      <div className="space-y-2">
-                        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                      <div className="space-y-1.5 sm:space-y-2">
+                        <div className="h-1.5 sm:h-2 bg-gray-100 rounded-full overflow-hidden">
                           <div
                             className="h-full bg-blue-600 rounded-full"
                             style={{ width: `${skill.level}%` }}
                           ></div>
                         </div>
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between text-xs sm:text-sm">
                           <span className="text-gray-600">{skill.name}</span>
-                          <span className="text-blue-600 font-medium">{skill.level}%</span>
+                          <span className="font-medium text-blue-600">{skill.level}%</span>
                         </div>
                       </div>
                     </motion.div>
                   ))}
                 </div>
-
-                {/* Skill level legend */}
-                <div className="flex flex-wrap justify-center gap-4 mt-6">
-                  {skillLevels.map((level, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <div className={`w-3 h-3 rounded-full ${level.color}`}></div>
-                      <span className="text-sm text-gray-600">
-                        <span className="font-medium">{level.label}</span> ({level.range})
-                      </span>
-                    </div>
-                  ))}
-                </div>
               </div>
             ))}
           </motion.div>
-          
+
+          {/* Skill level legend */}
+          <motion.div variants={itemVariants} className="mt-8 md:mt-12">
+            <div className="bg-white rounded-xl p-4 md:p-6 shadow-md border border-gray-100">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 md:mb-4">Skill Level Legend</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4">
+                {skillLevels.map((level, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <div className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full ${level.color}`}></div>
+                    <div>
+                      <div className="font-medium text-gray-900 text-xs sm:text-sm">{level.label}</div>
+                      <div className="text-gray-500 text-xs">{level.range}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
           {/* Expertise areas */}
           <motion.div variants={itemVariants} className="space-y-6 md:space-y-8">
             <h3 className="text-xl md:text-2xl font-bold text-center mb-4 md:mb-6 text-gray-900">Areas of Expertise</h3>
