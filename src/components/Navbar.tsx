@@ -65,8 +65,8 @@ export default function Navbar() {
                 />
               </div>
               <div className="ml-2 sm:ml-3">
-                <h1 className="text-base sm:text-xl font-bold text-gray-900">Chedi Rachdi</h1>
-                <p className="text-xs bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 font-medium">CEO & Business Automation Expert</p>
+                <h1 className="text-sm sm:text-base md:text-xl font-bold text-gray-900">Chedi Rachdi</h1>
+                <p className="text-[10px] sm:text-xs bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 font-medium mt-0.5">CEO & Business Automation Expert</p>
               </div>
             </div>
           </Link>

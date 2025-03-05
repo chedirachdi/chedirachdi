@@ -21,7 +21,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-blue-50">
+    <section className="relative min-h-screen pt-24 sm:pt-28 flex items-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-blue-50">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
@@ -52,9 +52,9 @@ export default function Hero() {
               transition={{ delay: 0.3 }}
               className="mb-6"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/5 to-indigo-500/5 border border-blue-100">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-blue-500/5 to-indigo-500/5 border border-blue-100">
                 <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 animate-pulse" />
-                <span className="text-blue-600 font-medium text-sm">
+                <span className="text-blue-600 font-medium text-xs sm:text-sm">
                   Business Automation Expert
                 </span>
               </div>
