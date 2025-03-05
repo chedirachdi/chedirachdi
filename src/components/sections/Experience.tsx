@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaChartLine, FaUsers, FaRocket, FaGlobeAmericas, FaLightbulb, FaCogs, FaHandshake, FaChess, FaChartBar, FaCertificate, FaLaptopCode, FaRobot, FaWater, FaCheckCircle, FaBuilding } from 'react-icons/fa';
+import { FaGraduationCap, FaChartLine, FaUsers, FaRocket, FaGlobeAmericas, FaLightbulb, FaCogs, FaHandshake, FaChess, FaChartBar, FaCertificate, FaLaptopCode, FaRobot, FaWater, FaCheckCircle } from 'react-icons/fa';
 
 // Optimize animation variants
 const containerVariants = {
