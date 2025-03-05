@@ -3,8 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { FaArrowRight, FaChartLine, FaCogs, FaRobot, FaLightbulb, FaCode, FaDatabase, FaBrain, FaServer, FaCloud, FaShieldAlt, FaClock, FaArrowUp } from 'react-icons/fa';
-import Image from 'next/image';
+import { FaArrowRight, FaChartLine, FaCogs, FaRobot, FaLightbulb, FaClock, FaArrowUp } from 'react-icons/fa';
 
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -235,8 +234,8 @@ export default function Hero() {
                   <div className="col-span-3 row-span-2 flex flex-col gap-4">
                     {[
                       { label: 'Active Workflows', value: '847', icon: FaCogs, color: 'emerald' },
-                      { label: 'AI Models Active', value: '12', icon: FaBrain, color: 'blue' },
-                      { label: 'Data Processed', value: '2.8TB', icon: FaDatabase, color: 'indigo' }
+                      { label: 'AI Models Active', value: '12', icon: FaRobot, color: 'blue' },
+                      { label: 'Data Processed', value: '2.8TB', icon: FaClock, color: 'indigo' }
                     ].map((stat, index) => (
                       <motion.div
                         key={index}

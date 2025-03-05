@@ -162,7 +162,7 @@ export default function Contact() {
               variants={itemVariants}
               className="text-gray-600 text-lg max-w-2xl mx-auto"
             >
-              Let's discuss how my expertise in marketing automation and business development can help your organization achieve sustainable growth
+              Let&apos;s discuss how my expertise in marketing automation and business development can help your organization achieve sustainable growth
             </motion.p>
           </div>
 
@@ -257,7 +257,7 @@ export default function Contact() {
             >
               <div className="h-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600"></div>
               <div className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Let's Collaborate</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Let&apos;s Collaborate</h3>
                 <p className="text-gray-600 mb-6">
                   I&apos;m always open to discussing new projects, creative ideas, and opportunities to be part of your vision. Whether you need help with marketing automation, business strategy, or digital transformation, I&apos;m here to help you succeed.
                 </p>

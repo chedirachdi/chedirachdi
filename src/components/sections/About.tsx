@@ -232,7 +232,7 @@ export default function About() {
         <div className="space-y-8">
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-100 mb-6">
             <p className="text-gray-700">
-              With over 20 years of experience in business development and marketing automation, I've led multiple successful ventures and helped businesses transform their operations through innovative technology solutions and strategic planning.
+              With over 20 years of experience in business development and marketing automation, I&apos;ve led multiple successful ventures and helped businesses transform their operations through innovative technology solutions and strategic planning.
             </p>
           </div>
           

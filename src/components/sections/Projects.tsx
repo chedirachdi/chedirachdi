@@ -128,10 +128,8 @@ export default function Projects() {
       2: { accent: '#8B5CF6' }, // Purple
       3: { accent: '#10B981' }, // Emerald
       4: { accent: '#F97316' }, // Orange
-      5: { accent: '#06B6D4' }, // Cyan
-      6: { accent: '#8B5CF6' }  // Violet
     };
-    return themes[id as keyof typeof themes];
+    return themes[id as keyof typeof themes] || themes[1];
   };
 
   return (
@@ -198,7 +196,7 @@ export default function Projects() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12"
           >
             {filteredAchievements.map((achievement) => {
-              const colors = getCardColors(achievement.id);
+              const cardColors = getCardColors(achievement.id);
               return (
               <motion.div
                 layout={true}
